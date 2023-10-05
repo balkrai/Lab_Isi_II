@@ -28,33 +28,33 @@ public class Vista_2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBSeleccionarVuelo = new javax.swing.JButton();
-        jBCerrarSesion = new javax.swing.JButton();
-        jBAltaVuelo = new javax.swing.JButton();
+        jbsinReserva = new javax.swing.JButton();
+        jbActividades = new javax.swing.JButton();
+        jbReserva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jBSeleccionarVuelo.setBackground(new java.awt.Color(51, 51, 255));
-        jBSeleccionarVuelo.setText("SIN RESERVA");
-        jBSeleccionarVuelo.addActionListener(new java.awt.event.ActionListener() {
+        jbsinReserva.setBackground(new java.awt.Color(51, 51, 255));
+        jbsinReserva.setText("SIN RESERVA");
+        jbsinReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBSeleccionarVueloActionPerformed(evt);
+                jbsinReservaActionPerformed(evt);
             }
         });
 
-        jBCerrarSesion.setBackground(new java.awt.Color(0, 51, 255));
-        jBCerrarSesion.setText("ACTIVIDADES");
-        jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        jbActividades.setBackground(new java.awt.Color(0, 51, 255));
+        jbActividades.setText("ACTIVIDADES");
+        jbActividades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCerrarSesionActionPerformed(evt);
+                jbActividadesActionPerformed(evt);
             }
         });
 
-        jBAltaVuelo.setBackground(new java.awt.Color(0, 51, 255));
-        jBAltaVuelo.setText("RESERVA");
-        jBAltaVuelo.addActionListener(new java.awt.event.ActionListener() {
+        jbReserva.setBackground(new java.awt.Color(0, 51, 255));
+        jbReserva.setText("RESERVA");
+        jbReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAltaVueloActionPerformed(evt);
+                jbReservaActionPerformed(evt);
             }
         });
 
@@ -65,47 +65,47 @@ public class Vista_2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBSeleccionarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBAltaVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbsinReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbActividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addComponent(jBAltaVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jBSeleccionarVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbsinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
+    private void jbActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividadesActionPerformed
         //PANEL_USUARIO_NO_REGISTRADO_1 ventana1 = new PANEL_USUARIO_NO_REGISTRADO_1();
         setVisible(false);
         //ventana1.setSize(getWidth(), getHeight());
         //ventana1.setVisible(true);
-    }//GEN-LAST:event_jBCerrarSesionActionPerformed
+    }//GEN-LAST:event_jbActividadesActionPerformed
 
-    private void jBSeleccionarVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSeleccionarVueloActionPerformed
+    private void jbsinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsinReservaActionPerformed
         //SELECCIONAR_VUELO_10 ventana10 = new SELECCIONAR_VUELO_10(this.controlador);
         setVisible(false);
         //ventana10.setSize(getWidth(), getHeight());
         //ventana10.setVisible(true);
-    }//GEN-LAST:event_jBSeleccionarVueloActionPerformed
+    }//GEN-LAST:event_jbsinReservaActionPerformed
 
-    private void jBAltaVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAltaVueloActionPerformed
+    private void jbReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservaActionPerformed
         //ALTA_VUELO_9b ventana_9b = new ALTA_VUELO_9b(this.controlador,this);
         setVisible(false);
         //ventana_9b.setSize(412, 700);
         //ventana_9b.setPreferredSize(new Dimension(412, 800));
         //ventana_9b.setVisible(true);
-    }//GEN-LAST:event_jBAltaVueloActionPerformed
+    }//GEN-LAST:event_jbReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,9 +151,9 @@ public class Vista_2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAltaVuelo;
-    private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBSeleccionarVuelo;
+    private javax.swing.JButton jbActividades;
+    private javax.swing.JButton jbReserva;
+    private javax.swing.JButton jbsinReserva;
     // End of variables declaration//GEN-END:variables
     //private Personal_de_tierra controlador = new Personal_de_tierra("pt1","pt1");
 }

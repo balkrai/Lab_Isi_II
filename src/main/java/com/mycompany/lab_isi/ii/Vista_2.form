@@ -26,9 +26,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jBSeleccionarVuelo" max="32767" attributes="0"/>
-                  <Component id="jBCerrarSesion" max="32767" attributes="0"/>
-                  <Component id="jBAltaVuelo" min="-2" pref="224" max="-2" attributes="0"/>
+                  <Component id="jbsinReserva" max="32767" attributes="0"/>
+                  <Component id="jbActividades" max="32767" attributes="0"/>
+                  <Component id="jbReserva" min="-2" pref="224" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="103" max="32767" attributes="0"/>
           </Group>
@@ -38,18 +38,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-              <Component id="jBAltaVuelo" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="jbReserva" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="jBSeleccionarVuelo" min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="jbsinReserva" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="jBCerrarSesion" min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="jbActividades" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jBSeleccionarVuelo">
+    <Component class="javax.swing.JButton" name="jbsinReserva">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="33" type="rgb"/>
@@ -57,10 +57,10 @@
         <Property name="text" type="java.lang.String" value="SIN RESERVA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSeleccionarVueloActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbsinReservaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBCerrarSesion">
+    <Component class="javax.swing.JButton" name="jbActividades">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -68,10 +68,10 @@
         <Property name="text" type="java.lang.String" value="ACTIVIDADES"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCerrarSesionActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbActividadesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBAltaVuelo">
+    <Component class="javax.swing.JButton" name="jbReserva">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -79,7 +79,7 @@
         <Property name="text" type="java.lang.String" value="RESERVA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAltaVueloActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbReservaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -5,6 +5,7 @@
 package com.mycompany.lab_isi.ii;
 
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,8 +36,8 @@ public class Vista_1 extends javax.swing.JFrame {
         tfUsuario = new javax.swing.JTextField();
         tfContraseña = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
-        jbEntrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbEntrarCliente = new javax.swing.JButton();
+        jbEntrarTrabajador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,26 +55,26 @@ public class Vista_1 extends javax.swing.JFrame {
         });
 
         jbCancelar.setBackground(new java.awt.Color(51, 102, 255));
-        jbCancelar.setText("CANCELAR");
+        jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCancelarActionPerformed(evt);
             }
         });
 
-        jbEntrar.setBackground(new java.awt.Color(51, 102, 255));
-        jbEntrar.setLabel("Cliente");
-        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
+        jbEntrarCliente.setBackground(new java.awt.Color(51, 102, 255));
+        jbEntrarCliente.setLabel("Cliente");
+        jbEntrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEntrarActionPerformed(evt);
+                jbEntrarClienteActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(51, 102, 255));
-        jButton1.setLabel("Trabajador");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbEntrarTrabajador.setBackground(new java.awt.Color(51, 102, 255));
+        jbEntrarTrabajador.setLabel("Trabajador");
+        jbEntrarTrabajador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbEntrarTrabajadorActionPerformed(evt);
             }
         });
 
@@ -100,9 +101,9 @@ public class Vista_1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbCancelar)
                 .addGap(18, 18, 18)
-                .addComponent(jbEntrar)
+                .addComponent(jbEntrarCliente)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbEntrarTrabajador)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,8 +122,8 @@ public class Vista_1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancelar)
-                    .addComponent(jbEntrar)
-                    .addComponent(jButton1))
+                    .addComponent(jbEntrarCliente)
+                    .addComponent(jbEntrarTrabajador))
                 .addGap(17, 17, 17))
         );
 
@@ -135,20 +136,22 @@ public class Vista_1 extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
-       
-        
-       
-    }//GEN-LAST:event_jbEntrarActionPerformed
+    private void jbEntrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarClienteActionPerformed
+        Vista_2 vista_2 = new Vista_2();
+        setVisible(false);
+        vista_2.setSize(412, 700);
+        vista_2.setPreferredSize(new Dimension(412, 800));
+        vista_2.setVisible(true);
+    }//GEN-LAST:event_jbEntrarClienteActionPerformed
 
     private void tfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseñaActionPerformed
             
 
     }//GEN-LAST:event_tfContraseñaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbEntrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarTrabajadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbEntrarTrabajadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +167,9 @@ public class Vista_1 extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbEntrarCliente;
+    private javax.swing.JButton jbEntrarTrabajador;
     private javax.swing.JLabel jlContraseña;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JLabel jlUsuario;
