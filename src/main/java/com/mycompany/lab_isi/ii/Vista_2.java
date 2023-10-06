@@ -93,8 +93,9 @@ public class Vista_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jbActividadesActionPerformed
 
     private void jbsinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsinReservaActionPerformed
-        //SELECCIONAR_VUELO_10 ventana10 = new SELECCIONAR_VUELO_10(this.controlador);
         setVisible(false);
+        Vista_6 v = new Vista_6();
+        v.setVisible(true);
         //ventana10.setSize(getWidth(), getHeight());
         //ventana10.setVisible(true);
     }//GEN-LAST:event_jbsinReservaActionPerformed
