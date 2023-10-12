@@ -54,7 +54,8 @@ public class Vista_1 extends javax.swing.JFrame {
             }
         });
 
-        jbCancelar.setBackground(new java.awt.Color(51, 102, 255));
+        jbCancelar.setBackground(new java.awt.Color(0, 51, 255));
+        jbCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +63,8 @@ public class Vista_1 extends javax.swing.JFrame {
             }
         });
 
-        jbEntrarCliente.setBackground(new java.awt.Color(51, 102, 255));
+        jbEntrarCliente.setBackground(new java.awt.Color(0, 51, 255));
+        jbEntrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         jbEntrarCliente.setLabel("Cliente");
         jbEntrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +72,8 @@ public class Vista_1 extends javax.swing.JFrame {
             }
         });
 
-        jbEntrarTrabajador.setBackground(new java.awt.Color(51, 102, 255));
+        jbEntrarTrabajador.setBackground(new java.awt.Color(0, 51, 255));
+        jbEntrarTrabajador.setForeground(new java.awt.Color(255, 255, 255));
         jbEntrarTrabajador.setLabel("Trabajador");
         jbEntrarTrabajador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,35 +86,34 @@ public class Vista_1 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(66, Short.MAX_VALUE)
-                        .addComponent(jlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jlContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jbCancelar)
                 .addGap(18, 18, 18)
                 .addComponent(jbEntrarCliente)
                 .addGap(18, 18, 18)
                 .addComponent(jbEntrarTrabajador)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(17, 17, 17)
                 .addComponent(jlTitulo)
-                .addGap(38, 38, 38)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlUsuario)
                     .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,6 +153,9 @@ public class Vista_1 extends javax.swing.JFrame {
 
     private void jbEntrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarTrabajadorActionPerformed
         // TODO add your handling code here:
+        Vista_9 v9 = new Vista_9();
+        v9.show();
+        this.dispose();
     }//GEN-LAST:event_jbEntrarTrabajadorActionPerformed
 
     /**

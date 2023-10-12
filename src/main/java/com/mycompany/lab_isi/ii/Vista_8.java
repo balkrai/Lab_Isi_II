@@ -63,7 +63,8 @@ public class Vista_8 extends javax.swing.JFrame {
             }
         });
 
-        jbAceptar.setBackground(new java.awt.Color(51, 102, 255));
+        jbAceptar.setBackground(new java.awt.Color(0, 51, 255));
+        jbAceptar.setForeground(new java.awt.Color(255, 255, 255));
         jbAceptar.setText("Aceptar");
         jbAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,10 +160,12 @@ public class Vista_8 extends javax.swing.JFrame {
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
         Vista_2 vista_2 = new Vista_2();
-        setVisible(false);
+        /*setVisible(false);
         vista_2.setSize(412, 700);
         vista_2.setPreferredSize(new Dimension(412, 800));
-        vista_2.setVisible(true);
+        vista_2.setVisible(true);*/
+        vista_2.show();
+        this.dispose();
     }//GEN-LAST:event_jbAceptarActionPerformed
 
     private void nombreTienda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTienda2ActionPerformed
