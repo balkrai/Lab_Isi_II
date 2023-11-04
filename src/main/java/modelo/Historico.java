@@ -4,9 +4,10 @@ public class Historico {
     private int diaRealEntrada, mesRealEntrada, anyoRealEntrada, diaRealSalida,
       mesRealSalida, anyoRealSalida;
     private float precio;
+    private Cliente cliente;
     public Historico(int diaRealEntrada, int mesRealEntrada,
             int anyoRealEntrada, int diaRealSalida, int mesRealSalida, 
-            int anyoRealSalida, float precio)
+            int anyoRealSalida, float precio, Cliente cliente)
     {
         this.diaRealEntrada = diaRealEntrada;
         this.mesRealEntrada = diaRealEntrada;
@@ -15,6 +16,7 @@ public class Historico {
         this.mesRealSalida = diaRealEntrada;
         this.anyoRealSalida = diaRealEntrada;
         this.precio = precio;
+        this.cliente = cliente;
     }
     public int getDiaRealEntrada()
     {
@@ -44,6 +46,10 @@ public class Historico {
     {
         return precio;
     }
+    public Cliente getCliente()
+    {
+        return cliente;
+    }
     public void setDiaRealEntrada()
     {
         this.diaRealEntrada = diaRealEntrada;
@@ -71,5 +77,9 @@ public class Historico {
     public void setPrecio()
     {
         this.precio = precio;
+    }
+    public void setCliente(Cliente cliente)
+    {
+        this.cliente = cliente;
     }
 }
