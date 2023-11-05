@@ -14,7 +14,7 @@ public class Cliente {
     }
     
     public static Cliente IniciarSesion(String usu, String contra) {
-        return Camping.getInstancia().login(usu,contra);
+        return Camping.getInstancia().loginC(usu,contra);
     }
     
     public ArrayList<Reserva> getReservas()

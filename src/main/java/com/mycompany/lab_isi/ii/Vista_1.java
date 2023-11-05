@@ -9,6 +9,7 @@ import modelo.Cliente;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.Trabajador;
 
 /**
  *
@@ -164,10 +165,21 @@ public class Vista_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tfContraseñaActionPerformed
 
     private void jbEntrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarTrabajadorActionPerformed
-        // TODO add your handling code here:
-        Vista_9 v9 = new Vista_9();
-        v9.show();
-        this.dispose();
+        Camping C = Camping.getInstancia();
+        C.cargarDatos();
+        Trabajador t =  Trabajador.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());
+        
+        if(t == null)
+        {
+            JOptionPane.showMessageDialog(null, "Usuario no registrado", "Inane error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else
+        {
+            Vista_9 v9 = new Vista_9();
+            v9.show();
+            this.dispose();
+        }
     }//GEN-LAST:event_jbEntrarTrabajadorActionPerformed
 
     /**
