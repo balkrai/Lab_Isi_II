@@ -4,9 +4,12 @@
  */
 package com.mycompany.lab_isi.ii;
 
-
+import modelo.Camping;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import modelo.Actividad;
 
 /**
  *
@@ -19,6 +22,13 @@ public class Vista_12 extends javax.swing.JFrame {
      */
     public Vista_12() {
         initComponents();
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+        ListaActividades_Vista12.setModel(modelo);
+        Camping c = Camping.getInstancia();
+        ArrayList<Actividad> actividades = c.getActividades();
+        for(int i = 0; i < actividades.size(); ++i){
+           modelo.addElement(actividades.get(i).toString());
+        }
     }
 
     /**
@@ -83,20 +93,21 @@ public class Vista_12 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Atras_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Seleccionar_Vista12))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addComponent(Atras_Vista13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Seleccionar_Vista12)
+                .addContainerGap(116, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Seleccionar_Vista12)
                     .addComponent(Atras_Vista13))
@@ -115,9 +126,15 @@ public class Vista_12 extends javax.swing.JFrame {
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
     private void Seleccionar_Vista12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleccionar_Vista12ActionPerformed
-        Vista_13 v13 = new Vista_13();
-        v13.show();
-        this.dispose();
+        if(ListaActividades_Vista12.getSelectedValue() == null)
+            System.out.println("SELECCIONA UNA ACTIVIDAD");
+        else
+        {
+            Vista_13 v13 = new Vista_13();
+            v13.show();
+            this.dispose();
+        }
+            
     }//GEN-LAST:event_Seleccionar_Vista12ActionPerformed
 
     private void Atras_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista13ActionPerformed

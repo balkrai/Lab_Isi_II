@@ -1,5 +1,7 @@
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Camping {
@@ -28,6 +30,11 @@ public class Camping {
         if (camping == null) 
             camping = new Camping();
         return camping;
+    }
+    
+    public ArrayList<Actividad> getActividades()
+    {
+        return actividades;
     }
     
     public Cliente loginC(String usu, String pass)
@@ -68,13 +75,17 @@ public class Camping {
         return t; 
     }
     
-    public void cargarDatos()
+    public void cargarDatos() throws ParseException
     {
-        Cliente c1 = new Cliente("cliente1","cliente1");
+        Cliente c1 = new Cliente("c1","c1");
         clientes.add(c1);
         
-        Trabajador t1 = new Trabajador("trabajador1","trabajador1");
+        Trabajador t1 = new Trabajador("t1","t1");
         trabajadores.add(t1);
         
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Actividad a1 = new Actividad(1,"piscina",formato.parse("05/11/2023"),"15:00","17:00");
+        actividades.add(a1);
     }
 }

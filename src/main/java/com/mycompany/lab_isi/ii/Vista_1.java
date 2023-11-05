@@ -7,7 +7,10 @@ package com.mycompany.lab_isi.ii;
 import modelo.Camping;
 import modelo.Cliente;
 import java.awt.Dimension;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Trabajador;
 
@@ -140,8 +143,12 @@ public class Vista_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbEntrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarClienteActionPerformed
-        Camping C = Camping.getInstancia();
-        C.cargarDatos();
+        Camping a = Camping.getInstancia();
+        try {
+            a.cargarDatos();
+        } catch (ParseException ex) {
+            Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Cliente c =  Cliente.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());
         
         if(c == null)
@@ -165,8 +172,12 @@ public class Vista_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tfContraseñaActionPerformed
 
     private void jbEntrarTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarTrabajadorActionPerformed
-        Camping C = Camping.getInstancia();
-        C.cargarDatos();
+        Camping a = Camping.getInstancia();
+        try {
+            a.cargarDatos();
+        } catch (ParseException ex) {
+            Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Trabajador t =  Trabajador.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());
         
         if(t == null)
