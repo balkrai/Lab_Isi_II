@@ -4,8 +4,10 @@
  */
 package com.mycompany.lab_isi.ii;
 
-
+import modelo.Camping;
+import modelo.Cliente;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +15,6 @@ import javax.swing.JOptionPane;
  * @author ramon
  */
 public class Vista_1 extends javax.swing.JFrame {
-
     /**
      * Creates new form Ventana8
      */
@@ -135,15 +136,26 @@ public class Vista_1 extends javax.swing.JFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         
         setVisible(false);
-       
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbEntrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarClienteActionPerformed
-        Vista_2 vista_2 = new Vista_2();
-        setVisible(false);
-        vista_2.setSize(412, 700);
-        vista_2.setPreferredSize(new Dimension(412, 800));
-        vista_2.setVisible(true);
+        Camping C = Camping.getInstancia();
+        C.cargarDatos();
+        Cliente c =  Cliente.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());
+        
+        if(c == null)
+        {
+            JOptionPane.showMessageDialog(null, "Usuario no registrado", "Inane error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else
+        {
+            Vista_2 vista_2 = new Vista_2();
+            setVisible(false);
+            vista_2.setSize(412, 700);
+            vista_2.setPreferredSize(new Dimension(412, 800));
+            vista_2.setVisible(true);
+        }
     }//GEN-LAST:event_jbEntrarClienteActionPerformed
 
     private void tfContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseñaActionPerformed

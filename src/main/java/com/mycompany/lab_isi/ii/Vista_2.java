@@ -29,6 +29,7 @@ public class Vista_2 extends javax.swing.JFrame {
     private void initComponents() {
 
         Cancelar_Vista20 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jbsinReserva = new javax.swing.JButton();
         jbActividades = new javax.swing.JButton();
         jbReserva = new javax.swing.JButton();
@@ -41,6 +42,17 @@ public class Vista_2 extends javax.swing.JFrame {
                 Cancelar_Vista20ActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +208,7 @@ public class Vista_2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar_Vista2;
     private javax.swing.JButton Cancelar_Vista20;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbActividades;
     private javax.swing.JButton jbReserva;
     private javax.swing.JButton jbsinReserva;

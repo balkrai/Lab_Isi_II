@@ -12,6 +12,11 @@ public class Cliente {
         this.usuario = usuario;
         this.contrasenya = contrasenya;
     }
+    
+    public static Cliente IniciarSesion(String usu, String contra) {
+        return Camping.getInstancia().login(usu,contra);
+    }
+    
     public ArrayList<Reserva> getReservas()
     {
         return reservas;

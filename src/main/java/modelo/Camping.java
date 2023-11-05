@@ -21,9 +21,36 @@ public class Camping {
         reservas_actividades = new ArrayList<ReservaActividad>();
         tiendas = new ArrayList<Tienda>();
     }
+            
+    public static Camping getInstancia() {
+        if (camping == null) 
+            camping = new Camping();
+        return camping;
+    }
+    
+    public Cliente login(String usu, String pass)
+    {
+       Cliente c = null;
+       boolean encontrado = false;
+        int i = 0;
+
+        while (i < clientes.size() && encontrado == false) {
+            if(clientes.get(i).getUsuario().equals(usu) 
+                    && clientes.get(i).getContrasenya().equals(pass))
+            {
+                c = clientes.get(i);
+                encontrado = true;
+            }
+            i++;
+        }
+       
+        return c; 
+    }
     
     public void cargarDatos()
     {
+        Cliente c1 = new Cliente("cliente1","cliente1");
+        clientes.add(c1);
         
     }
 }
