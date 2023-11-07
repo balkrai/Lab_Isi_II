@@ -181,9 +181,7 @@ public class Vista_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jbActividades1ActionPerformed
 
     private void jbActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividadesActionPerformed
-        Parcela parcela = new Parcela(1, 100, true, 100.0f);
-        Reserva reserva = new Reserva(1, new Date(), new Date(), clienteLog, parcela);
-        clienteLog.AgregaReserva(reserva);
+       
         Vista_22 v22 = new Vista_22(this,camp,clienteLog);
         v22.show();
         this.dispose();

@@ -30,24 +30,8 @@ public class Vista_22 extends javax.swing.JFrame {
         ant = v2;
         camp = c;
         clienteLog = cl;
-        ArrayList<Reserva> lista = clienteLog.getReservas();
-        DefaultTableModel newModel = new DefaultTableModel();
-        newModel.addColumn("id_reserva");
-        newModel.addColumn("FechaInicio");
-        newModel.addColumn("FechaFin");
-        newModel.addColumn("Precio");
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Reserva res = lista.get(i);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-           String fechaInicio = dateFormat.format(res.getFechaInicio());
-           String fechaFin = dateFormat.format(res.getFechaFin());
-
-           newModel.addRow(new Object[]{res.getId(), fechaInicio, fechaFin, res.getPrecio()});
-            
-        }
-        TablaReservas.setModel(newModel);
+        ActualizarTabla(clienteLog);
+       
     }
 
     /**
@@ -65,6 +49,7 @@ public class Vista_22 extends javax.swing.JFrame {
         Atras_Vista19 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReservas = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         tfContraseña3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,18 +109,29 @@ public class Vista_22 extends javax.swing.JFrame {
             TablaReservas.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(Atras_Vista19))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Atras_Vista19)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,7 +140,9 @@ public class Vista_22 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Atras_Vista19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Atras_Vista19)
+                    .addComponent(jButton1))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -180,22 +178,45 @@ public class Vista_22 extends javax.swing.JFrame {
     }//GEN-LAST:event_EventoModificar
 
     private void Atras_Vista19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista19ActionPerformed
-        // TODO add your handling code here:
-        Vista_18 v18 = new Vista_18(camp);
-        v18.show();
-        this.dispose();
+        
     }//GEN-LAST:event_Atras_Vista19ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ant.show();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     /**
      * @param args the command line arguments
      */
     
-   
+  public void ActualizarTabla(Cliente c)
+  {
+      ArrayList<Reserva> lista = clienteLog.getReservas();
+        DefaultTableModel newModel = new DefaultTableModel();
+        newModel.addColumn("id_reserva");
+        newModel.addColumn("FechaInicio");
+        newModel.addColumn("FechaFin");
+        newModel.addColumn("Precio");
+        
+        for (int i = 0; i < lista.size(); i++) {
+            Reserva res = lista.get(i);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+           String fechaInicio = dateFormat.format(res.getFechaInicio());
+           String fechaFin = dateFormat.format(res.getFechaFin());
+
+           newModel.addRow(new Object[]{res.getId(), fechaInicio, fechaFin, res.getPrecio()});
+            
+        }
+        TablaReservas.setModel(newModel);
+  }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista19;
     private javax.swing.JTable TablaReservas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfContraseña3;
     private javax.swing.JTextField tfContraseña7;

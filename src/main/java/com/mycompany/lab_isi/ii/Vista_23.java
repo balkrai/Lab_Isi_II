@@ -189,6 +189,7 @@ public class Vista_23 extends javax.swing.JFrame {
                    Reserva r = new Reserva(resActual.getId(), 
                            f_inicio, f_fin, clog, resActual.getParcela());
                    clog.ModificaReserva(r);
+                   v22.ActualizarTabla(clog);
                    v22.show();
                    v22.repaint();
                    this.dispose();

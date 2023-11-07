@@ -3,6 +3,7 @@ package modelo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Camping {
     private static Camping camping;
@@ -88,8 +89,13 @@ public class Camping {
     
     public void cargarDatos() throws ParseException
     {
+         Parcela parcela = new Parcela(1, 100, true, 100.0f);
+        
         Cliente c1 = new Cliente("c1","c1");
         clientes.add(c1);
+       
+        Reserva reserva = new Reserva(1, new Date(), new Date(), c1, parcela);
+        c1.AgregaReserva(reserva);
         
         Trabajador t1 = new Trabajador("t1","t1");
         trabajadores.add(t1);
