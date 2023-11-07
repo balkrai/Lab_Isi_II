@@ -132,6 +132,16 @@ public class Vista_16 extends javax.swing.JFrame {
 
     private void Aceptar_Vista16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista16ActionPerformed
         // TODO add your handling code here:
+        if(Integer.parseInt(NumParticipantes_Vista16.getText()) == actActual.getParticipantes().size())
+            JOptionPane.showMessageDialog(null, "TODOS LOS PARTICIPANTES SE ENCUENTRAN LISTOS", "Inane error",JOptionPane.ERROR_MESSAGE);
+        else{
+            if(Integer.parseInt(NumParticipantes_Vista16.getText()) < actActual.getParticipantes().size())
+                JOptionPane.showMessageDialog(null, "FALTAN PARTICIPANTES", "Inane error",JOptionPane.ERROR_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(null, "HAY DEMASIADOS PARTICIPANTES", "Inane error",JOptionPane.ERROR_MESSAGE);
+            
+                
+        }            
         Vista_13 v13 = new Vista_13(actActual,c);
         v13.show();
         this.dispose();

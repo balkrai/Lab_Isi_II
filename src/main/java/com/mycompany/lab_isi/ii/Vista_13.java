@@ -28,6 +28,7 @@ public class Vista_13 extends javax.swing.JFrame {
         this.actActual = actActual;
         this.jTextArea1.setText("Actividad seleccionada: "+actActual.getId()+"\nActividad de "+actActual.getTipo()+"\nEmpieza a las "
         +actActual.getHoraInicio()+"\nTermina a las "+actActual.getHoraFin()+"\nDia "+actActual.getFecha());
+        this.jTextArea1.setEditable(false);
     }
 
     /**
@@ -43,7 +44,6 @@ public class Vista_13 extends javax.swing.JFrame {
         tfContraseña3 = new javax.swing.JTextField();
         tfContraseña7 = new javax.swing.JTextField();
         Emparejar_Vista13 = new javax.swing.JButton();
-        AnotarGanador_Vista13 = new javax.swing.JButton();
         Recuento_Vista13 = new javax.swing.JButton();
         Cancelar_Vista13 = new javax.swing.JButton();
         FinActividad_Vista13 = new javax.swing.JButton();
@@ -70,15 +70,6 @@ public class Vista_13 extends javax.swing.JFrame {
         Emparejar_Vista13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Emparejar_Vista13ActionPerformed(evt);
-            }
-        });
-
-        AnotarGanador_Vista13.setBackground(new java.awt.Color(0, 51, 255));
-        AnotarGanador_Vista13.setForeground(new java.awt.Color(255, 255, 255));
-        AnotarGanador_Vista13.setText("Anotar ganador");
-        AnotarGanador_Vista13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AnotarGanador_Vista13ActionPerformed(evt);
             }
         });
 
@@ -122,13 +113,12 @@ public class Vista_13 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Recuento_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AnotarGanador_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(FinActividad_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FinActividad_Vista13, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Recuento_Vista13, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -142,11 +132,9 @@ public class Vista_13 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(AnotarGanador_Vista13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(26, 26, 26)
                         .addComponent(Recuento_Vista13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(FinActividad_Vista13))
                     .addComponent(jScrollPane1))
                 .addGap(46, 46, 46)
@@ -167,28 +155,29 @@ public class Vista_13 extends javax.swing.JFrame {
 
     private void Emparejar_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emparejar_Vista13ActionPerformed
         // TODO add your handling code here:
-        Vista_14 v14 = new Vista_14(actActual,c);
-        v14.show();
-        this.dispose();
+        if(actActual.getFinalizada())
+            JOptionPane.showMessageDialog(null, "La actividad ya ha acabado", "Inane error",JOptionPane.ERROR_MESSAGE);
+        
+        else{
+            Vista_14 v14 = new Vista_14(actActual,c);
+            v14.show();
+            this.dispose();
+        }
     }//GEN-LAST:event_Emparejar_Vista13ActionPerformed
 
-    private void AnotarGanador_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnotarGanador_Vista13ActionPerformed
-        // TODO add your handling code here:
-        Vista_15 v15 = new Vista_15(actActual,c);
-        v15.show();
-        this.dispose();
-    }//GEN-LAST:event_AnotarGanador_Vista13ActionPerformed
-
     private void Recuento_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Recuento_Vista13ActionPerformed
-        // TODO add your handling code here:
-        Vista_16 v16 = new Vista_16(actActual,c);
-        v16.show();
-        this.dispose();
+        if(actActual.getFinalizada())
+            JOptionPane.showMessageDialog(null, "La actividad ya ha acabado", "Inane error",JOptionPane.ERROR_MESSAGE);
+        else{
+            Vista_16 v16 = new Vista_16(actActual,c);
+            v16.show();
+            this.dispose();
+        }
     }//GEN-LAST:event_Recuento_Vista13ActionPerformed
 
     private void FinActividad_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinActividad_Vista13ActionPerformed
         // TODO add your handling code here:
-        
+        c.getActividades().remove(actActual);
         //Popup de confirmacion?
         Vista_9 v9 = new Vista_9(c);
         v9.show();
@@ -217,7 +206,6 @@ public class Vista_13 extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AnotarGanador_Vista13;
     private javax.swing.JButton Cancelar_Vista13;
     private javax.swing.JButton Emparejar_Vista13;
     private javax.swing.JButton FinActividad_Vista13;

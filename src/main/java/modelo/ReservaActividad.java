@@ -1,19 +1,35 @@
 package modelo;
 
+import java.util.Date;
+
 public class ReservaActividad {
-    private int dia, horas, minutos, segundos;
+    private Actividad act;
+    private Date fecha;
+    //private String hora;
     private Cliente cliente;
-    public ReservaActividad(int dia, int horas, int minutos, int segundos, 
+    public ReservaActividad(Date fecha, Actividad act,
             Cliente cliente)
     {
-        this.dia = dia;
-        this.horas = horas;
-        this.minutos = minutos;
-        this.segundos = segundos;
+        this.fecha = fecha;
+        this.act = act;
         this.cliente = cliente;
     }
     public Cliente getCliente()
     {
         return cliente;
+    }
+    public Date getFecha()
+    {
+        return fecha;
+    }
+    public Actividad getAct()
+    {
+        return act;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return cliente.getUsuario();
     }
 }

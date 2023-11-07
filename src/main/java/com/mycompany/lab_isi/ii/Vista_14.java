@@ -6,6 +6,10 @@ package com.mycompany.lab_isi.ii;
 
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -16,6 +20,10 @@ import modelo.*;
 public class Vista_14 extends javax.swing.JFrame {
     private Camping c;
     private Actividad actActual;
+    private int cont, numEmparejamiento = 1;
+    private ReservaActividad a1, a2, aux;
+    private DefaultListModel<ReservaActividad> modelo = new DefaultListModel<>();
+    private ArrayList<ReservaActividad> participantes, jugador1, jugador2;
     /**
      * Creates new form Ventana8
      */
@@ -23,6 +31,21 @@ public class Vista_14 extends javax.swing.JFrame {
         initComponents();
         this.c = c;
         this.actActual = actActual;
+        this.cont = 0;
+        //this.emparejamientos = new ArrayList<ReservaActividad>();
+        this.jugador1 = new ArrayList<ReservaActividad>();
+        this.jugador2 = new ArrayList<ReservaActividad>();
+        participantes = actActual.getParticipantes();
+        ListaParticipantes_Vista14.setModel(modelo);
+        if(participantes.size() % 2 != 0 || participantes.size() == 0)
+        
+            JOptionPane.showMessageDialog(null, "Participantes insuficientes para emparejar", "Inane error",JOptionPane.ERROR_MESSAGE);
+        
+        else        
+            for(int i = 0; i < participantes.size(); ++i)
+                modelo.addElement(participantes.get(i));
+            
+        
     }
 
     /**
@@ -56,11 +79,6 @@ public class Vista_14 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ListaParticipantes_Vista14.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Pepe", "Isabel", "Vicente", "Juan", "Pablo" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(ListaParticipantes_Vista14);
 
         Emparejar_Vista14.setBackground(new java.awt.Color(0, 51, 255));
@@ -92,16 +110,16 @@ public class Vista_14 extends javax.swing.JFrame {
                 .addComponent(Emparejar_Vista14)
                 .addGap(115, 115, 115))
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(128, 128, 128)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Emparejar_Vista14)
                     .addComponent(Atras_Vista14))
@@ -120,7 +138,76 @@ public class Vista_14 extends javax.swing.JFrame {
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
     private void Emparejar_Vista14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emparejar_Vista14ActionPerformed
-        // TODO add your handling code here:
+        aux = ListaParticipantes_Vista14.getSelectedValue();
+        if(aux == null)
+            JOptionPane.showMessageDialog(null, "SELECCIONA UN PARTICIPANTE", "Inane error",JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            modelo.removeElement(aux);
+            ++cont;
+            if(cont % 2 != 0)
+            {
+                a1 = aux;
+                jugador1.add(a1);
+                JOptionPane.showMessageDialog(null, "Selecciona el oponente de "+a1, "Inane error",JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                a2 = aux;
+                jugador2.add(a2);
+                JOptionPane.showMessageDialog(null, "Emparejamiento confirmado: "+a1+" y "+a2, "Inane error",JOptionPane.ERROR_MESSAGE);
+            }
+            if(cont == participantes.size())
+            {
+                JOptionPane.showMessageDialog(null, "TODOS LOS EMPAREJAMIENTOS REALIZADOS", "Inane error",JOptionPane.ERROR_MESSAGE);
+                for(int i = 0; i < jugador1.size(); ++i)
+                {
+                    a1 = jugador1.get(i);
+                    a2 = jugador2.get(i);
+                    Boolean valido = false;
+                    while(!valido)
+                    {
+                        valido = true;
+                        String ganador = JOptionPane.showInputDialog("Emparejamiento "+numEmparejamiento+": ¿Ganador? "+a1+"(0) o "+a2+"(1)");
+                    
+                        if(Integer.parseInt(ganador) == 0)
+                        {
+                            modelo.addElement(a1);
+                            participantes.remove(a2);
+                        }
+                        else if(Integer.parseInt(ganador) == 1)
+                        {
+                            modelo.addElement(a2);
+                            participantes.remove(a1);
+                        }
+                        else
+                        {
+                            valido = false;
+                            JOptionPane.showMessageDialog(null, "INTRODUCE UN VALOR VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    ++numEmparejamiento;
+                    
+                }
+                if(jugador1.size() == 1)
+                {
+                    JOptionPane.showMessageDialog(null, "GANADOR: "+modelo.get(0), "Inane error",JOptionPane.ERROR_MESSAGE);
+                    actActual.setFinalizada(true);
+                } 
+                jugador1.clear();
+                jugador2.clear();
+                cont = 0;
+                if(actActual.getFinalizada())
+                {
+                    Vista_13 v13 = new Vista_13(actActual,c);
+                    v13.show();
+                    this.dispose();
+                }
+            }
+              
+                
+            
+        }
     }//GEN-LAST:event_Emparejar_Vista14ActionPerformed
 
     private void Atras_Vista14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista14ActionPerformed
@@ -146,10 +233,11 @@ public class Vista_14 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista14;
     private javax.swing.JButton Emparejar_Vista14;
-    private javax.swing.JList<String> ListaParticipantes_Vista14;
+    private javax.swing.JList<ReservaActividad> ListaParticipantes_Vista14;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfContraseña3;
     private javax.swing.JTextField tfContraseña7;
     private javax.swing.JTextField tfUsuario1;
     // End of variables declaration//GEN-END:variables
+    
 }

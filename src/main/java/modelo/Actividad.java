@@ -8,22 +8,32 @@ public class Actividad {
     private String tipo;
     private Date fecha;
     private String horaInicio, horaFin;
-    private ArrayList<ReservaActividad> reservas = 
-            new ArrayList<ReservaActividad>();
+    private Boolean finalizada;
     private ArrayList<ReservaActividad> participantes =
             new ArrayList<ReservaActividad>();
     public Actividad(int id, String tipo, Date fecha, String horaInicio, 
-            String horaFin)
+            String horaFin, Boolean finalizada)
     {
         this.id = id;
         this.tipo = tipo;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.finalizada = finalizada;
+    }
+    public void setReserva(ReservaActividad r)
+    {
+        this.participantes.add(r);
     }
     public int getId()
     {
         return id;
+    }
+    public Boolean getFinalizada(){
+        return finalizada;
+    }
+    public void setFinalizada(Boolean finalizada){
+        this.finalizada = finalizada;
     }
     public String getTipo()
     {
@@ -40,5 +50,15 @@ public class Actividad {
     public String getHoraFin()
     {
         return horaFin;
+    }
+    public ArrayList<ReservaActividad> getParticipantes()
+    {
+        return participantes;
+    }
+    @Override
+    public String toString() 
+    {
+        return "Actividad "+id+", Tipo "+tipo+", Inicio "+horaInicio
+                +", horaFin "+horaFin+", Fecha "+fecha;
     }
 }

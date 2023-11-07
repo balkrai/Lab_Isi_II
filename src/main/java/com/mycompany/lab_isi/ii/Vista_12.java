@@ -27,8 +27,9 @@ public class Vista_12 extends javax.swing.JFrame {
         DefaultListModel<Actividad> modelo = new DefaultListModel<>();
         ListaActividades_Vista12.setModel(modelo);
         ArrayList<Actividad> actividades = c.getActividades();
-        for(int i = 0; i < actividades.size(); ++i){
-           modelo.addElement(actividades.get(i));
+        for(int i = 0; i < actividades.size(); ++i)
+        {
+            modelo.addElement(actividades.get(i));
         }
     }
 
