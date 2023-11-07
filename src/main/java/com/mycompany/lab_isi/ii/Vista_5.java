@@ -6,19 +6,40 @@ package com.mycompany.lab_isi.ii;
 
 
 import java.awt.Dimension;
+import java.util.*;
 import javax.swing.JOptionPane;
+import modelo.Camping;
+import modelo.Parcela;
+
 
 /**
  *
  * @author ramon
  */
 public class Vista_5 extends javax.swing.JFrame {
+    private Date f_ini;
+    private Date f_fin;
+    private Camping camping;
+    private ArrayList<Parcela> parcelas;
 
     /**
      * Creates new form Ventana8
      */
-    public Vista_5() {
+    public Vista_5(Date f_ini,Date f_fin ) {
         initComponents();
+        
+        this.f_ini=f_ini;
+        this.f_fin=f_fin;
+        camping = Camping.getInstancia();
+        parcelas = camping.getParcelasDisponibles(f_ini, f_fin);
+        System.out.println(parcelas);
+        for(Parcela p:parcelas)
+        {
+            combobox_parcelas.addItem(p);
+        }
+        Parcela pruebas = new Parcela(2,2,true,3);
+        combobox_parcelas.addItem(pruebas);
+        
     }
 
     /**
@@ -40,15 +61,14 @@ public class Vista_5 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        imagenParcela = new javax.swing.JTextArea();
+        l_m2 = new javax.swing.JLabel();
+        l_id = new javax.swing.JLabel();
+        l_luz = new javax.swing.JLabel();
+        l_precio = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         numeroTiendas = new javax.swing.JTextField();
         Atras_Vista5 = new javax.swing.JButton();
+        combobox_parcelas = new javax.swing.JComboBox<>();
 
         tfContraseña3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,20 +105,16 @@ public class Vista_5 extends javax.swing.JFrame {
 
         jLabel6.setText("Numero de tiendas");
 
-        jLabel7.setText("50");
+        l_m2.setText("50");
 
-        jLabel8.setText("5");
+        l_id.setText("5");
 
-        jLabel9.setText("Sí");
+        l_luz.setText("Sí");
 
-        jLabel10.setText("20");
-
-        imagenParcela.setColumns(20);
-        imagenParcela.setRows(5);
-        jScrollPane1.setViewportView(imagenParcela);
+        l_precio.setText("20");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel12.setText("PARCELA SELECCIONADA");
+        jLabel12.setText("PARCELAS DISPONIBLES");
 
         numeroTiendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +131,17 @@ public class Vista_5 extends javax.swing.JFrame {
             }
         });
 
+        combobox_parcelas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobox_parcelasItemStateChanged(evt);
+            }
+        });
+        combobox_parcelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobox_parcelasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,7 +152,7 @@ public class Vista_5 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(l_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,21 +162,21 @@ public class Vista_5 extends javax.swing.JFrame {
                             .addComponent(Atras_Vista5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(l_precio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                            .addComponent(l_luz, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                            .addComponent(l_m2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(numeroTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(64, 64, 64))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbReservar)
                 .addGap(114, 114, 114))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combobox_parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,27 +184,27 @@ public class Vista_5 extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combobox_parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel8))
+                    .addComponent(l_id))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7))
+                    .addComponent(l_m2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel9))
+                    .addComponent(l_luz))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel10))
+                    .addComponent(l_precio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(numeroTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbReservar)
@@ -207,16 +234,31 @@ public class Vista_5 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
-    private void numeroTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTiendasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroTiendasActionPerformed
-
     private void Atras_Vista5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista5ActionPerformed
         // TODO add your handling code here:
         Vista_3 v3 = new Vista_3();
         v3.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista5ActionPerformed
+
+    private void numeroTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTiendasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroTiendasActionPerformed
+
+    private void combobox_parcelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobox_parcelasItemStateChanged
+    Parcela p = (Parcela)combobox_parcelas.getSelectedItem();
+    l_id.setText(p.getId()+"");
+    if(p.getLuz())
+        l_luz.setText("si");
+    else
+        l_luz.setText("no");
+    l_m2.setText(p.getm2()+"");
+    l_precio.setText(p.getPrecio()+"");
+    }//GEN-LAST:event_combobox_parcelasItemStateChanged
+
+    private void combobox_parcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_parcelasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combobox_parcelasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,27 +268,26 @@ public class Vista_5 extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_5().setVisible(true);
+                new Vista_5(new Date(125, 8, 12, 0, 0, 0),new Date(125, 8, 12, 0, 0, 0)).setVisible(true);
             }
         });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista5;
-    private javax.swing.JTextArea imagenParcela;
+    private javax.swing.JComboBox<Parcela> combobox_parcelas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbReservar;
+    private javax.swing.JLabel l_id;
+    private javax.swing.JLabel l_luz;
+    private javax.swing.JLabel l_m2;
+    private javax.swing.JLabel l_precio;
     private javax.swing.JTextField numeroTiendas;
     private javax.swing.JTextField tfContraseña3;
     private javax.swing.JTextField tfContraseña7;

@@ -1,10 +1,13 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Parcela {
     private int id, m2;
     private Boolean luz;
     private float precio;
     //private String imagen;
+    private ArrayList<Reserva> reservas;
     public Parcela(int id, int m2, Boolean luz, float precio/*, String imagen*/)
     {
         this.id = id;
@@ -12,7 +15,22 @@ public class Parcela {
         this.luz = luz;
         this.precio = precio;
         //this.imagen = imagen;
+        reservas = new ArrayList<>();
     }
+
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    @Override
+    public String toString() {
+        return id+"";
+    }
+    public void anyadirReserva(Reserva r)
+    {
+        reservas.add(r);
+    }
+     
     public int getId()
     {
         return id;

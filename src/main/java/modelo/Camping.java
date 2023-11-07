@@ -27,7 +27,28 @@ public class Camping {
         reservas_actividades = new ArrayList<ReservaActividad>();
         tiendas = new ArrayList<Tienda>();
     }
-            
+    public  ArrayList<Parcela> getParcelasDisponibles(Date ini, Date fin)
+    {
+        System.err.println("Entro donde toca");
+        ArrayList<Parcela> resultado = new ArrayList<>();
+        for(Parcela p:this.parcelas)
+        {
+            for(Reserva r:p.getReservas())
+            {
+                System.err.println("Reservas de p");
+                System.err.println(p.getReservas());
+                if(ini.before(r.getFechaInicio()) && fin.before(r.getFechaInicio()))
+                {
+                    resultado.add(p);
+                }
+                else if(ini.after(r.getFechaFin()))
+                {
+                    resultado.add(p);
+                }
+            }
+        }
+        return resultado;
+    }
     public static Camping getInstancia() {
         if (camping == null) 
             camping = new Camping();
@@ -94,7 +115,7 @@ public class Camping {
         Cliente c1 = new Cliente("c1","c1");
         clientes.add(c1);
        
-        Reserva reserva = new Reserva(1, new Date(), new Date(), c1, parcela);
+        Reserva reserva = new Reserva(1, new Date(123, 10, 7, 0, 0, 0), new Date(123, 10, 7, 0, 0, 0), c1, parcela);
         c1.AgregaReserva(reserva);
         
         Trabajador t1 = new Trabajador("t1","t1");

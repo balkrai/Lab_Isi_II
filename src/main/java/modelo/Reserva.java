@@ -15,6 +15,7 @@ public class Reserva {
         this.fechaFin = fechaFin;
         this.cliente = cliente;
         this.parcela = parcela;
+        parcela.anyadirReserva(this);
     }
     
     public Date getFechaInicio()
