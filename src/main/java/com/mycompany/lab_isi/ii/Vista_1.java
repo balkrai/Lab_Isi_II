@@ -187,7 +187,7 @@ public class Vista_1 extends javax.swing.JFrame {
         
         else
         {
-            Vista_9 v9 = new Vista_9();
+            Vista_9 v9 = new Vista_9(a);
             v9.show();
             this.dispose();
         }

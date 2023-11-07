@@ -7,18 +7,22 @@ package com.mycompany.lab_isi.ii;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.*;
 
 /**
  *
  * @author ramon
  */
 public class Vista_14 extends javax.swing.JFrame {
-
+    private Camping c;
+    private Actividad actActual;
     /**
      * Creates new form Ventana8
      */
-    public Vista_14() {
+    public Vista_14(Actividad actActual, Camping c) {
         initComponents();
+        this.c = c;
+        this.actActual = actActual;
     }
 
     /**
@@ -121,7 +125,7 @@ public class Vista_14 extends javax.swing.JFrame {
 
     private void Atras_Vista14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista14ActionPerformed
         // TODO add your handling code here:
-        Vista_13 v13 = new Vista_13();
+        Vista_13 v13 = new Vista_13(actActual,c);
         v13.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista14ActionPerformed
@@ -134,7 +138,7 @@ public class Vista_14 extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_14().setVisible(true);
+                //new Vista_14().setVisible(true);
             }
         });
     }

@@ -159,6 +159,7 @@ public class Vista_22 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
+
     private void EventoModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventoModificar
         int filaSeleccionada = TablaReservas.getSelectedRow();
         if (filaSeleccionada != -1) {
@@ -177,6 +178,14 @@ public class Vista_22 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila", "Error Fila no seleccionada", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_EventoModificar
+
+    private void Atras_Vista19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista19ActionPerformed
+        // TODO add your handling code here:
+        Vista_18 v18 = new Vista_18(camp);
+        v18.show();
+        this.dispose();
+    }//GEN-LAST:event_Atras_Vista19ActionPerformed
+
 
     /**
      * @param args the command line arguments

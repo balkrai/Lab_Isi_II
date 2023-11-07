@@ -14,6 +14,7 @@ public class Camping {
     private ArrayList<Actividad> actividades;
     private ArrayList<ReservaActividad> reservas_actividades;
     private ArrayList<Tienda> tiendas;
+    private Actividad actActual;
     private Camping()
     {
         parcelas = new ArrayList<Parcela>();
@@ -30,6 +31,16 @@ public class Camping {
         if (camping == null) 
             camping = new Camping();
         return camping;
+    }
+    
+    public void setActActual(Actividad actActual)
+    {
+        this.actActual = actActual;
+    }
+    
+    public Actividad getActActual()
+    {
+        return actActual;
     }
     
     public ArrayList<Actividad> getActividades()
@@ -87,5 +98,7 @@ public class Camping {
         
         Actividad a1 = new Actividad(1,"piscina",formato.parse("05/11/2023"),"15:00","17:00");
         actividades.add(a1);
+        Actividad a2 = new Actividad(2,"piscina",formato.parse("05/11/2023"),"17:00","19:00");
+        actividades.add(a2);
     }
 }
