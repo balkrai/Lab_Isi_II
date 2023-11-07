@@ -5,20 +5,29 @@
 package com.mycompany.lab_isi.ii;
 
 
+import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.Actividad;
+import modelo.Camping;
+import modelo.Trabajador;
 
 /**
  *
  * @author ramon
  */
 public class Vista_13 extends javax.swing.JFrame {
-
+    private Camping c;
+    private Actividad actActual;
     /**
      * Creates new form Ventana8
      */
-    public Vista_13() {
+    public Vista_13(Actividad actActual, Camping c) {
         initComponents();
+        this.c = c;
+        this.actActual = actActual;
+        this.jTextArea1.setText("Actividad seleccionada: "+actActual.getId()+"\nActividad de "+actActual.getTipo()+"\nEmpieza a las "
+        +actActual.getHoraInicio()+"\nTermina a las "+actActual.getHoraFin()+"\nDia "+actActual.getFecha());
     }
 
     /**
@@ -38,6 +47,8 @@ public class Vista_13 extends javax.swing.JFrame {
         Recuento_Vista13 = new javax.swing.JButton();
         Cancelar_Vista13 = new javax.swing.JButton();
         FinActividad_Vista13 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         tfContraseña3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,35 +109,47 @@ public class Vista_13 extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AnotarGanador_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(Recuento_Vista13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FinActividad_Vista13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(108, 108, 108))
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Recuento_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AnotarGanador_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(FinActividad_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Cancelar_Vista13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(230, 230, 230))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(Emparejar_Vista13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AnotarGanador_Vista13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Recuento_Vista13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(FinActividad_Vista13)
-                .addGap(16, 16, 16)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Emparejar_Vista13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AnotarGanador_Vista13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Recuento_Vista13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FinActividad_Vista13))
+                    .addComponent(jScrollPane1))
+                .addGap(46, 46, 46)
                 .addComponent(Cancelar_Vista13)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -144,21 +167,21 @@ public class Vista_13 extends javax.swing.JFrame {
 
     private void Emparejar_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emparejar_Vista13ActionPerformed
         // TODO add your handling code here:
-        Vista_14 v14 = new Vista_14();
+        Vista_14 v14 = new Vista_14(actActual,c);
         v14.show();
         this.dispose();
     }//GEN-LAST:event_Emparejar_Vista13ActionPerformed
 
     private void AnotarGanador_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnotarGanador_Vista13ActionPerformed
         // TODO add your handling code here:
-        Vista_15 v15 = new Vista_15();
+        Vista_15 v15 = new Vista_15(actActual,c);
         v15.show();
         this.dispose();
     }//GEN-LAST:event_AnotarGanador_Vista13ActionPerformed
 
     private void Recuento_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Recuento_Vista13ActionPerformed
         // TODO add your handling code here:
-        Vista_16 v16 = new Vista_16();
+        Vista_16 v16 = new Vista_16(actActual,c);
         v16.show();
         this.dispose();
     }//GEN-LAST:event_Recuento_Vista13ActionPerformed
@@ -167,7 +190,7 @@ public class Vista_13 extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //Popup de confirmacion?
-        Vista_9 v9 = new Vista_9();
+        Vista_9 v9 = new Vista_9(c);
         v9.show();
         this.dispose();
         
@@ -175,7 +198,7 @@ public class Vista_13 extends javax.swing.JFrame {
 
     private void Cancelar_Vista13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_Vista13ActionPerformed
         // TODO add your handling code here:
-        Vista_9 v9 = new Vista_9();
+        Vista_9 v9 = new Vista_9(c);
         v9.show();
         this.dispose();
     }//GEN-LAST:event_Cancelar_Vista13ActionPerformed
@@ -188,7 +211,7 @@ public class Vista_13 extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_13().setVisible(true);
+                //new Vista_13().setVisible(true);
             }
         });
     }
@@ -199,6 +222,8 @@ public class Vista_13 extends javax.swing.JFrame {
     private javax.swing.JButton Emparejar_Vista13;
     private javax.swing.JButton FinActividad_Vista13;
     private javax.swing.JButton Recuento_Vista13;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField tfContraseña3;
     private javax.swing.JTextField tfContraseña7;
     private javax.swing.JTextField tfUsuario1;

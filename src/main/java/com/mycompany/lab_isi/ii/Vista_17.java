@@ -7,18 +7,20 @@ package com.mycompany.lab_isi.ii;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.*;
 
 /**
  *
  * @author ramon
  */
 public class Vista_17 extends javax.swing.JFrame {
-
+    private Camping c;
     /**
      * Creates new form Ventana8
      */
-    public Vista_17() {
+    public Vista_17(Camping c) {
         initComponents();
+        this.c = c;
     }
 
     /**
@@ -132,7 +134,7 @@ public class Vista_17 extends javax.swing.JFrame {
 
     private void aceptar_Vista17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar_Vista17ActionPerformed
         // TODO add your handling code here
-        Vista_9 v9 = new Vista_9();
+        Vista_9 v9 = new Vista_9(c);
         v9.show();
         this.dispose();
     }//GEN-LAST:event_aceptar_Vista17ActionPerformed
@@ -153,7 +155,7 @@ public class Vista_17 extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_17().setVisible(true);
+                //new Vista_17().setVisible(true);
             }
         });
     }

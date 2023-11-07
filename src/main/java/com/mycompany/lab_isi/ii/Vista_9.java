@@ -7,18 +7,21 @@ package com.mycompany.lab_isi.ii;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.Camping;
+import modelo.Trabajador;
 
 /**
  *
  * @author ramon
  */
 public class Vista_9 extends javax.swing.JFrame {
-
+    private Camping c;
     /**
      * Creates new form Ventana8
      */
-    public Vista_9() {
+    public Vista_9(Camping c) {
         initComponents();
+        this.c = c;
     }
 
     /**
@@ -160,35 +163,35 @@ public class Vista_9 extends javax.swing.JFrame {
         //ventana_9b.setSize(412, 700);
         //ventana_9b.setPreferredSize(new Dimension(412, 800));
         //ventana_9b.setVisible(true);
-        Vista_10 v10 = new Vista_10();
+        Vista_10 v10 = new Vista_10(c);
         v10.show();
         this.dispose();
     }//GEN-LAST:event_CrearActividad_Vista9ActionPerformed
 
     private void Descuento_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descuento_Vista9ActionPerformed
         // TODO add your handling code here:
-        Vista_17 v17 = new Vista_17();
+        Vista_17 v17 = new Vista_17(c);
         v17.show();
         this.dispose();
     }//GEN-LAST:event_Descuento_Vista9ActionPerformed
 
     private void RegCliente_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegCliente_Vista9ActionPerformed
         // TODO add your handling code here:
-        Vista_20 v20 = new Vista_20();
+        Vista_20 v20 = new Vista_20(c);
         v20.show();
         this.dispose();
     }//GEN-LAST:event_RegCliente_Vista9ActionPerformed
 
     private void ConsHistorial_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsHistorial_Vista9ActionPerformed
         // TODO add your handling code here:
-        Vista_18 v18 = new Vista_18();
+        Vista_18 v18 = new Vista_18(c);
         v18.show();
         this.dispose();
     }//GEN-LAST:event_ConsHistorial_Vista9ActionPerformed
 
     private void GestActividad_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestActividad_Vista9ActionPerformed
         // TODO add your handling code here:
-        Vista_12 v12 = new Vista_12();
+        Vista_12 v12 = new Vista_12(c);
         v12.show();
         this.dispose();
     }//GEN-LAST:event_GestActividad_Vista9ActionPerformed
@@ -208,7 +211,7 @@ public class Vista_9 extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista_9().setVisible(true);
+                //new Vista_9().setVisible(true);
             }
         });
     }

@@ -161,7 +161,7 @@ public class Vista_22 extends javax.swing.JFrame {
 
     private void Atras_Vista19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista19ActionPerformed
         // TODO add your handling code here:
-        Vista_18 v18 = new Vista_18();
+        Vista_18 v18 = new Vista_18(camp);
         v18.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista19ActionPerformed
