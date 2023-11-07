@@ -158,7 +158,7 @@ public class Vista_1 extends javax.swing.JFrame {
         
         else
         {
-            Vista_2 vista_2 = new Vista_2();
+            Vista_2 vista_2 = new Vista_2(a,c);
             setVisible(false);
             vista_2.setSize(412, 700);
             vista_2.setPreferredSize(new Dimension(412, 800));

@@ -1,44 +1,33 @@
 package modelo;
 
+import java.util.Date;
+
 public class Reserva {
-    private int diaInicio, mesInicio, anyoInicio, diaFin, mesFin, anyoFin;
+    private int id;
+    private Date fechaInicio, fechaFin;
     private Cliente cliente;
     private Parcela parcela;
-    public Reserva(int diaInicio, int mesInicio, int anyoInicio, int diaFin,
-                int mesFin, int anyoFin, Cliente cliente, Parcela parcela)
+    public Reserva(int id, Date fechaInicio, Date fechaFin, Cliente cliente, 
+            Parcela parcela)
     {
-        this.diaInicio = diaInicio;
-        this.diaInicio = mesInicio;
-        this.diaInicio = anyoInicio;
-        this.diaInicio = diaFin;
-        this.diaInicio = mesFin;
-        this.diaInicio = anyoFin;
+        this.id = id;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.cliente = cliente;
         this.parcela = parcela;
     }
-    public int getDiaInicio()
+    
+    public Date getFechaInicio()
     {
-        return diaInicio;
+        return fechaInicio;
     }
-    public int getMesInicio()
+    public float getPrecio()
     {
-        return mesInicio;
+        return parcela.getPrecio();
     }
-    public int getAnyoInicio()
+    public Date getFechaFin()
     {
-        return anyoInicio;
-    }
-    public int getDiaFin()
-    {
-        return diaFin;
-    }
-    public int getMesFin()
-    {
-        return mesFin;
-    }
-    public int getAnyoFin()
-    {
-        return anyoFin;
+        return fechaFin;
     }
     public Cliente getCliente()
     {
@@ -47,5 +36,9 @@ public class Reserva {
     public Parcela getParcela()
     {
         return parcela;
-    }        
+    }      
+    public int getId()
+    {
+        return id;
+    }
 }

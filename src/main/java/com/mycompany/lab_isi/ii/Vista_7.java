@@ -4,12 +4,18 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Camping;
+import modelo.Cliente;
+
 
 /**
  *
  * @author teres
  */
 public class Vista_7 extends javax.swing.JFrame {
+
+    private Camping camp;
+    private Cliente clienteLog;
 
     /**
      * Creates new form Ventana9a
@@ -96,7 +102,7 @@ public class Vista_7 extends javax.swing.JFrame {
 
     private void Aceptar_Vista7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista7ActionPerformed
         // TODO add your handling code here:
-        Vista_2 v2 = new Vista_2();
+        Vista_2 v2 = new Vista_2(camp,clienteLog);
         v2.show();
         this.dispose();
     }//GEN-LAST:event_Aceptar_Vista7ActionPerformed

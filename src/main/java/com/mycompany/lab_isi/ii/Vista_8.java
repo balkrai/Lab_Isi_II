@@ -7,12 +7,17 @@ package com.mycompany.lab_isi.ii;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.Camping;
+import modelo.Cliente;
 
 /**
  *
  * @author ramon
  */
 public class Vista_8 extends javax.swing.JFrame {
+
+     private Camping camp;
+     private Cliente clienteLog;
 
     /**
      * Creates new form Ventana8
@@ -159,7 +164,7 @@ public class Vista_8 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
-        Vista_2 vista_2 = new Vista_2();
+        Vista_2 vista_2 = new Vista_2(camp,clienteLog);
         /*setVisible(false);
         vista_2.setSize(412, 700);
         vista_2.setPreferredSize(new Dimension(412, 800));

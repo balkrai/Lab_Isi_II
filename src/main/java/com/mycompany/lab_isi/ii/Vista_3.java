@@ -7,12 +7,17 @@ package com.mycompany.lab_isi.ii;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import modelo.Camping;
+import modelo.Cliente;
 
 /**
  *
  * @author ramon
  */
 public class Vista_3 extends javax.swing.JFrame {
+
+    private Camping camp;
+    private Cliente clienteLog;
 
     /**
      * Creates new form Ventana8
@@ -145,7 +150,7 @@ public class Vista_3 extends javax.swing.JFrame {
 
     private void Atras_Vista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista3ActionPerformed
         // TODO add your handling code here:
-        Vista_2 v2 = new Vista_2();
+        Vista_2 v2 = new Vista_2(camp,clienteLog);
         v2.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista3ActionPerformed

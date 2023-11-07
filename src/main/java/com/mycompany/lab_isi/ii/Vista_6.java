@@ -7,6 +7,8 @@ package com.mycompany.lab_isi.ii;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.Camping;
+import modelo.Cliente;
 
 /**
  *
@@ -14,6 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class Vista_6 extends javax.swing.JFrame {
    
+    private Camping camp;
+    private Cliente clienteLog;
 
     /**
      * Creates new form Ventana18
@@ -122,7 +126,7 @@ public class Vista_6 extends javax.swing.JFrame {
 
     private void Atras_Vista6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista6ActionPerformed
         // TODO add your handling code here:
-        Vista_2 v2 = new Vista_2();
+        Vista_2 v2 = new Vista_2(camp,clienteLog);
         v2.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista6ActionPerformed

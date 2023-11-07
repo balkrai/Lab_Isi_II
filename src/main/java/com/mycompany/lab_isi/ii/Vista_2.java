@@ -4,6 +4,9 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Camping;
+import modelo.Cliente;
+
 
 /**
  *
@@ -11,12 +14,16 @@ package com.mycompany.lab_isi.ii;
  */
 public class Vista_2 extends javax.swing.JFrame {
 
+     private Camping camp;
+     private Cliente clienteLog;
     /**
      * Creates new form Ventana9a
      */
-    public Vista_2(/*Personal_de_tierra c*/) {
+    public Vista_2(Camping c,Cliente client) {
         //this.controlador = c;
         initComponents();
+        camp = c;
+        clienteLog = client;
     }
 
     /**
@@ -34,6 +41,7 @@ public class Vista_2 extends javax.swing.JFrame {
         jbActividades = new javax.swing.JButton();
         jbReserva = new javax.swing.JButton();
         Cancelar_Vista2 = new javax.swing.JButton();
+        jbActividades1 = new javax.swing.JButton();
 
         Cancelar_Vista20.setBackground(new java.awt.Color(0, 51, 255));
         Cancelar_Vista20.setText("Cancelar");
@@ -67,7 +75,8 @@ public class Vista_2 extends javax.swing.JFrame {
 
         jbActividades.setBackground(new java.awt.Color(0, 51, 255));
         jbActividades.setForeground(new java.awt.Color(255, 255, 255));
-        jbActividades.setText("Actividades");
+        jbActividades.setText("Modificar Reserva");
+        jbActividades.setActionCommand("Cancelar Reserva");
         jbActividades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbActividadesActionPerformed(evt);
@@ -92,6 +101,15 @@ public class Vista_2 extends javax.swing.JFrame {
             }
         });
 
+        jbActividades1.setBackground(new java.awt.Color(0, 51, 255));
+        jbActividades1.setForeground(new java.awt.Color(255, 255, 255));
+        jbActividades1.setText("Actividades");
+        jbActividades1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActividades1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +121,8 @@ public class Vista_2 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbsinReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jbActividades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbActividades1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(Cancelar_Vista2)))
@@ -116,25 +135,17 @@ public class Vista_2 extends javax.swing.JFrame {
                 .addComponent(jbReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbsinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jbActividades1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(12, 12, 12)
                 .addComponent(Cancelar_Vista2)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividadesActionPerformed
-        //PANEL_USUARIO_NO_REGISTRADO_1 ventana1 = new PANEL_USUARIO_NO_REGISTRADO_1();
-        setVisible(false);
-        //ventana1.setSize(getWidth(), getHeight());
-        //ventana1.setVisible(true);
-        Vista_21 v21 = new Vista_21();
-        v21.show();
-        this.dispose();
-    }//GEN-LAST:event_jbActividadesActionPerformed
 
     private void jbsinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsinReservaActionPerformed
 
@@ -161,6 +172,16 @@ public class Vista_2 extends javax.swing.JFrame {
         v1.show();
         this.dispose();
     }//GEN-LAST:event_Cancelar_Vista2ActionPerformed
+
+    private void jbActividades1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividades1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbActividades1ActionPerformed
+
+    private void jbActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividadesActionPerformed
+        Vista_22 v22 = new Vista_22(this,camp,clienteLog);
+        v22.show();
+        this.dispose();
+    }//GEN-LAST:event_jbActividadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,19 +218,14 @@ public class Vista_2 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //Personal_de_tierra controlador = new Personal_de_tierra("pt1","pt1");
-                new Vista_2(/*controlador*/).setVisible(true);
-            }
-        });
+       
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar_Vista2;
     private javax.swing.JButton Cancelar_Vista20;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbActividades;
+    private javax.swing.JButton jbActividades1;
     private javax.swing.JButton jbReserva;
     private javax.swing.JButton jbsinReserva;
     // End of variables declaration//GEN-END:variables
