@@ -16,7 +16,7 @@ import modelo.Reserva;
 
 /**
  *
- * @author ramon
+ * @author Borja Somovilla del saz
  */
 public class Vista_22 extends javax.swing.JFrame {
         private Vista_2 ant;
@@ -82,10 +82,10 @@ public class Vista_22 extends javax.swing.JFrame {
 
         Atras_Vista19.setBackground(new java.awt.Color(0, 51, 255));
         Atras_Vista19.setForeground(new java.awt.Color(255, 255, 255));
-        Atras_Vista19.setText("Atrás");
+        Atras_Vista19.setText("Modificar");
         Atras_Vista19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Atras_Vista19ActionPerformed(evt);
+                EventoModificar(evt);
             }
         });
 
@@ -159,12 +159,24 @@ public class Vista_22 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
-    private void Atras_Vista19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista19ActionPerformed
-        // TODO add your handling code here:
-        Vista_18 v18 = new Vista_18();
-        v18.show();
-        this.dispose();
-    }//GEN-LAST:event_Atras_Vista19ActionPerformed
+    private void EventoModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventoModificar
+        int filaSeleccionada = TablaReservas.getSelectedRow();
+        if (filaSeleccionada != -1) {
+    
+            DefaultTableModel modelo = (DefaultTableModel) TablaReservas.getModel();
+            Object valorID = modelo.getValueAt(filaSeleccionada, modelo.findColumn("id_reserva"));
+            
+             int identificador = Integer.parseInt(valorID.toString());
+             
+             Reserva ResSelec = clienteLog.BuscarReservaPorId(identificador);
+             Vista_23 v23 = new Vista_23(clienteLog, ResSelec, this);
+             v23.show();
+             this.dispose();
+    
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila", "Error Fila no seleccionada", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_EventoModificar
 
     /**
      * @param args the command line arguments
