@@ -179,6 +179,9 @@ public class Vista_2 extends javax.swing.JFrame {
 
     private void jbActividades1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividades1ActionPerformed
         // TODO add your handling code here:
+        Vista_24 v24=new Vista_24(camp,clienteLog);
+        v24.show();
+        this.dispose();
     }//GEN-LAST:event_jbActividades1ActionPerformed
 
     private void jbActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActividadesActionPerformed

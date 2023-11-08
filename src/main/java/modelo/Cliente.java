@@ -7,6 +7,7 @@ public class Cliente {
     private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
     private ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
     private Historico historico;
+    private ArrayList<ReservaActividad>  resActividad = new ArrayList<ReservaActividad>();
     public Cliente(String usuario, String contrasenya)
     {
         this.usuario = usuario;
@@ -20,6 +21,10 @@ public class Cliente {
     public void AgregaReserva(Reserva r)
     {
         reservas.add(r);
+    }
+    public ArrayList<ReservaActividad> getReservaActividad()
+    {
+        return resActividad;
     }
     public ArrayList<Reserva> getReservas()
     {

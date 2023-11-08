@@ -27,6 +27,10 @@ public class Camping {
         reservas_actividades = new ArrayList<ReservaActividad>();
         tiendas = new ArrayList<Tienda>();
     }
+    public void addReservaActividad(ReservaActividad res)
+    {
+        reservas_actividades.add(res);
+    }
     public  ArrayList<Parcela> getParcelasDisponibles(Date ini, Date fin)
     {
         System.err.println("Entro donde toca");
@@ -134,10 +138,10 @@ public class Camping {
         Actividad a2 = new Actividad(2,"piscina",formato.parse("05/11/2023"),"17:00","19:00",false);
         actividades.add(a2);
         
-        ReservaActividad ra1 = new ReservaActividad(formato.parse("05/11/2023"),a1,c1);
-        ReservaActividad ra2 = new ReservaActividad(formato.parse("05/11/2023"),a1,c2);
-        ReservaActividad ra3 = new ReservaActividad(formato.parse("05/11/2023"),a1,c3);
-        ReservaActividad ra4 = new ReservaActividad(formato.parse("05/11/2023"),a1,c4);
+        ReservaActividad ra1 = new ReservaActividad(formato.parse("05/11/2023"),a1,c1,"15:00");
+        ReservaActividad ra2 = new ReservaActividad(formato.parse("05/11/2023"),a1,c2,"15:00");
+        ReservaActividad ra3 = new ReservaActividad(formato.parse("05/11/2023"),a1,c3,"15:00");
+        ReservaActividad ra4 = new ReservaActividad(formato.parse("05/11/2023"),a1,c4,"15:00");
         a1.setReserva(ra1);
         a1.setReserva(ra2);
         a1.setReserva(ra3);
