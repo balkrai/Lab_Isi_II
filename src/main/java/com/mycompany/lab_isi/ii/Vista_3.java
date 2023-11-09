@@ -17,12 +17,13 @@ import modelo.Cliente;
 public class Vista_3 extends javax.swing.JFrame {
 
     private Camping camp;
-    private Cliente clienteLog;
+    private Cliente c;
 
     /**
      * Creates new form Ventana8
      */
-    public Vista_3() {
+    public Vista_3(Cliente c) {
+        this.c=c;
         initComponents();
     }
 
@@ -140,7 +141,7 @@ public class Vista_3 extends javax.swing.JFrame {
         vista_4.setPreferredSize(new Dimension(412, 800));
         vista_4.setVisible(true);*/
         Vista_5 v5 = new Vista_5(fecha_inicio.getSelectedDate().getTime(),
-                fecha_fin.getSelectedDate().getTime());
+                fecha_fin.getSelectedDate().getTime(),c);
         v5.show();
         this.dispose();
     }//GEN-LAST:event_jbAceptarActionPerformed
@@ -155,7 +156,7 @@ public class Vista_3 extends javax.swing.JFrame {
 
     private void Atras_Vista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista3ActionPerformed
         // TODO add your handling code here:
-        Vista_2 v2 = new Vista_2(camp,clienteLog);
+        Vista_2 v2 = new Vista_2(camp,c);
         v2.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista3ActionPerformed
@@ -164,15 +165,7 @@ public class Vista_3 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Vista_3().setVisible(true);
-            }
-        });
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista3;
     private datechooser.beans.DateChooserCombo fecha_fin;

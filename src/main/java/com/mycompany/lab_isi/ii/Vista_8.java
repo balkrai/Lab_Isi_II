@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.Camping;
 import modelo.Cliente;
+import modelo.Reserva;
 
 /**
  *
@@ -18,11 +19,17 @@ public class Vista_8 extends javax.swing.JFrame {
 
      private Camping camp;
      private Cliente clienteLog;
+     private int tiendas;
+     private float m2;
+     private Reserva r;
 
     /**
      * Creates new form Ventana8
      */
-    public Vista_8() {
+    public Vista_8(Reserva r,int tiendas,float m2) {
+        this.r=r;
+        this.tiendas=tiendas;
+        this.m2=m2;
         initComponents();
     }
 
@@ -213,16 +220,7 @@ public class Vista_8 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Vista_8().setVisible(true);
-            }
-        });
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbAceptar;
     private javax.swing.JTextField m2_tienda1;

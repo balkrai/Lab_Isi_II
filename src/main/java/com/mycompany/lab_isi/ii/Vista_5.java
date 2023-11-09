@@ -4,42 +4,42 @@
  */
 package com.mycompany.lab_isi.ii;
 
-
 import java.awt.Dimension;
 import java.util.*;
 import javax.swing.JOptionPane;
 import modelo.Camping;
+import modelo.Cliente;
 import modelo.Parcela;
-
+import modelo.Reserva;
 
 /**
  *
  * @author ramon
  */
 public class Vista_5 extends javax.swing.JFrame {
+
     private Date f_ini;
     private Date f_fin;
     private Camping camping;
     private ArrayList<Parcela> parcelas;
+    private Reserva reserva;
+    private Cliente c;
 
     /**
      * Creates new form Ventana8
      */
-    public Vista_5(Date f_ini,Date f_fin ) {
+    public Vista_5(Date f_ini, Date f_fin, Cliente c) {
         initComponents();
-        
-        this.f_ini=f_ini;
-        this.f_fin=f_fin;
+        this.c = c;
+        this.f_ini = f_ini;
+        this.f_fin = f_fin;
         camping = Camping.getInstancia();
         parcelas = camping.getParcelasDisponibles(f_ini, f_fin);
         System.out.println(parcelas);
-        for(Parcela p:parcelas)
-        {
+        for (Parcela p : parcelas) {
             combobox_parcelas.addItem(p);
         }
-        Parcela pruebas = new Parcela(2,2,true,3);
-        combobox_parcelas.addItem(pruebas);
-        
+
     }
 
     /**
@@ -216,14 +216,54 @@ public class Vista_5 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservarActionPerformed
-        Vista_8 vista_8 = new Vista_8();
+        Parcela p = (Parcela) combobox_parcelas.getSelectedItem();
+        int metros=0;
+        boolean valido=true;
+
+        for (int i = 0; i < Integer.parseInt(numeroTiendas.getText()); i++) {
+            String input = JOptionPane.showInputDialog(null, "Introduce los metros de la tienda " + (i + 1) + ":");
+            if (input != null && !input.isEmpty()) {
+                try {
+                    metros+=Integer.parseInt(input);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "No es un número válido. Inténtalo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    valido=false;
+                    i--; // Decrementa i para repetir este paso del bucle
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                valido=false;
+                break; // Salir del bucle si el usuario cancela
+            }
+        }
+
+        if(metros<=p.getm2()&&valido)
+        {
+            JOptionPane.showMessageDialog(null, "Reserva valida.");
+            reserva = new Reserva(Camping.generarIdReserva(), f_ini, f_fin, c, p);
+            Camping.anyadirReserva(reserva);
+            c.AgregaReserva(reserva);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Reserva no valida.");
+        }
+        numeroTiendas.setText("");
+        combobox_parcelas.removeAllItems();
+        ArrayList<Parcela> recargar = camping.getParcelasDisponibles(f_ini, f_fin);
+        System.out.println(Camping.getParcelas());
+        System.out.println(parcelas);
+        for (Parcela r : recargar) {
+            combobox_parcelas.addItem(r);
+        }
+        
+        //Vista_8 vista_8 = new Vista_8(reserva,Integer.parseInt(numeroTiendas.getText()),p.getm2());
         /*setVisible(false);
         vista_8.setSize(412, 700);
         vista_8.setPreferredSize(new Dimension(412, 800));
         vista_8.setVisible(true);*/
-        vista_8.show();
-        this.dispose();
-        
+        //vista_8.show();
+
     }//GEN-LAST:event_jbReservarActionPerformed
 
     private void tfContraseña3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseña3ActionPerformed
@@ -236,7 +276,7 @@ public class Vista_5 extends javax.swing.JFrame {
 
     private void Atras_Vista5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista5ActionPerformed
         // TODO add your handling code here:
-        Vista_3 v3 = new Vista_3();
+        Vista_3 v3 = new Vista_3(c);
         v3.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista5ActionPerformed
@@ -246,14 +286,17 @@ public class Vista_5 extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroTiendasActionPerformed
 
     private void combobox_parcelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobox_parcelasItemStateChanged
-    Parcela p = (Parcela)combobox_parcelas.getSelectedItem();
-    l_id.setText(p.getId()+"");
-    if(p.getLuz())
-        l_luz.setText("si");
-    else
-        l_luz.setText("no");
-    l_m2.setText(p.getm2()+"");
-    l_precio.setText(p.getPrecio()+"");
+        
+        Parcela p = (Parcela) combobox_parcelas.getSelectedItem();
+        if(p!=null){
+        l_id.setText(p.getId() + "");
+        if (p.getLuz()) {
+            l_luz.setText("Si");
+        } else {
+            l_luz.setText("No");
+        }
+        l_m2.setText(p.getm2() + "");
+        l_precio.setText(p.getPrecio() + "");}
     }//GEN-LAST:event_combobox_parcelasItemStateChanged
 
     private void combobox_parcelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_parcelasActionPerformed
@@ -263,16 +306,7 @@ public class Vista_5 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Vista_5(new Date(125, 8, 12, 0, 0, 0),new Date(125, 8, 12, 0, 0, 0)).setVisible(true);
-            }
-        });
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista5;
     private javax.swing.JComboBox<Parcela> combobox_parcelas;

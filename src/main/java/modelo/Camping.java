@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Camping {
+
     private static Camping camping;
-    private ArrayList<Parcela> parcelas;
+    private static ArrayList<Parcela> parcelas;
     private ArrayList<Cliente> clientes;
     private ArrayList<Trabajador> trabajadores;
     private ArrayList<Historico> historicos;
-    private ArrayList<Reserva> reservas;
+    private static ArrayList<Reserva> reservas;
     private ArrayList<Actividad> actividades;
     private ArrayList<ReservaActividad> reservas_actividades;
     private ArrayList<Tienda> tiendas;
     private Actividad actActual;
-    private Camping()
-    {
+    private static int idReserva = 4;
+
+    private Camping() {
         parcelas = new ArrayList<Parcela>();
         clientes = new ArrayList<Cliente>();
         trabajadores = new ArrayList<Trabajador>();
@@ -27,121 +29,132 @@ public class Camping {
         reservas_actividades = new ArrayList<ReservaActividad>();
         tiendas = new ArrayList<Tienda>();
     }
-    public void addReservaActividad(ReservaActividad res)
-    {
+
+    public static ArrayList<Parcela> getParcelas() {
+        return parcelas;
+    }
+    
+    public static void anyadirReserva(Reserva r) {
+        reservas.add(r);
+    }
+
+    public static int generarIdReserva() {
+        idReserva++;
+        return idReserva;
+    }
+
+    public void addReservaActividad(ReservaActividad res) {
         reservas_actividades.add(res);
     }
-    public  ArrayList<Parcela> getParcelasDisponibles(Date ini, Date fin)
-    {
+
+    public ArrayList<Parcela> getParcelasDisponibles(Date ini, Date fin) {
         System.err.println("Entro donde toca");
         ArrayList<Parcela> resultado = new ArrayList<>();
-        for(Parcela p:this.parcelas)
-        {
-            for(Reserva r:p.getReservas())
-            {
-                System.err.println("Reservas de p");
-                System.err.println(p.getReservas());
-                if(ini.before(r.getFechaInicio()) && fin.before(r.getFechaInicio()))
-                {
-                    resultado.add(p);
-                }
-                else if(ini.after(r.getFechaFin()))
-                {
-                    resultado.add(p);
+        System.out.println("Cantidad de parcelas " + parcelas.size());
+        for (Parcela p : this.parcelas) {
+            if (p.getReservas().isEmpty()) {
+                resultado.add(p);
+            } else {
+                for (Reserva r : p.getReservas()) {
+                    System.err.println("Reservas de p");
+                    System.err.println(p.getReservas());
+                    if (ini.before(r.getFechaInicio()) && fin.before(r.getFechaInicio())) {
+                        resultado.add(p);
+                    } else if (ini.after(r.getFechaFin())) {
+                        resultado.add(p);
+                    }
                 }
             }
         }
         return resultado;
     }
+
     public static Camping getInstancia() {
-        if (camping == null) 
+        if (camping == null) {
             camping = new Camping();
+        }
         return camping;
     }
-    
-    public void setActActual(Actividad actActual)
-    {
+
+    public void setActActual(Actividad actActual) {
         this.actActual = actActual;
     }
-    
-    public Actividad getActActual()
-    {
+
+    public Actividad getActActual() {
         return actActual;
     }
-    
-    public ArrayList<Actividad> getActividades()
-    {
+
+    public ArrayList<Actividad> getActividades() {
         return actividades;
     }
-    
-    public Cliente loginC(String usu, String pass)
-    {
-       Cliente c = null;
-       boolean encontrado = false;
+
+    public Cliente loginC(String usu, String pass) {
+        Cliente c = null;
+        boolean encontrado = false;
         int i = 0;
 
         while (i < clientes.size() && encontrado == false) {
-            if(clientes.get(i).getUsuario().equals(usu) 
-                    && clientes.get(i).getContrasenya().equals(pass))
-            {
+            if (clientes.get(i).getUsuario().equals(usu)
+                    && clientes.get(i).getContrasenya().equals(pass)) {
                 c = clientes.get(i);
                 encontrado = true;
             }
             i++;
         }
-       
-        return c; 
+
+        return c;
     }
-    
-    public Trabajador loginT(String usu, String pass)
-    {
-       Trabajador t = null;
-       boolean encontrado = false;
+
+    public Trabajador loginT(String usu, String pass) {
+        Trabajador t = null;
+        boolean encontrado = false;
         int i = 0;
 
         while (i < trabajadores.size() && encontrado == false) {
-            if(trabajadores.get(i).getUsuario().equals(usu) 
-                    && trabajadores.get(i).getContrasenya().equals(pass))
-            {
+            if (trabajadores.get(i).getUsuario().equals(usu)
+                    && trabajadores.get(i).getContrasenya().equals(pass)) {
                 t = trabajadores.get(i);
                 encontrado = true;
             }
             i++;
         }
-       
-        return t; 
+
+        return t;
     }
-    
-    public void cargarDatos() throws ParseException
-    {
+
+    public void cargarDatos() throws ParseException {
         Parcela parcela = new Parcela(1, 100, true, 100.0f);
-        
-        Cliente c1 = new Cliente("c1","c1");
+        Parcela parcela2 = new Parcela(2, 12, false, 10.0f);
+
+        parcelas.add(parcela);
+        parcelas.add(parcela2);
+
+        Cliente c1 = new Cliente("c1", "c1");
         clientes.add(c1);
-        Cliente c2 = new Cliente("c2","c2");
+        Cliente c2 = new Cliente("c2", "c2");
         clientes.add(c2);
-        Cliente c3 = new Cliente("c3","c3");
+        Cliente c3 = new Cliente("c3", "c3");
         clientes.add(c3);
-        Cliente c4 = new Cliente("c4","c4");
+        Cliente c4 = new Cliente("c4", "c4");
         clientes.add(c4);
-       
+
         Reserva reserva = new Reserva(1, new Date(123, 10, 7, 0, 0, 0), new Date(123, 10, 7, 0, 0, 0), c1, parcela);
         c1.AgregaReserva(reserva);
-        
-        Trabajador t1 = new Trabajador("t1","t1");
+
+        Trabajador t1 = new Trabajador("t1", "t1");
         trabajadores.add(t1);
-        
+
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
-        Actividad a1 = new Actividad(1,"piscina",formato.parse("05/11/2023"),"15:00","17:00",false);
+
+        Actividad a1 = new Actividad(1, "piscina", formato.parse("05/11/2023"), "15:00", "17:00", false);
         actividades.add(a1);
-        Actividad a2 = new Actividad(2,"piscina",formato.parse("05/11/2023"),"17:00","19:00",false);
+        Actividad a2 = new Actividad(2, "piscina", formato.parse("05/11/2023"), "17:00", "19:00", false);
         actividades.add(a2);
-        
-        ReservaActividad ra1 = new ReservaActividad(formato.parse("05/11/2023"),a1,c1,"15:00");
-        ReservaActividad ra2 = new ReservaActividad(formato.parse("05/11/2023"),a1,c2,"15:00");
-        ReservaActividad ra3 = new ReservaActividad(formato.parse("05/11/2023"),a1,c3,"15:00");
-        ReservaActividad ra4 = new ReservaActividad(formato.parse("05/11/2023"),a1,c4,"15:00");
+
+        ReservaActividad ra1 = new ReservaActividad(formato.parse("05/11/2023"), a1, c1, "15:00");
+        ReservaActividad ra2 = new ReservaActividad(formato.parse("05/11/2023"), a1, c2, "15:00");
+        ReservaActividad ra3 = new ReservaActividad(formato.parse("05/11/2023"), a1, c3, "15:00");
+        ReservaActividad ra4 = new ReservaActividad(formato.parse("05/11/2023"), a1, c4, "15:00");
         a1.setReserva(ra1);
         a1.setReserva(ra2);
         a1.setReserva(ra3);

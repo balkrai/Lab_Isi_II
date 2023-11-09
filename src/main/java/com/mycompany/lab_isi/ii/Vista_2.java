@@ -161,7 +161,7 @@ public class Vista_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jbsinReservaActionPerformed
 
     private void jbReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservaActionPerformed
-        Vista_3 v3 = new Vista_3();
+        Vista_3 v3 = new Vista_3(clienteLog);
         v3.show();
         this.dispose();
     }//GEN-LAST:event_jbReservaActionPerformed
