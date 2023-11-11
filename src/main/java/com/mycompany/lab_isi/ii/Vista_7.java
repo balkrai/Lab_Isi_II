@@ -4,8 +4,11 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import modelo.Camping;
 import modelo.Cliente;
+import modelo.Parcela;
 
 
 /**
@@ -13,16 +16,25 @@ import modelo.Cliente;
  * @author teres
  */
 public class Vista_7 extends javax.swing.JFrame {
-
-    private Camping camp;
     private Cliente clienteLog;
+    private Camping camp;
+    private ArrayList<Parcela> parcelas;
 
     /**
      * Creates new form Ventana9a
      */
-    public Vista_7(/*Personal_de_tierra c*/) {
+    public Vista_7(Cliente clienteLog, Camping camp, ArrayList<Parcela> parcelas) {
         //this.controlador = c;
         initComponents();
+        this.parcelas = parcelas;
+        this.clienteLog = clienteLog;
+        this.camp = camp;
+        DefaultListModel<Parcela> modelo = new DefaultListModel<>();
+        listaParcelas.setModel(modelo);
+        for(int i = 0; i < parcelas.size(); ++i)
+        {
+            modelo.addElement(parcelas.get(i));
+        }
     }
 
     /**
@@ -35,21 +47,14 @@ public class Vista_7 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         Aceptar_Vista7 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaParcelas = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Parcelas asignadas:");
-
-        jLabel2.setText("Estas labels seran imagenes");
-
-        jLabel3.setText("jLabel2");
-
-        jLabel4.setText("jLabel2");
 
         Aceptar_Vista7.setBackground(new java.awt.Color(0, 51, 255));
         Aceptar_Vista7.setForeground(new java.awt.Color(255, 255, 255));
@@ -60,41 +65,35 @@ public class Vista_7 extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(listaParcelas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(72, 72, 72))
+                .addGap(92, 92, 92)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(Aceptar_Vista7)))
+                .addGap(159, 159, 159)
+                .addComponent(Aceptar_Vista7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(Aceptar_Vista7)
-                .addGap(18, 18, 18))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -153,7 +152,7 @@ public class Vista_7 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Personal_de_tierra controlador = new Personal_de_tierra("pt1","pt1");
-                new Vista_7(/*controlador*/).setVisible(true);
+                //new Vista_7(/*controlador*/).setVisible(true);
             }
         });
     }
@@ -161,9 +160,8 @@ public class Vista_7 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar_Vista7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<Parcela> listaParcelas;
     // End of variables declaration//GEN-END:variables
     //private Personal_de_tierra controlador = new Personal_de_tierra("pt1","pt1");
 }

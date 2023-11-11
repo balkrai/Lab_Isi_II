@@ -153,7 +153,7 @@ public class Vista_2 extends javax.swing.JFrame {
 
     private void jbsinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsinReservaActionPerformed
 
-        Vista_6 v6 = new Vista_6();
+        Vista_6 v6 = new Vista_6(camp,clienteLog);
         v6.show();
         this.dispose();
         //ventana10.setSize(getWidth(), getHeight());

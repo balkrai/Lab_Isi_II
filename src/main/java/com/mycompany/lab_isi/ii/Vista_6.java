@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Camping;
 import modelo.Cliente;
+import modelo.Parcela;
 
 /**
  *
@@ -18,13 +19,17 @@ public class Vista_6 extends javax.swing.JFrame {
    
     private Camping camp;
     private Cliente clienteLog;
+    private ArrayList<Parcela> parcelas;
 
     /**
      * Creates new form Ventana18
      */
-    public Vista_6() {
+    public Vista_6(Camping camp, Cliente clienteLog) {
        
         initComponents();
+        this.camp = camp;
+        this.clienteLog = clienteLog;
+        this.parcelas = new ArrayList<Parcela>();
     }
 
     /**
@@ -87,20 +92,21 @@ public class Vista_6 extends javax.swing.JFrame {
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Atras_Vista6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(jBDarBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBDarBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(17, 17, 17)))
                 .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addGap(51, 51, 51)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,9 +125,14 @@ public class Vista_6 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        Vista_7 v7 = new Vista_7();
-        v7.show();
-        this.dispose();
+        
+            /*JOptionPane.showMessageDialog(null, "INTRODUCE UN RANGO VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            Vista_7 v7 = new Vista_7(clienteLog, camp, parcelas);
+            v7.show();
+            this.dispose();   
+        }*/
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void Atras_Vista6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista6ActionPerformed

@@ -182,7 +182,7 @@ public class Vista_20 extends javax.swing.JFrame {
     }//GEN-LAST:event_Cancelar_Vista20ActionPerformed
 
     private void Aceptar_Vista20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista20ActionPerformed
-        // TODO add your handling code here:ç
+        // TODO add your handling code here:
         Vista_9 v9 = new Vista_9(c);
         v9.show();
         this.dispose();

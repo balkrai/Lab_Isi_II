@@ -175,13 +175,6 @@ public class Vista_9 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_Descuento_Vista9ActionPerformed
 
-    private void RegCliente_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegCliente_Vista9ActionPerformed
-        // TODO add your handling code here:
-        Vista_20 v20 = new Vista_20(c);
-        v20.show();
-        this.dispose();
-    }//GEN-LAST:event_RegCliente_Vista9ActionPerformed
-
     private void ConsHistorial_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsHistorial_Vista9ActionPerformed
         // TODO add your handling code here:
         Vista_18 v18 = new Vista_18(c);
@@ -202,6 +195,13 @@ public class Vista_9 extends javax.swing.JFrame {
         v1.show();
         this.dispose();
     }//GEN-LAST:event_cancelar_Vista9ActionPerformed
+
+    private void RegCliente_Vista9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegCliente_Vista9ActionPerformed
+        // TODO add your handling code here:
+        /*Vista_20 v20 = new Vista_20(c);
+        v20.show();
+        this.dispose();*/
+    }//GEN-LAST:event_RegCliente_Vista9ActionPerformed
 
     /**
      * @param args the command line arguments
