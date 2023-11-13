@@ -27,11 +27,12 @@ public class Vista_23 extends javax.swing.JFrame {
     private Cliente clog;
     private Reserva resActual;
     private Vista_22 v22;
+    private boolean mod = false;
     
     /**
      * Creates new form Ventana8
      */
-    public Vista_23(Cliente c, Reserva res, Vista_22 v22) {
+    public Vista_23(Cliente c, Reserva res, Vista_22 v22,boolean tipo) {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         initComponents();
         this.v22 = v22;
@@ -45,6 +46,21 @@ public class Vista_23 extends javax.swing.JFrame {
         jTextField1.setEditable(false);
         jTextField2.setText(fechaInicio);
         jTextField3.setText(fechaFin);
+        mod = tipo;
+        if(mod)
+        {
+            jLabel1.setText("Modificar Reserva");
+            jButton2.setText("Modificar");
+        }
+         else
+        {
+               jLabel1.setText("Cancelar Reserva");
+               jButton2.setText("Cancelar");
+               jTextField1.setEditable(false);
+               jTextField2.setEditable(false);
+               jTextField3.setEditable(false);
+
+        }
 
         
         
@@ -71,6 +87,7 @@ public class Vista_23 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jlTitulo.setBackground(new java.awt.Color(0, 51, 255));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jlTitulo.setText("Modificar Reserva");
 
@@ -180,29 +197,41 @@ public class Vista_23 extends javax.swing.JFrame {
            String FechaFin = jTextField3.getText().trim();
            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
            
-           if(esFormatoFechaValido(FechaInicio) && esFormatoFechaValido(FechaFin))
+           if(mod)
            {
-               try {
-                   Date f_inicio = dateFormat.parse(FechaInicio);
-                   Date f_fin = dateFormat.parse(FechaFin);
-                   
-                   Reserva r = new Reserva(resActual.getId(), 
-                           f_inicio, f_fin, clog, resActual.getParcela());
-                   clog.ModificaReserva(r);
-                   v22.ActualizarTabla(clog);
-                   v22.show();
-                   v22.repaint();
-                   this.dispose();
-                   
+           
+                if(esFormatoFechaValido(FechaInicio) && esFormatoFechaValido(FechaFin))
+                {
+                    try {
+                        Date f_inicio = dateFormat.parse(FechaInicio);
+                        Date f_fin = dateFormat.parse(FechaFin);
 
-               } catch (ParseException ex) {
-                   Logger.getLogger(Vista_23.class.getName()).log(Level.SEVERE, null, ex);
-               }
-               
-           }else
+                        Reserva r = new Reserva(resActual.getId(), 
+                                f_inicio, f_fin, clog, resActual.getParcela());
+                        clog.ModificaReserva(r);
+                        v22.ActualizarTabla(clog);
+                        v22.show();
+                        v22.repaint();
+                        this.dispose();
+
+
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Vista_23.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }else
+                {
+                   JOptionPane.showMessageDialog(null, "El formato de las fechas tienen que ser dd/MM/yyyy ", "Error formato fechas", JOptionPane.ERROR_MESSAGE);
+
+                }
+           }
+           else
            {
-              JOptionPane.showMessageDialog(null, "El formato de las fechas tienen que ser dd/MM/yyyy ", "Error formato fechas", JOptionPane.ERROR_MESSAGE);
-
+               clog.BorrarReserva(resActual);
+               v22.ActualizarTabla(clog);
+               v22.show();
+               v22.repaint();
+               this.dispose();
            }
 
     }//GEN-LAST:event_jButton2ActionPerformed

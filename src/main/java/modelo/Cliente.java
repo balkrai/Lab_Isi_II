@@ -74,4 +74,11 @@ public class Cliente {
             }
         }
     }
+    
+    public void BorrarReserva(Reserva r)
+    {
+        reservas.remove(r);
+    }
+    
+    
 }

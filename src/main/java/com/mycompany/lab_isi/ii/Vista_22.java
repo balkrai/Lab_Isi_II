@@ -53,6 +53,7 @@ public class Vista_22 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        Atras_Vista20 = new javax.swing.JButton();
 
         tfContraseña3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,29 +140,37 @@ public class Vista_22 extends javax.swing.JFrame {
             }
         });
 
+        Atras_Vista20.setBackground(new java.awt.Color(0, 51, 255));
+        Atras_Vista20.setForeground(new java.awt.Color(255, 255, 255));
+        Atras_Vista20.setText("Cancelar Reserva");
+        Atras_Vista20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Atras_Vista20EventoModificar(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Atras_Vista19)
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Atras_Vista19)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(148, 148, 148))))))
+                        .addGap(71, 71, 71)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton1)
+                        .addGap(69, 69, 69)
+                        .addComponent(Atras_Vista20)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +184,9 @@ public class Vista_22 extends javax.swing.JFrame {
                         .addComponent(Atras_Vista19)
                         .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(Atras_Vista20))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -198,7 +209,7 @@ public class Vista_22 extends javax.swing.JFrame {
             Object valorID = modelo.getValueAt(filaSeleccionada, modelo.findColumn("id_reserva"));
             int identificador = Integer.parseInt(valorID.toString());
             Reserva ResSelec = clienteLog.BuscarReservaPorId(identificador);
-            Vista_23 v23 = new Vista_23(clienteLog, ResSelec, this);
+            Vista_23 v23 = new Vista_23(clienteLog, ResSelec, this,true);
             v23.show();
             this.dispose();
         } else {
@@ -249,6 +260,21 @@ public class Vista_22 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void Atras_Vista20EventoModificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista20EventoModificar
+         filaSeleccionada = TablaReservas.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            DefaultTableModel modelo = (DefaultTableModel) TablaReservas.getModel();
+            Object valorID = modelo.getValueAt(filaSeleccionada, modelo.findColumn("id_reserva"));
+            int identificador = Integer.parseInt(valorID.toString());
+            Reserva ResSelec = clienteLog.BuscarReservaPorId(identificador);
+            Vista_23 v23 = new Vista_23(clienteLog, ResSelec, this,false);
+            v23.show();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila", "Error Fila no seleccionada", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Atras_Vista20EventoModificar
+
 
     /**
      * @param args the command line arguments
@@ -278,6 +304,7 @@ public class Vista_22 extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista19;
+    private javax.swing.JButton Atras_Vista20;
     private javax.swing.JTable TablaReservas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
