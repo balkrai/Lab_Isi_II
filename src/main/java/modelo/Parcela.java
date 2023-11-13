@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Parcela {
     private int id, m2;
@@ -21,10 +22,14 @@ public class Parcela {
     public ArrayList<Reserva> getReservas() {
         return reservas;
     }
+    
+    public void setReserva(int yearIni, int monthIni, int dateIni, int yearFin, int monthFin, int dateFin, Cliente c){
+        reservas.add(new Reserva(reservas.size(), new Date(yearIni,monthIni,dateIni,0,0,0), new Date(yearFin,monthFin,dateFin,0,0,0),c,this));
+    }
 
     @Override
     public String toString() {
-        return id+"";
+        return "Parcela: "+id+"; Metros cuadrados: "+m2+"; Luz: "+luz+"; Precio: "+precio;
     }
     public void anyadirReserva(Reserva r)
     {

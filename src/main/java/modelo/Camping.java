@@ -87,6 +87,10 @@ public class Camping {
     public ArrayList<Actividad> getActividades() {
         return actividades;
     }
+    
+    public void setReserva(Parcela p, int yearIni, int monthIni, int dateIni, int yearFin, int monthFin, int dateFin, Cliente c){
+        reservas.add(new Reserva(reservas.size(), new Date(yearIni,monthIni,dateIni,0,0,0), new Date(yearFin,monthFin,dateFin,0,0,0),c,p));
+    }
 
     public Cliente loginC(String usu, String pass) {
         Cliente c = null;
@@ -125,9 +129,11 @@ public class Camping {
     public void cargarDatos() throws ParseException {
         Parcela parcela = new Parcela(1, 100, true, 100.0f);
         Parcela parcela2 = new Parcela(2, 12, false, 10.0f);
+        Parcela parcela3 = new Parcela(3, 50, true, 20.0f);
 
         parcelas.add(parcela);
         parcelas.add(parcela2);
+        parcelas.add(parcela3);
 
         Cliente c1 = new Cliente("c1", "c1");
         clientes.add(c1);
@@ -140,6 +146,8 @@ public class Camping {
 
         Reserva reserva = new Reserva(1, new Date(123, 10, 7, 0, 0, 0), new Date(123, 10, 7, 0, 0, 0), c1, parcela);
         c1.AgregaReserva(reserva);
+        
+        reservas.add(reserva);
 
         Trabajador t1 = new Trabajador("t1", "t1");
         trabajadores.add(t1);

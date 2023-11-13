@@ -6,10 +6,12 @@ package com.mycompany.lab_isi.ii;
 
 import javax.swing.JFrame;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Camping;
 import modelo.Cliente;
 import modelo.Parcela;
+import modelo.Reserva;
 
 /**
  *
@@ -48,6 +50,8 @@ public class Vista_6 extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         Atras_Vista6 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +80,14 @@ public class Vista_6 extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Nº parcelas");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,14 +95,6 @@ public class Vista_6 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Atras_Vista6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
@@ -98,7 +102,17 @@ public class Vista_6 extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(17, 17, 17)))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
@@ -106,33 +120,58 @@ public class Vista_6 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBDarBaja)
                     .addComponent(Atras_Vista6))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        
-            /*JOptionPane.showMessageDialog(null, "INTRODUCE UN RANGO VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
+        if(this.jDateChooser1.getDate().getTime() > this.jDateChooser2.getDate().getTime())
+            JOptionPane.showMessageDialog(null, "INTRODUCE UN RANGO VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
         else
         {
-            Vista_7 v7 = new Vista_7(clienteLog, camp, parcelas);
-            v7.show();
-            this.dispose();   
-        }*/
+            if(this.jTextField1.getText() == null)
+                JOptionPane.showMessageDialog(null, "INTRODUCE LA CANTIDAD DE PARCELAS", "Inane error",JOptionPane.ERROR_MESSAGE);
+            else
+            {
+                int numParcelas = Integer.parseInt(this.jTextField1.getText());
+                for(int i = 0; i < camp.getParcelasDisponibles(this.jDateChooser1.getDate(), this.jDateChooser2.getDate()).size(); ++i)
+                {
+                    if(numParcelas > 0 && camp.getParcelasDisponibles(this.jDateChooser1.getDate(), this.jDateChooser2.getDate()).get(i).getReservas().isEmpty())
+                    {
+                        --numParcelas;
+                        parcelas.add(camp.getParcelasDisponibles(this.jDateChooser1.getDate(), this.jDateChooser2.getDate()).get(i));
+                        
+                    }
+                }
+                for(int j = 0; j < parcelas.size(); ++j)
+                {
+                    parcelas.get(j).setReserva(this.jDateChooser1.getDate().getYear(),this.jDateChooser1.getDate().getMonth(),this.jDateChooser1.getDate().getDate(),this.jDateChooser2.getDate().getYear(),this.jDateChooser2.getDate().getMonth(),this.jDateChooser2.getDate().getDate(),clienteLog);
+                    camp.setReserva(parcelas.get(j),this.jDateChooser1.getDate().getYear(),this.jDateChooser1.getDate().getMonth(),this.jDateChooser1.getDate().getDate(),this.jDateChooser2.getDate().getYear(),this.jDateChooser2.getDate().getMonth(),this.jDateChooser2.getDate().getDate(),clienteLog);
+                    clienteLog.AgregaReserva(new Reserva(clienteLog.getReservas().size(), new Date(this.jDateChooser1.getDate().getYear(),this.jDateChooser1.getDate().getMonth(),this.jDateChooser1.getDate().getDate(),0,0,0), new Date(this.jDateChooser2.getDate().getYear(),this.jDateChooser2.getDate().getMonth(),this.jDateChooser2.getDate().getDate(),0,0,0),clienteLog,parcelas.get(j)));
+                }
+                Vista_7 v7 = new Vista_7(clienteLog, camp, parcelas);
+                v7.show();
+                this.dispose();   
+            }
+        }
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void Atras_Vista6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras_Vista6ActionPerformed
@@ -141,6 +180,10 @@ public class Vista_6 extends javax.swing.JFrame {
         v2.show();
         this.dispose();
     }//GEN-LAST:event_Atras_Vista6ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
   
 
@@ -152,5 +195,7 @@ public class Vista_6 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
