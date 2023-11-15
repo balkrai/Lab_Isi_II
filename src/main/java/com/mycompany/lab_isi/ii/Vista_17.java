@@ -6,6 +6,8 @@ package com.mycompany.lab_isi.ii;
 
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -15,12 +17,20 @@ import modelo.*;
  */
 public class Vista_17 extends javax.swing.JFrame {
     private Camping c;
+    
     /**
      * Creates new form Ventana8
      */
     public Vista_17(Camping c) {
         initComponents();
         this.c = c;
+       
+        DefaultListModel<Parcela> modelo = new DefaultListModel<>();
+        ListaParcelas_Vista17.setModel(modelo);
+        for(int i = 0; i < c.getParcelas().size(); ++i)
+        {
+            modelo.addElement(c.getParcelas().get(i));
+        }
     }
 
     /**
@@ -55,11 +65,6 @@ public class Vista_17 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ListaParcelas_Vista17.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Parcela 1", "Parcela 2", "Parcela 3", "Parcela 4", "Parcela 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         ListaParcelas_Vista17.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 ListaParcelas_Vista17AncestorAdded(evt);
@@ -71,7 +76,7 @@ public class Vista_17 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ListaParcelas_Vista17);
 
-        label_Vista17.setText("Establecer descuento:");
+        label_Vista17.setText("Establecer descuento (1-100):");
 
         Descuento_Vista17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,30 +100,30 @@ public class Vista_17 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(label_Vista17)
-                        .addGap(18, 18, 18)
-                        .addComponent(Descuento_Vista17, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(aceptar_Vista17))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_Vista17)
+                                .addGap(18, 18, 18)
+                                .addComponent(Descuento_Vista17)))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_Vista17)
                     .addComponent(Descuento_Vista17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(aceptar_Vista17)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -134,9 +139,24 @@ public class Vista_17 extends javax.swing.JFrame {
 
     private void aceptar_Vista17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar_Vista17ActionPerformed
         // TODO add your handling code here
-        Vista_9 v9 = new Vista_9(c);
-        v9.show();
-        this.dispose();
+        Parcela p = ListaParcelas_Vista17.getSelectedValue();
+        if(p == null)
+            JOptionPane.showMessageDialog(null, "SELECCIONA UNA PARCELA", "Inane error",JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            String des = Descuento_Vista17.getText();
+           if(!(des.matches("([1-9]|[1-9][0-9]|100)"))){
+                JOptionPane.showMessageDialog(null, "PORCENTAJE NO VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
+           }
+           else
+           {
+               p.setPrecio(p.getPrecio()-((Float.parseFloat(des)/100)*p.getPrecio()));
+               Vista_9 v9 = new Vista_9(c);
+               v9.show();
+               this.dispose(); 
+           }
+        }
+        
     }//GEN-LAST:event_aceptar_Vista17ActionPerformed
 
     private void ListaParcelas_Vista17AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ListaParcelas_Vista17AncestorAdded
@@ -162,7 +182,7 @@ public class Vista_17 extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Descuento_Vista17;
-    private javax.swing.JList<String> ListaParcelas_Vista17;
+    private javax.swing.JList<Parcela> ListaParcelas_Vista17;
     private javax.swing.JButton aceptar_Vista17;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_Vista17;
