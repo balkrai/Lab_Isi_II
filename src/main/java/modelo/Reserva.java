@@ -6,12 +6,14 @@ import java.util.Date;
 public class Reserva {
     private Date fechaInicio, fechaFin;
     private boolean llegada, salida;
+    private Historico historico;
     private Cliente cliente;
     private Parcela parcela;
     private int id;
     public Reserva(int id, Date fechaInicio, Date fechaFin, Cliente cliente, 
                    Parcela parcela)
     {
+        this.historico = new Historico();
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.cliente = cliente;
@@ -61,6 +63,7 @@ public class Reserva {
         if(fechaLlegada.compareTo(this.fechaInicio) >= 0 && 
            fechaLlegada.compareTo(this.fechaFin) < 0)
         {
+            historico.setFechaLlegada(Date.from(Instant.now()));
             llegada = true;
             return true;
         }
@@ -70,6 +73,7 @@ public class Reserva {
     {
         if(llegada)
         {
+            historico.setFechaSalida(Date.from(Instant.now()));
             salida = true;
             return true;
         }

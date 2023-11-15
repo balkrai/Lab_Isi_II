@@ -154,40 +154,39 @@ public class Vista_22 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(23, 23, 23)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Atras_Vista19)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton1)
-                        .addGap(69, 69, 69)
-                        .addComponent(Atras_Vista20)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 100, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(43, 43, 43)
+                .addComponent(Atras_Vista20)
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Atras_Vista19)
-                        .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Atras_Vista19)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(Atras_Vista20))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,8 +232,8 @@ public class Vista_22 extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel) TablaReservas.getModel();
             Object valorID = modelo.getValueAt(filaSeleccionada, modelo.findColumn("id_reserva"));
             int identificador = Integer.parseInt(valorID.toString());
-            Reserva ResSelec = clienteLog.BuscarReservaPorId(identificador);
-            if(ResSelec.setLlegada())
+            Reserva resSelec = clienteLog.BuscarReservaPorId(identificador);
+            if(resSelec.setLlegada())
                 JOptionPane.showMessageDialog(null, "Llegada registrada correctamente", "Llegada registrada", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(null, "La fecha actual no coincide con el periodo de llegada", "Error al registrar la llegada", JOptionPane.ERROR_MESSAGE);
@@ -246,12 +245,11 @@ public class Vista_22 extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         filaSeleccionada = TablaReservas.getSelectedRow();
         if (filaSeleccionada != -1) {
-    
             DefaultTableModel modelo = (DefaultTableModel) TablaReservas.getModel();
             Object valorID = modelo.getValueAt(filaSeleccionada, modelo.findColumn("id_reserva"));
             int identificador = Integer.parseInt(valorID.toString());
             Reserva ResSelec = clienteLog.BuscarReservaPorId(identificador);
-            if(ResSelec.getLlegada())
+            if(ResSelec.setSalida())
                 JOptionPane.showMessageDialog(null, "Salida registrada correctamente", "Salida registrada", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(null, "No se registro la llegada", "Error al registrar la salida", JOptionPane.ERROR_MESSAGE);

@@ -1,10 +1,15 @@
 package modelo;
 
+import java.util.Date;
+
 public class Historico {
     private int diaRealEntrada, mesRealEntrada, anyoRealEntrada, diaRealSalida,
       mesRealSalida, anyoRealSalida;
     private float precio;
     private Cliente cliente;
+    private Date fechaLlegada;
+    private Date fechaSalida;
+    public Historico() {}
     public Historico(int diaRealEntrada, int mesRealEntrada,
             int anyoRealEntrada, int diaRealSalida, int mesRealSalida, 
             int anyoRealSalida, float precio, Cliente cliente)
@@ -73,6 +78,14 @@ public class Historico {
     public void setAnyoRealSalida()
     {
         this.anyoRealSalida = anyoRealSalida;
+    }
+    public void setFechaLlegada(Date fecha)
+    {
+        this.fechaLlegada = fecha;
+    }
+    public void setFechaSalida(Date fecha)
+    {
+        this.fechaLlegada = fecha;
     }
     public void setPrecio()
     {
