@@ -4,12 +4,15 @@ import java.time.Instant;
 import java.util.Date;
 
 public class Reserva {
+    private int id, idcliente, idparcela;
     private Date fechaInicio, fechaFin;
     private boolean llegada, salida;
     private Historico historico;
     private Cliente cliente;
     private Parcela parcela;
-    private int id;
+    
+    public Reserva(){}
+    
     public Reserva(int id, Date fechaInicio, Date fechaFin, Cliente cliente, 
                    Parcela parcela)
     {
@@ -21,6 +24,8 @@ public class Reserva {
         this.llegada = false;
         this.salida = false;
         this.id = id;
+        idcliente = cliente.getId();
+        idparcela = parcela.getId();
         parcela.anyadirReserva(this);
     }
     
@@ -53,10 +58,24 @@ public class Reserva {
     {
         return parcela.getPrecio();
     }
+    
     public int getId()
     {
         return id;
     }
+    
+    
+    public int getIdCliente()
+    {
+        return cliente.getId();
+    }
+    
+    
+    public int getIdParcela()
+    {
+        return parcela.getId();
+    }
+    
     public boolean setLlegada()
     {
         Date fechaLlegada = Date.from(Instant.now());
@@ -69,6 +88,7 @@ public class Reserva {
         }
         return false;
     }
+    
     public boolean setSalida()
     {
         if(llegada)
@@ -78,5 +98,30 @@ public class Reserva {
             return true;
         }
         return false;
+    }
+    
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+    
+    public void setIdCliente(int id)
+    {
+        idcliente = id;
+    }
+    
+    public void setIdParcela(int id)
+    {
+        idparcela = id;
+    }
+    
+    public void setFechaInicio(Date fecha)
+    {
+        fechaInicio = fecha;
+    }
+    
+    public void setFechaFin(Date fecha)
+    {
+        fechaFin = fecha;
     }
 }

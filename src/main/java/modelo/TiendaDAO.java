@@ -30,7 +30,7 @@ public class TiendaDAO {
     
     private static final String UPDATE =
             "UPDATE tienda " +
-            "   SET idTienda = ?, nombre = ?, m2 = ?, " +
+            "   SET idTienda = ?, nombre = ?, m2 = ? " +
             " WHERE idTienda = ?";
     
     private static final String DELETE =
