@@ -42,6 +42,11 @@ public class Camping {
         idReserva++;
         return idReserva;
     }
+    
+    public ArrayList<Cliente> getClientes()
+    {
+        return clientes;
+    }
 
     public void addReservaActividad(ReservaActividad res) {
         reservas_actividades.add(res);
@@ -135,13 +140,13 @@ public class Camping {
         parcelas.add(parcela2);
         parcelas.add(parcela3);
 
-        Cliente c1 = new Cliente("c1", "c1");
+        Cliente c1 = new Cliente("c1", "c1",0);
         clientes.add(c1);
-        Cliente c2 = new Cliente("c2", "c2");
+        Cliente c2 = new Cliente("c2", "c2",1);
         clientes.add(c2);
-        Cliente c3 = new Cliente("c3", "c3");
+        Cliente c3 = new Cliente("c3", "c3",2);
         clientes.add(c3);
-        Cliente c4 = new Cliente("c4", "c4");
+        Cliente c4 = new Cliente("c4", "c4",3);
         clientes.add(c4);
 
         Reserva reserva = new Reserva(1, new Date(123, 10, 7, 0, 0, 0), new Date(123, 10, 7, 0, 0, 0), c1, parcela);

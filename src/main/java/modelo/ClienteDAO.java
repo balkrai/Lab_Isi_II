@@ -74,7 +74,7 @@ public class ClienteDAO {
     
     public Cliente leerCliente(String idUsuario)
     {
-        Cliente c = new Cliente(idUsuario, "");
+        Cliente c = new Cliente(idUsuario, "",1);
         
         try
         {

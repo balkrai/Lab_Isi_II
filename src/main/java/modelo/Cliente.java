@@ -3,15 +3,17 @@ package modelo;
 import java.util.ArrayList;
 
 public class Cliente {
+    private int id;
     private String usuario, contrasenya;
     private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
     private ArrayList<Tienda> tiendas = new ArrayList<Tienda>();
     private Historico historico;
     private ArrayList<ReservaActividad>  resActividad = new ArrayList<ReservaActividad>();
-    public Cliente(String usuario, String contrasenya)
+    public Cliente(String usuario, String contrasenya, int id)
     {
         this.usuario = usuario;
         this.contrasenya = contrasenya;
+        this.id = id;
     }
     
     public static Cliente IniciarSesion(String usu, String contra) {
@@ -74,7 +76,14 @@ public class Cliente {
             }
         }
     }
-    
+    public int getId()
+    {
+        return id;
+    }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
     public void BorrarReserva(Reserva r)
     {
         reservas.remove(r);
