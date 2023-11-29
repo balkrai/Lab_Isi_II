@@ -1,5 +1,7 @@
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,6 +13,7 @@ public class Actividad {
     private Boolean finalizada;
     private ArrayList<ReservaActividad> participantes =
             new ArrayList<ReservaActividad>();
+    public Actividad(){}
     public Actividad(int id, String tipo, Date fecha, String horaInicio, 
             String horaFin, Boolean finalizada)
     {
@@ -21,6 +24,35 @@ public class Actividad {
         this.horaFin = horaFin;
         this.finalizada = finalizada;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    public void setFecha(String fecha) throws ParseException{
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date fech = format.parse(fecha);
+        this.fecha = fech;
+    }
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public void setParticipantes(ArrayList<ReservaActividad> participantes) {
+        this.participantes = participantes;
+    }
+    
     public void setReserva(ReservaActividad r)
     {
         this.participantes.add(r);
