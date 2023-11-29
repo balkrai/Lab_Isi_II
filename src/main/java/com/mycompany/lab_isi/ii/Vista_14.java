@@ -5,6 +5,7 @@
 package com.mycompany.lab_isi.ii;
 
 
+import fachada.Emparejamiento;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,10 +21,10 @@ import modelo.*;
 public class Vista_14 extends javax.swing.JFrame {
     private Camping c;
     private Actividad actActual;
-    private int cont, numEmparejamiento = 1;
-    private ReservaActividad a1, a2, aux;
+    private ReservaActividad aux;
     private DefaultListModel<ReservaActividad> modelo = new DefaultListModel<>();
-    private ArrayList<ReservaActividad> participantes, jugador1, jugador2;
+    private ArrayList<ReservaActividad> participantes;
+    Emparejamiento emparejamiento = new Emparejamiento(modelo, participantes);
     /**
      * Creates new form Ventana8
      */
@@ -31,21 +32,20 @@ public class Vista_14 extends javax.swing.JFrame {
         initComponents();
         this.c = c;
         this.actActual = actActual;
-        this.cont = 0;
-        //this.emparejamientos = new ArrayList<ReservaActividad>();
-        this.jugador1 = new ArrayList<ReservaActividad>();
-        this.jugador2 = new ArrayList<ReservaActividad>();
         participantes = actActual.getParticipantes();
+        emparejamiento = new Emparejamiento(modelo, participantes);
         ListaParticipantes_Vista14.setModel(modelo);
         if(participantes.size() % 2 != 0 || participantes.size() == 0)
-        
-            JOptionPane.showMessageDialog(null, "Participantes insuficientes para emparejar", "Inane error",JOptionPane.ERROR_MESSAGE);
-        
-        else        
+        {            
+            JOptionPane.showMessageDialog(null, 
+            "Participantes insuficientes para emparejar", 
+            "Inane error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
             for(int i = 0; i < participantes.size(); ++i)
                 modelo.addElement(participantes.get(i));
-            
-        
+        }
     }
 
     /**
@@ -139,74 +139,20 @@ public class Vista_14 extends javax.swing.JFrame {
 
     private void Emparejar_Vista14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Emparejar_Vista14ActionPerformed
         aux = ListaParticipantes_Vista14.getSelectedValue();
-        if(aux == null)
-            JOptionPane.showMessageDialog(null, "SELECCIONA UN PARTICIPANTE", "Inane error",JOptionPane.ERROR_MESSAGE);
-        else
+        if(emparejamiento.participanteSeleccionado(aux))
         {
-            modelo.removeElement(aux);
-            ++cont;
-            if(cont % 2 != 0)
+            modelo = emparejamiento.emparejar(aux);
+            if(emparejamiento.getEmparejados() == participantes.size())
             {
-                a1 = aux;
-                jugador1.add(a1);
-                JOptionPane.showMessageDialog(null, "Selecciona el oponente de "+a1, "Inane error",JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-                a2 = aux;
-                jugador2.add(a2);
-                JOptionPane.showMessageDialog(null, "Emparejamiento confirmado: "+a1+" y "+a2, "Inane error",JOptionPane.ERROR_MESSAGE);
-            }
-            if(cont == participantes.size())
-            {
-                JOptionPane.showMessageDialog(null, "TODOS LOS EMPAREJAMIENTOS REALIZADOS", "Inane error",JOptionPane.ERROR_MESSAGE);
-                for(int i = 0; i < jugador1.size(); ++i)
+                modelo = emparejamiento.elegirGanador();
+                if(emparejamiento.hecho())
                 {
-                    a1 = jugador1.get(i);
-                    a2 = jugador2.get(i);
-                    Boolean valido = false;
-                    while(!valido)
-                    {
-                        valido = true;
-                        String ganador = JOptionPane.showInputDialog("Emparejamiento "+numEmparejamiento+": ¿Ganador? "+a1+"(0) o "+a2+"(1)");
-                    
-                        if(Integer.parseInt(ganador) == 0)
-                        {
-                            modelo.addElement(a1);
-                            participantes.remove(a2);
-                        }
-                        else if(Integer.parseInt(ganador) == 1)
-                        {
-                            modelo.addElement(a2);
-                            participantes.remove(a1);
-                        }
-                        else
-                        {
-                            valido = false;
-                            JOptionPane.showMessageDialog(null, "INTRODUCE UN VALOR VALIDO", "Inane error",JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-                    ++numEmparejamiento;
-                    
-                }
-                if(jugador1.size() == 1)
-                {
-                    JOptionPane.showMessageDialog(null, "GANADOR: "+modelo.get(0), "Inane error",JOptionPane.ERROR_MESSAGE);
                     actActual.setFinalizada(true);
-                } 
-                jugador1.clear();
-                jugador2.clear();
-                cont = 0;
-                if(actActual.getFinalizada())
-                {
                     Vista_13 v13 = new Vista_13(actActual,c);
                     v13.show();
                     this.dispose();
                 }
             }
-              
-                
-            
         }
     }//GEN-LAST:event_Emparejar_Vista14ActionPerformed
 

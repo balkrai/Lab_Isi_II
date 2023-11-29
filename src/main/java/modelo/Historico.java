@@ -7,8 +7,8 @@ public class Historico {
       mesRealSalida, anyoRealSalida, id;
     private float precio;
     private Cliente cliente;
-    private Date fechaLlegada;
-    private Date fechaSalida;
+    private Date fechaLlegada, fechaRealLlegada;
+    private Date fechaSalida, fechaRealSalida;
     public Historico() {}
     public Historico(int diaRealEntrada, int mesRealEntrada,
             int anyoRealEntrada, int diaRealSalida, int mesRealSalida, 
