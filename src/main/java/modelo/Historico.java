@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Historico {
     private int diaRealEntrada, mesRealEntrada, anyoRealEntrada, diaRealSalida,
-      mesRealSalida, anyoRealSalida;
+      mesRealSalida, anyoRealSalida, id;
     private float precio;
     private Cliente cliente;
     private Date fechaLlegada;
@@ -12,7 +12,7 @@ public class Historico {
     public Historico() {}
     public Historico(int diaRealEntrada, int mesRealEntrada,
             int anyoRealEntrada, int diaRealSalida, int mesRealSalida, 
-            int anyoRealSalida, float precio, Cliente cliente)
+            int anyoRealSalida, float precio, Cliente cliente, int id)
     {
         this.diaRealEntrada = diaRealEntrada;
         this.mesRealEntrada = diaRealEntrada;
@@ -22,6 +22,12 @@ public class Historico {
         this.anyoRealSalida = diaRealEntrada;
         this.precio = precio;
         this.cliente = cliente;
+        this.id = id;
+    }
+    
+    public int getId()
+    {
+        return id;
     }
     public int getDiaRealEntrada()
     {
@@ -47,13 +53,25 @@ public class Historico {
     {
         return anyoRealSalida;
     }
+    public Date getFechaLlegada()
+    {
+        return fechaLlegada;
+    }
+    public Date getFechaSalida()
+    {
+        return fechaSalida;
+    }
     public float getPrecio()
     {
         return precio;
     }
-    public Cliente getCliente()
+    public int getIdCliente()
     {
-        return cliente;
+        return cliente.getId();
+    }
+    public void setId(int id)
+    {
+        this.id = id;
     }
     public void setDiaRealEntrada()
     {
@@ -87,12 +105,16 @@ public class Historico {
     {
         this.fechaLlegada = fecha;
     }
-    public void setPrecio()
+    public void setPrecio(float precio)
     {
         this.precio = precio;
     }
     public void setCliente(Cliente cliente)
     {
         this.cliente = cliente;
+    }
+    public void setIdCliente(int id)
+    {
+        this.id = id;
     }
 }

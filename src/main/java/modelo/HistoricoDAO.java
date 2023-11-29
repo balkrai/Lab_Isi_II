@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author vicen
  */
-public class ReservaDAO 
+public class HistoricoDAO 
 {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
@@ -23,26 +23,26 @@ public class ReservaDAO
     public static final String PASSWORD = "Mu3drr4_1";
     
     private static final String CREATE = 
-            "INSERT INTO Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)" +
+            "INSERT INTO Historico (idHistorico,precio,Fecha_inicio,Fecha_fin,idUsuario)" +
             "VALUES (?,?,?,?,?)";
     
     private static final String READ = 
-            "SELECT idReserva, Fecha_inicio, Fecha_fin, idCliente, idParcela " +
-            "  FROM Reserva " +
-            " WHERE idReserva = ?";
+            "SELECT idHistorico, precio, Fecha_inicio, Fecha_fin, idUsuario " +
+            "  FROM Historico " +
+            " WHERE idHistorico = ?";
     
     private static final String UPDATE =
-            "UPDATE Reserva " +
-            "   SET idReserva = ?, Fecha_inicio = ?, Fecha_fin = ?, idCliente = ?, idParcela = ? " +
-            " WHERE idReserva = ?";
+            "UPDATE Historico " +
+            "   SET idHistorico = ?, precio = ?, Fecha_inicio = ?, Fecha_fin = ?, idUsuario = ?" +
+            " WHERE idHistorico = ?";
     
     private static final String DELETE =
-            "DELETE FROM Reserva " +
-            " WHERE idReserva = ?";
+            "DELETE FROM Historico " +
+            " WHERE idHistorico = ?";
     
-    public ReservaDAO(){}
+    public HistoricoDAO(){}
     
-    public void crearReserva(Reserva reserva)
+    public void crearHistorico(Historico historico)
     {
         try 
         {
@@ -52,11 +52,11 @@ public class ReservaDAO
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             oracleConn.setAutoCommit(false);
             PreparedStatement insert = oracleConn.prepareStatement(CREATE);
-            insert.setInt(1, reserva.getId());
-            insert.setString(2, sdf.format(reserva.getFechaInicio()));
-            insert.setString(3, sdf.format(reserva.getFechaFin()));
-            insert.setInt(4, reserva.getIdCliente());
-            insert.setInt(5, reserva.getIdParcela());
+            insert.setInt(1, historico.getId());
+            insert.setFloat(2, historico.getPrecio());
+            insert.setString(3, sdf.format(historico.getFechaLlegada()));
+            insert.setString(4, sdf.format(historico.getFechaSalida()));
+            insert.setInt(5, historico.getIdCliente());
             insert.executeUpdate();
         
             oracleConn.commit();
@@ -66,13 +66,13 @@ public class ReservaDAO
         } 
         catch (Exception ex) 
         {
-            System.out.println("ERROR AL CREAR TIENDA " + reserva.getId());
+            System.out.println("ERROR AL CREAR TIENDA " + historico.getId());
         }  
     }
     
-    public Reserva leerReserva(int idReserva)
+    public Historico leerHistorico(int idHistorico)
     {
-        Reserva reserva = new Reserva();
+        Historico historico = new Historico();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         
         try
@@ -82,28 +82,28 @@ public class ReservaDAO
 
             // Sentencia de insert
             PreparedStatement read = oracleConn.prepareStatement(READ);
-            read.setInt(1, idReserva);
+            read.setInt(1, idHistorico);
             ResultSet rs = read.executeQuery();
 
             if (rs.next()) {
-                reserva.setId(rs.getInt("idReserva"));
+                historico.setId(rs.getInt("idReserva"));
+                historico.setPrecio(rs.getFloat("precio"));
                 Date fecha = sdf.parse(rs.getString("Fecha_inicio"));
-                reserva.setFechaInicio(fecha);
+                historico.setFechaLlegada(fecha);
                 fecha = sdf.parse(rs.getString("Fecha_fin"));
-                reserva.setFechaFin(fecha);
-                reserva.setIdCliente(rs.getInt("idCliente"));
-                reserva.setIdParcela(rs.getInt("idParcela"));
+                historico.setFechaSalida(fecha);
+                historico.setIdCliente(rs.getInt("idUsuario"));
             }
         }
         catch(Exception e)
         {
-            System.out.println("ERROR AL LEER TIENDA "+idReserva);
+            System.out.println("ERROR AL LEER TIENDA "+idHistorico);
         }
         
-        return reserva;
+        return historico;
     }
     
-    public void actualizarTienda(Reserva reserva)
+    public void actualizarHistorico(Historico historico)
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         
@@ -116,11 +116,11 @@ public class ReservaDAO
             // Sentencia de insert
             PreparedStatement update = oracleConn.prepareStatement(UPDATE);
 
-            update.setInt(1, reserva.getId());
-            update.setString(2, sdf.format(reserva.getFechaInicio()));
-            update.setString(3, sdf.format(reserva.getFechaFin()));
-            update.setInt(4, reserva.getIdCliente());
-            update.setInt(5, reserva.getIdParcela());
+            update.setInt(1, historico.getId());
+            update.setFloat(2, historico.getPrecio());
+            update.setString(3, sdf.format(historico.getFechaLlegada()));
+            update.setString(4, sdf.format(historico.getFechaSalida()));
+            update.setInt(5, historico.getIdCliente());
             update.executeUpdate();
 
             oracleConn.commit();
@@ -129,12 +129,12 @@ public class ReservaDAO
         }
         catch(Exception e)
         {
-            System.out.println("ERROR AL ACTUALIZAR TIENDA "+reserva.getId());
+            System.out.println("ERROR AL ACTUALIZAR TIENDA "+historico.getId());
         }
                 
     }
     
-    public void borrarTienda(int idReserva)
+    public void borrarTienda(int idHistorico)
     {
         try
         {
@@ -145,7 +145,7 @@ public class ReservaDAO
 
             // Sentencia de borrado
             PreparedStatement delete = oracleConn.prepareStatement(DELETE);
-            delete.setInt(1, idReserva);
+            delete.setInt(1, idHistorico);
             delete.executeUpdate();
 
             oracleConn.commit();
@@ -154,7 +154,7 @@ public class ReservaDAO
         }
         catch(Exception e)
         {
-            System.out.println("ERROR AL BORRAR TIENDA "+idReserva);
+            System.out.println("ERROR AL BORRAR TIENDA "+idHistorico);
         }
     }
 }
