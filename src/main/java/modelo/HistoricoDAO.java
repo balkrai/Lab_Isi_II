@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class HistoricoDAO
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "Mu3drr4_1";
+    public static final String PASSWORD = "1234";
     
     private static final String CREATE = 
             "INSERT INTO Historico (idHistorico,precio,Fecha_inicio,Fecha_fin,idUsuario)" +
@@ -47,11 +48,12 @@ public class HistoricoDAO
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(idHistoriico) as maximo from Historico");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idHistorico) as maximo from Historico");
             ResultSet rs = read.executeQuery();
-            res = rs.getInt("maximo");
-        } catch (Exception e) {
-            System.out.println("Error consiguiendo el id maximo de las reservas de los historicos");
+             if(rs.next())
+                res = rs.getInt("maximo");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.printStackTrace();
         }
         return res;
     }

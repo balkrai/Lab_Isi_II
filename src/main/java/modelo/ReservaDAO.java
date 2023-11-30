@@ -51,11 +51,12 @@ public class ReservaDAO {
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(idReserva) as maximo from Reserva");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idReserva) as maximo from reserva");
             ResultSet rs = read.executeQuery();
-            res = rs.getInt("maximo");
-        } catch (Exception e) {
-            System.out.println("Error consiguiendo el id maximo de las parcelas");
+            if(rs.next())
+                res = rs.getInt("maximo");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.printStackTrace();
         }
         return res;
     }

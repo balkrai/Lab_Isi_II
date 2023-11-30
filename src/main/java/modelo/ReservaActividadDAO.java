@@ -46,9 +46,10 @@ public class ReservaActividadDAO {
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             PreparedStatement read = oracleConn.prepareStatement("select max(idReserva) as maximo from reserva_actividad");
             ResultSet rs = read.executeQuery();
-            res = rs.getInt("maximo");
-        } catch (Exception e) {
-            System.out.println("Error consiguiendo el id maximo de las reservas de las actividades");
+            if(rs.next())
+                res = rs.getInt("maximo");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.printStackTrace();
         }
         return res;
     }
