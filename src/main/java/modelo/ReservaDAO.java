@@ -8,8 +8,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,19 +23,19 @@ public class ReservaDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "Mu3drr4_1";
+    public static final String PASSWORD = "1234";
 
     private static final String CREATE
-            = "INSERT INTO Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)"
+            = "INSERT INTO isibdii.Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)"
             + "VALUES (?,?,?,?,?)";
 
     private static final String READ
             = "SELECT idReserva, Fecha_inicio, Fecha_fin, idCliente, idParcela "
-            + "  FROM Reserva "
+            + "  FROM isibdii.Reserva "
             + " WHERE idReserva = ?";
 
     private static final String UPDATE
-            = "UPDATE Reserva "
+            = "UPDATE isibdii.Reserva "
             + "   SET idReserva = ?, Fecha_inicio = ?, Fecha_fin = ?, idCliente = ?, idParcela = ? "
             + " WHERE idReserva = ?";
 
@@ -48,7 +51,7 @@ public class ReservaDAO {
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(idReser) as maximo from Reserva");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idReserva) as maximo from Reserva");
             ResultSet rs = read.executeQuery();
             res = rs.getInt("maximo");
         } catch (Exception e) {
@@ -111,12 +114,12 @@ public class ReservaDAO {
     }
 
     public void actualizarTienda(Reserva reserva) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYY-MM-DD");
 
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-
+            reserva.setIdCliente(1);
             oracleConn.setAutoCommit(false);
             // Sentencia de insert
             PreparedStatement update = oracleConn.prepareStatement(UPDATE);
@@ -126,15 +129,24 @@ public class ReservaDAO {
             update.setString(3, sdf.format(reserva.getFechaFin()));
             update.setInt(4, reserva.getIdCliente());
             update.setInt(5, reserva.getIdParcela());
+            update.setInt(6, reserva.getId());
+
             update.executeUpdate();
 
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
             oracleConn.close();
-        } catch (Exception e) {
-            System.out.println("ERROR AL ACTUALIZAR TIENDA " + reserva.getId());
-        }
+        
 
+    }   catch (SQLException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void borrarTienda(int idReserva) {
@@ -152,8 +164,14 @@ public class ReservaDAO {
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
             oracleConn.close();
-        } catch (Exception e) {
-            System.out.println("ERROR AL BORRAR TIENDA " + idReserva);
+         }   catch (SQLException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

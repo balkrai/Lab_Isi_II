@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Camping;
 import modelo.Cliente;
 import modelo.Reserva;
+import modelo.ReservaDAO;
 
 /**
  *

@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import modelo.Reserva;
+import modelo.ReservaDAO;
 import modelo.Trabajador;
 
 /**
@@ -196,7 +197,8 @@ public class Vista_23 extends javax.swing.JFrame {
            String FechaInicio = jTextField2.getText().trim();
            String FechaFin = jTextField3.getText().trim();
            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-           
+           ReservaDAO rdao = new ReservaDAO();
+
            if(mod)
            {
            
@@ -208,6 +210,7 @@ public class Vista_23 extends javax.swing.JFrame {
 
                         Reserva r = new Reserva(resActual.getId(), 
                                 f_inicio, f_fin, clog, resActual.getParcela());
+                        rdao.actualizarTienda(r);
                         clog.ModificaReserva(r);
                         v22.ActualizarTabla(clog);
                         v22.show();
@@ -227,6 +230,7 @@ public class Vista_23 extends javax.swing.JFrame {
            }
            else
            {
+               rdao.borrarTienda(resActual.getId());
                clog.BorrarReserva(resActual);
                v22.ActualizarTabla(clog);
                v22.show();
