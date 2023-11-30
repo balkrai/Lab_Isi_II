@@ -18,7 +18,7 @@ public class ParcelaDao {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "Mu3drr4_1:23_4";
+    public static final String PASSWORD = "1234";
 
     private static final String CREATE
             = "INSERT INTO Parcela (idParcela,m2,Precio,Luz,idtienda)"
@@ -48,9 +48,10 @@ public class ParcelaDao {
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             PreparedStatement read = oracleConn.prepareStatement("select max(idParcela) as maximo from Parcela");
             ResultSet rs = read.executeQuery();
-            res = rs.getInt("maximo");
-        } catch (Exception e) {
-            System.out.println("Error consiguiendo el id maximo de las parcelas");
+            if(rs.next())
+                res = rs.getInt("maximo");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+            e.getStackTrace();
         }
         return res;
     }
