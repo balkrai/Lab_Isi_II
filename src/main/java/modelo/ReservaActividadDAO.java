@@ -17,7 +17,7 @@ public class ReservaActividadDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "Mu3drr4_1:23_4";
+    public static final String PASSWORD = "1234";
     
     private static final String CREATE = 
             "INSERT INTO reserva_actividad (idActividad,idReserva,Fecha,Hora_inicio,Hora_fin,Finalizada)" +
@@ -119,6 +119,7 @@ public class ReservaActividadDAO {
             update.setString(4, reserva.getHoraInicio());
             update.setString(5, reserva.getHoraFin());
             update.setBoolean(6, reserva.getFinalizada());
+            update.setInt(7, reserva.getIdReserva());
             update.executeUpdate();
 
             oracleConn.commit();

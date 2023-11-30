@@ -17,7 +17,7 @@ public class TiendaDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "Mu3drr4_1:23_4";
+    public static final String PASSWORD = "1234";
     
     private static final String CREATE = 
             "INSERT INTO tienda (id,nombre,m2)" +
@@ -106,6 +106,7 @@ public class TiendaDAO {
             update.setInt(1, tienda.getIdTienda());
             update.setString(2, tienda.getNombre());
             update.setInt(3, tienda.getm2());
+            update.setInt(4, tienda.getIdTienda());
             update.executeUpdate();
 
             oracleConn.commit();
