@@ -46,12 +46,12 @@ public class ParcelaDao {
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(idParcela) as maximo from Parcela");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idParcela) as maximo from isibdii.Parcela");
             ResultSet rs = read.executeQuery();
             if(rs.next())
                 res = rs.getInt("maximo");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
         return res;
     }
