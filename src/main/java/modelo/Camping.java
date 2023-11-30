@@ -137,6 +137,8 @@ public class Camping {
         ActividadDAO dao_actividad = new ActividadDAO();
         TrabajadorDAO dao_trabajador = new TrabajadorDAO();
         ClienteDAO dao_cliente = new ClienteDAO();
+        TiendaDAO dao_tienda = new TiendaDAO();
+        ReservaActividadDAO dao_reserva_actividad = new ReservaActividadDAO();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyy");
         for(int i=1;i<=dao_parcela.maxId();i++)
         {
@@ -172,6 +174,18 @@ public class Camping {
             t = dao_trabajador.leerTrabajador(i);
             trabajadores.add(t);
         }
-     
+        for(int i=1;i<dao_tienda.maxId();++i)
+        {
+            Tienda t = new Tienda();
+            t = dao_tienda.leerTienda(i);
+            tiendas.add(t);
+        }
+
+        for(int i=1;i<dao_reserva_actividad.maxId();++i)
+        {
+            ReservaActividad ra = new ReservaActividad();
+            ra = dao_reserva_actividad.leerReservaActividad(i);
+            reservas_actividades.add(ra);
+        }
     }
 }
