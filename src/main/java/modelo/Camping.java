@@ -132,45 +132,23 @@ public class Camping {
     }
 
     public void cargarDatos() throws ParseException {
-        Parcela parcela = new Parcela(1, 100, true, 100.0f);
-        Parcela parcela2 = new Parcela(2, 12, false, 10.0f);
-        Parcela parcela3 = new Parcela(3, 50, true, 20.0f);
-
-        parcelas.add(parcela);
-        parcelas.add(parcela2);
-        parcelas.add(parcela3);
-
-        Cliente c1 = new Cliente("c1", "c1",0);
-        clientes.add(c1);
-        Cliente c2 = new Cliente("c2", "c2",1);
-        clientes.add(c2);
-        Cliente c3 = new Cliente("c3", "c3",2);
-        clientes.add(c3);
-        Cliente c4 = new Cliente("c4", "c4",3);
-        clientes.add(c4);
-
-        Reserva reserva = new Reserva(1, new Date(123, 10, 7, 0, 0, 0), new Date(123, 10, 7, 0, 0, 0), c1, parcela);
-        c1.AgregaReserva(reserva);
-        
-        reservas.add(reserva);
-
-        Trabajador t1 = new Trabajador("t1", "t1");
-        trabajadores.add(t1);
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-
-        Actividad a1 = new Actividad(1, "piscina", formato.parse("05/11/2023"), "15:00", "17:00", false);
-        actividades.add(a1);
-        Actividad a2 = new Actividad(2, "piscina", formato.parse("05/11/2023"), "17:00", "19:00", false);
-        actividades.add(a2);
-
-        ReservaActividad ra1 = new ReservaActividad(formato.parse("05/11/2023"), a1, "15:00", null, c1);
-        ReservaActividad ra2 = new ReservaActividad(formato.parse("05/11/2023"), a1, "15:00", null, c2);
-        ReservaActividad ra3 = new ReservaActividad(formato.parse("05/11/2023"), a1, "15:00", null, c3);
-        ReservaActividad ra4 = new ReservaActividad(formato.parse("05/11/2023"), a1, "15:00", null, c4);
-        a1.setReserva(ra1);
-        a1.setReserva(ra2);
-        a1.setReserva(ra3);
-        a1.setReserva(ra4);
+        ParcelaDao dao_parcela = new ParcelaDao();
+        ReservaDAO dao_reserva = new ReservaDAO();
+        for(int i=0;i<dao_parcela.maxId();i++)
+        {
+            Parcela p = new Parcela(i, i, Boolean.TRUE, i);
+            p = dao_parcela.leerParcela(i);
+            parcelas.add(p);
+        }
+        for(int i=0;i<dao_reserva.maxId();i++)
+        {
+            Date d = new Date();
+            Cliente c = new Cliente("", "", 1);
+            Parcela p = new Parcela(1, 1, Boolean.TRUE, 1);
+            Reserva r = new Reserva(i, d, d, c, p);
+            r = dao_reserva.leerReserva(i);
+            reservas.add(r);
+        }
+     
     }
 }

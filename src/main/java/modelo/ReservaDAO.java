@@ -15,41 +15,54 @@ import java.util.Date;
  *
  * @author vicen
  */
-public class ReservaDAO 
-{
+public class ReservaDAO {
+
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "Mu3drr4_1";
-    
-    private static final String CREATE = 
-            "INSERT INTO Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)" +
-            "VALUES (?,?,?,?,?)";
-    
-    private static final String READ = 
-            "SELECT idReserva, Fecha_inicio, Fecha_fin, idCliente, idParcela " +
-            "  FROM Reserva " +
-            " WHERE idReserva = ?";
-    
-    private static final String UPDATE =
-            "UPDATE Reserva " +
-            "   SET idReserva = ?, Fecha_inicio = ?, Fecha_fin = ?, idCliente = ?, idParcela = ? " +
-            " WHERE idReserva = ?";
-    
-    private static final String DELETE =
-            "DELETE FROM Reserva " +
-            " WHERE idReserva = ?";
-    
-    public ReservaDAO(){}
-    
-    public void crearReserva(Reserva reserva)
-    {
-        try 
-        {
+
+    private static final String CREATE
+            = "INSERT INTO Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)"
+            + "VALUES (?,?,?,?,?)";
+
+    private static final String READ
+            = "SELECT idReserva, Fecha_inicio, Fecha_fin, idCliente, idParcela "
+            + "  FROM Reserva "
+            + " WHERE idReserva = ?";
+
+    private static final String UPDATE
+            = "UPDATE Reserva "
+            + "   SET idReserva = ?, Fecha_inicio = ?, Fecha_fin = ?, idCliente = ?, idParcela = ? "
+            + " WHERE idReserva = ?";
+
+    private static final String DELETE
+            = "DELETE FROM Reserva "
+            + " WHERE idReserva = ?";
+
+    public ReservaDAO() {
+    }
+
+    public int maxId() {
+        int res = 0;
+        try {
+            Class.forName(DRIVER).newInstance();
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            PreparedStatement read = oracleConn.prepareStatement("select max(idReser) as maximo from Reserva");
+            ResultSet rs = read.executeQuery();
+            res = rs.getInt("maximo");
+        } catch (Exception e) {
+            System.out.println("Error consiguiendo el id maximo de las parcelas");
+        }
+        return res;
+    }
+
+    public void crearReserva(Reserva reserva) {
+        try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             Class.forName(DRIVER).newInstance();
             Connection oracleConn;
-            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             oracleConn.setAutoCommit(false);
             PreparedStatement insert = oracleConn.prepareStatement(CREATE);
             insert.setInt(1, reserva.getId());
@@ -58,27 +71,23 @@ public class ReservaDAO
             insert.setInt(4, reserva.getIdCliente());
             insert.setInt(5, reserva.getIdParcela());
             insert.executeUpdate();
-        
+
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
-            oracleConn.close(); 
-            
-        } 
-        catch (Exception ex) 
-        {
+            oracleConn.close();
+
+        } catch (Exception ex) {
             System.out.println("ERROR AL CREAR TIENDA " + reserva.getId());
-        }  
+        }
     }
-    
-    public Reserva leerReserva(int idReserva)
-    {
+
+    public Reserva leerReserva(int idReserva) {
         Reserva reserva = new Reserva();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        
-        try
-        {
+
+        try {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             // Sentencia de insert
             PreparedStatement read = oracleConn.prepareStatement(READ);
@@ -94,23 +103,19 @@ public class ReservaDAO
                 reserva.setIdCliente(rs.getInt("idCliente"));
                 reserva.setIdParcela(rs.getInt("idParcela"));
             }
+        } catch (Exception e) {
+            System.out.println("ERROR AL LEER TIENDA " + idReserva);
         }
-        catch(Exception e)
-        {
-            System.out.println("ERROR AL LEER TIENDA "+idReserva);
-        }
-        
+
         return reserva;
     }
-    
-    public void actualizarTienda(Reserva reserva)
-    {
+
+    public void actualizarTienda(Reserva reserva) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        
-        try
-        {
+
+        try {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
             // Sentencia de insert
@@ -126,20 +131,16 @@ public class ReservaDAO
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
             oracleConn.close();
+        } catch (Exception e) {
+            System.out.println("ERROR AL ACTUALIZAR TIENDA " + reserva.getId());
         }
-        catch(Exception e)
-        {
-            System.out.println("ERROR AL ACTUALIZAR TIENDA "+reserva.getId());
-        }
-                
+
     }
-    
-    public void borrarTienda(int idReserva)
-    {
-        try
-        {
+
+    public void borrarTienda(int idReserva) {
+        try {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
 
             oracleConn.setAutoCommit(false);
 
@@ -151,10 +152,8 @@ public class ReservaDAO
             oracleConn.commit();
             oracleConn.setAutoCommit(true);
             oracleConn.close();
-        }
-        catch(Exception e)
-        {
-            System.out.println("ERROR AL BORRAR TIENDA "+idReserva);
+        } catch (Exception e) {
+            System.out.println("ERROR AL BORRAR TIENDA " + idReserva);
         }
     }
 }

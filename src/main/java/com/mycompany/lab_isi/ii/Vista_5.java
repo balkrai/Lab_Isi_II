@@ -11,6 +11,7 @@ import modelo.Camping;
 import modelo.Cliente;
 import modelo.Parcela;
 import modelo.Reserva;
+import modelo.ReservaDAO;
 
 /**
  *
@@ -243,6 +244,8 @@ public class Vista_5 extends javax.swing.JFrame {
             reserva = new Reserva(Camping.generarIdReserva(), f_ini, f_fin, c, p);
             Camping.anyadirReserva(reserva);
             c.AgregaReserva(reserva);
+            ReservaDAO dao = new ReservaDAO();
+            dao.crearReserva(reserva);
         }
         else
         {
