@@ -39,6 +39,20 @@ public class TrabajadorDAO {
     
     public TrabajadorDAO(){}
     
+    public int maxId() {
+        int res = 0;
+        try {
+            Class.forName(DRIVER).newInstance();
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            PreparedStatement read = oracleConn.prepareStatement("select max(id) as maximo from Trabajador");
+            ResultSet rs = read.executeQuery();
+            res = rs.getInt("maximo");
+        } catch (Exception e) {
+            System.out.println("Error consiguiendo el id maximo de los trabajadores");
+        }
+        return res;
+    }
+    
     public void crearTrabajador(Trabajador t)
     {
         try 
@@ -72,16 +86,16 @@ public class TrabajadorDAO {
         }  
     }
     
-    public Trabajador leerTrabajador(String idUsuario)
+    public Trabajador leerTrabajador(int idUsuario)
     {
-        Trabajador t = new Trabajador(idUsuario, "",1);
+        Trabajador t = new Trabajador("", "",idUsuario);
         
         try
         {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             PreparedStatement read = oracleConn.prepareStatement(READ);
-            read.setString(1, idUsuario);
+            read.setInt(1, idUsuario);
             ResultSet rs = read.executeQuery();
 
             if (rs.next()) {
@@ -107,7 +121,7 @@ public class TrabajadorDAO {
             oracleConn.setAutoCommit(false);
             PreparedStatement update = oracleConn.prepareStatement(UPDATE);
             
-            update.setInt(1, 0);
+            update.setInt(1, t.getId());
             update.setString(2, t.getUsuario());
             update.setString(3, t.getContrasenya());
 
@@ -124,7 +138,7 @@ public class TrabajadorDAO {
                 
     }
     
-    public void borrarTrabajador(String usuario)
+    public void borrarTrabajador(int idUsuario)
     {
         try
         {
@@ -133,7 +147,7 @@ public class TrabajadorDAO {
             oracleConn.setAutoCommit(false);
 
             PreparedStatement delete = oracleConn.prepareStatement(DELETE);
-            delete.setString(1, usuario);
+            delete.setInt(1, idUsuario);
             delete.executeUpdate();
 
             oracleConn.commit();
@@ -142,7 +156,7 @@ public class TrabajadorDAO {
         }
         catch(Exception e)
         {
-            System.out.println("ERROR AL BORRAR TRABAJADOR "+usuario);
+            System.out.println("ERROR AL BORRAR TRABAJADOR "+idUsuario);
         }
     }
 }

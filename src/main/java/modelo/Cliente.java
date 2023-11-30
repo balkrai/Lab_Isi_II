@@ -15,7 +15,7 @@ public class Cliente {
         this.contrasenya = contrasenya;
         this.id = id;
     }
-    
+    public Cliente(){}
     public static Cliente IniciarSesion(String usu, String contra) {
         return Camping.getInstancia().loginC(usu,contra);
     }

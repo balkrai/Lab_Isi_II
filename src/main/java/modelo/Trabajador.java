@@ -3,7 +3,7 @@ package modelo;
 public class Trabajador {
     int id;
     private String usuario, contrasenya;
-    
+    public Trabajador(){}
     public Trabajador(String usuario, String contrasenya)
     {
         this.usuario = usuario;

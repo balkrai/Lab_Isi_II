@@ -134,20 +134,43 @@ public class Camping {
     public void cargarDatos() throws ParseException {
         ParcelaDao dao_parcela = new ParcelaDao();
         ReservaDAO dao_reserva = new ReservaDAO();
-        for(int i=0;i<dao_parcela.maxId();i++)
+        ActividadDAO dao_actividad = new ActividadDAO();
+        TrabajadorDAO dao_trabajador = new TrabajadorDAO();
+        ClienteDAO dao_cliente = new ClienteDAO();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyy");
+        for(int i=1;i<=dao_parcela.maxId();i++)
         {
             Parcela p = new Parcela(i, i, Boolean.TRUE, i);
             p = dao_parcela.leerParcela(i);
             parcelas.add(p);
         }
-        for(int i=0;i<dao_reserva.maxId();i++)
+        for(int i=1;i<=dao_reserva.maxId();i++)
         {
             Date d = new Date();
             Cliente c = new Cliente("", "", 1);
             Parcela p = new Parcela(1, 1, Boolean.TRUE, 1);
-            Reserva r = new Reserva(i, d, d, c, p);
+            Reserva r = new Reserva();
             r = dao_reserva.leerReserva(i);
             reservas.add(r);
+        }
+        for(int i = 1; i <= dao_actividad.maxId();i++)
+        {
+            
+            Actividad a = new Actividad();
+            a = dao_actividad.leerActividad(i);
+            actividades.add(a);
+        }
+        for(int i = 1; i <= dao_cliente.maxId();i++)
+        {
+            Cliente c = new Cliente();
+            c = dao_cliente.leerCliente(i);
+            clientes.add(c);
+        }
+        for(int i = 1; i <= dao_trabajador.maxId();i++)
+        {
+            Trabajador t = new Trabajador();
+            t = dao_trabajador.leerTrabajador(i);
+            trabajadores.add(t);
         }
      
     }

@@ -39,6 +39,21 @@ public class ClienteDAO {
     
     public ClienteDAO(){}
     
+    public int maxId() {
+        int res = 0;
+        try {
+            Class.forName(DRIVER).newInstance();
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            PreparedStatement read = oracleConn.prepareStatement("select max(id) as maximo from Cliente");
+            ResultSet rs = read.executeQuery();
+            res = rs.getInt("maximo");
+        } catch (Exception e) {
+            System.out.println("Error consiguiendo el id maximo de los clientes");
+        }
+        return res;
+    }
+    
+    
     public void crearCliente(Cliente c)
     {
         try 
