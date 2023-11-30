@@ -42,6 +42,20 @@ public class HistoricoDAO
     
     public HistoricoDAO(){}
     
+    public int maxId() {
+        int res = 0;
+        try {
+            Class.forName(DRIVER).newInstance();
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            PreparedStatement read = oracleConn.prepareStatement("select max(idHistoriico) as maximo from Historico");
+            ResultSet rs = read.executeQuery();
+            res = rs.getInt("maximo");
+        } catch (Exception e) {
+            System.out.println("Error consiguiendo el id maximo de las reservas de los historicos");
+        }
+        return res;
+    }
+    
     public void crearHistorico(Historico historico)
     {
         try 
