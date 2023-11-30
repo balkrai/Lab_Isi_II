@@ -72,20 +72,20 @@ public class ClienteDAO {
         }  
     }
     
-    public Cliente leerCliente(String idUsuario)
+    public Cliente leerCliente(int idUsuario)
     {
-        Cliente c = new Cliente(idUsuario, "",1);
+        Cliente c = new Cliente("", "",idUsuario);
         
         try
         {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             PreparedStatement read = oracleConn.prepareStatement(READ);
-            read.setString(1, idUsuario);
+            read.setInt(1, idUsuario);
             ResultSet rs = read.executeQuery();
 
             if (rs.next()) {
-                c.setUsuario(rs.getString(idUsuario));
+                c.setUsuario(rs.getString("Usuario"));
                 c.setContrasenya(rs.getString("Contraseña"));
             }
         }
@@ -107,7 +107,7 @@ public class ClienteDAO {
             oracleConn.setAutoCommit(false);
             PreparedStatement update = oracleConn.prepareStatement(UPDATE);
             //borja no estas basado en datos
-            update.setInt(1, 0);//basicamente los clientes no tienen id xd arregladlo
+            update.setInt(1, c.getId());
             update.setString(2, c.getUsuario());
             update.setString(3, c.getContrasenya());
 
@@ -124,7 +124,7 @@ public class ClienteDAO {
                 
     }
     
-    public void borrarCliente(String usuario)
+    public void borrarCliente(int idUsuario)
     {
         try
         {
@@ -133,7 +133,7 @@ public class ClienteDAO {
             oracleConn.setAutoCommit(false);
 
             PreparedStatement delete = oracleConn.prepareStatement(DELETE);
-            delete.setString(1, usuario);
+            delete.setInt(1, idUsuario);
             delete.executeUpdate();
 
             oracleConn.commit();
@@ -142,7 +142,7 @@ public class ClienteDAO {
         }
         catch(Exception e)
         {
-            System.out.println("ERROR AL BORRAR CLIENTE "+usuario);
+            System.out.println("ERROR AL BORRAR CLIENTE "+idUsuario);
         }
     }
 }
