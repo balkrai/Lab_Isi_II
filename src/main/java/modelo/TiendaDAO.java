@@ -39,6 +39,20 @@ public class TiendaDAO {
     
     public TiendaDAO(){}
     
+    public int maxId() {
+        int res = 0;
+        try {
+            Class.forName(DRIVER).newInstance();
+            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            PreparedStatement read = oracleConn.prepareStatement("select max(idTienda) as maximo from tienda");
+            ResultSet rs = read.executeQuery();
+            res = rs.getInt("maximo");
+        } catch (Exception e) {
+            System.out.println("Error consiguiendo el id maximo de las tiendas");
+        }
+        return res;
+    }
+    
     public void crearTienda(Tienda tienda)
     {
         try 
