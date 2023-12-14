@@ -20,21 +20,21 @@ public class ClienteDAO {
     public static final String PASSWORD = "1234";
     
     private static final String CREATE = 
-            "INSERT INTO Usuario (idUsuario,Usuario,Contraseña,Tipo_usuario)" +
+            "INSERT INTO usuarios (idUsuario,Usuario,Contraseña,Tipo_usuario)" +
             "VALUES (?,?,?,?)";
     
     private static final String READ = 
             "SELECT idUsuario,Usuario,Contraseña,Tipo_usuario " +
-            "  FROM Usuario " +
+            "  FROM usuarios " +
             " WHERE idUsuario = ?";
     
     private static final String UPDATE =
-            "UPDATE Usuario " +
+            "UPDATE usuarios " +
             "   SET idUsuario=?,Usuario=?,Contraseña=?,Tipo_usuario=1"+
             " WHERE idUsuario = ?";
     
     private static final String DELETE =
-            "DELETE FROM Usuario " +
+            "DELETE FROM usuarios " +
             " WHERE idUsuario = ?";
     
     public ClienteDAO(){}
@@ -44,7 +44,7 @@ public class ClienteDAO {
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(id) as maximo from Cliente");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idUsuario) as maximo from usuarios");
             ResultSet rs = read.executeQuery();
              if(rs.next())
                 res = rs.getInt("maximo");
@@ -64,7 +64,7 @@ public class ClienteDAO {
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             oracleConn.setAutoCommit(false);
             PreparedStatement insert = oracleConn.prepareStatement(CREATE);
-            PreparedStatement max_id = oracleConn.prepareStatement("select max(idCliente) as maximo from Usuario");
+            PreparedStatement max_id = oracleConn.prepareStatement("select max(idCliente) as maximo from usuarios");
             ResultSet rs = max_id.executeQuery();
             int id_creacion=0;
             if(rs.next())

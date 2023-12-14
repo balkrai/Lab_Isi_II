@@ -25,16 +25,16 @@ public class TrabajadorDAO {
     
     private static final String READ = 
             "SELECT idUsuario,Usuario,Contraseña,Tipo_usuario " +
-            "  FROM Usuario " +
+            "  FROM usuarios " +
             " WHERE idUsuario = ?";
     
     private static final String UPDATE =
-            "UPDATE Usuario " +
+            "UPDATE usuarios " +
             "   SET idUsuario=?,Usuario=?,Contraseña=?,Tipo_usuario=0"+
             " WHERE idUsuario = ?";
     
     private static final String DELETE =
-            "DELETE FROM Usuario " +
+            "DELETE FROM usuarios " +
             " WHERE idUsuario = ?";
     
     public TrabajadorDAO(){}
@@ -44,7 +44,7 @@ public class TrabajadorDAO {
         try {
             Class.forName(DRIVER).newInstance();
             Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(id) as maximo from Trabajador");
+            PreparedStatement read = oracleConn.prepareStatement("select max(idUsuario) as maximo from usuarios");
             ResultSet rs = read.executeQuery();
              if(rs.next())
                 res = rs.getInt("maximo");
@@ -63,7 +63,7 @@ public class TrabajadorDAO {
             oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             oracleConn.setAutoCommit(false);
             PreparedStatement insert = oracleConn.prepareStatement(CREATE);
-            PreparedStatement max_id = oracleConn.prepareStatement("select max(idTrabajador) as maximo from Usuario");
+            PreparedStatement max_id = oracleConn.prepareStatement("select max(idUsuario) as maximo from usuarios");
             ResultSet rs = max_id.executeQuery();
             int id_creacion=0;
             if(rs.next())

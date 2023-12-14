@@ -63,11 +63,14 @@ public class ReservaDAO {
 
     public void crearReserva(Reserva reserva) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
             Class.forName(DRIVER).newInstance();
             Connection oracleConn;
             oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             oracleConn.setAutoCommit(false);
+            System.out.println("modelo.ReservaDAO.crearReserva()" +sdf.format(reserva.getFechaInicio()) );
+            System.out.println("modelo.ReservaDAO.crearReserva()" +sdf.format(reserva.getFechaFin()) );
+
             PreparedStatement insert = oracleConn.prepareStatement(CREATE);
             insert.setInt(1, reserva.getId());
             insert.setString(2, sdf.format(reserva.getFechaInicio()));
@@ -80,8 +83,8 @@ public class ReservaDAO {
             oracleConn.setAutoCommit(true);
             oracleConn.close();
 
-        } catch (Exception ex) {
-            System.out.println("ERROR AL CREAR TIENDA " + reserva.getId());
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

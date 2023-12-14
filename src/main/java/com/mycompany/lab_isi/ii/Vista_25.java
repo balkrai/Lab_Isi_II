@@ -154,7 +154,7 @@ public class Vista_25 extends javax.swing.JFrame {
             if((Integer.parseInt(auxActual[1])>=Integer.parseInt(auxActividadInit[1]))
            && (Integer.parseInt(auxActual[1])<= Integer.parseInt(auxActividadFin[1])))
             {
-                resA_Actual=new ReservaActividad(actividad.getFecha(),actividad,horaActual,null,clog);
+     n           resA_Actual=new ReservaActividad(actividad.getFecha(),actividad,horaActual,null,clog);
                 actividad.setReserva(resA_Actual);
                 c.addReservaActividad(resA_Actual);
             }

@@ -1,5 +1,6 @@
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
@@ -16,9 +17,11 @@ public class Reserva {
     public Reserva(int id, Date fechaInicio, Date fechaFin, Cliente cliente, 
                    Parcela parcela)
     {
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+
         this.historico = new Historico();
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+        this.fechaInicio = new Date(sdf.format(fechaInicio));
+        this.fechaFin = new Date(sdf.format(fechaFin));
         this.cliente = cliente;
         this.parcela = parcela;
         this.llegada = false;
