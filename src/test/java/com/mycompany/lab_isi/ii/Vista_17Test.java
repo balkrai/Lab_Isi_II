@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Parcela;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,6 +40,15 @@ public class Vista_17Test {
     /**
      * Test of main method, of class Vista_17.
      */
+    
+    @Test
+    public void testDescuento() {
+        Parcela prueba = new Parcela(1,1,false, (float) 100.0);
+        String descuento = "10";
+        prueba.setPrecio(prueba.getPrecio()-((Float.parseFloat(descuento)/100)*prueba.getPrecio()));
+        assertEquals(90.0, prueba.getPrecio(), 1);
+    }
+    
     @Test
     public void testMain() {
         System.out.println("main");

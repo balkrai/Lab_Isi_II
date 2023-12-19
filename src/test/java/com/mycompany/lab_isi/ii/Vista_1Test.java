@@ -47,9 +47,9 @@ public class Vista_1Test {
         String usuario = "prueba";
         String password = "prueba";
         int id = 10;
-        Cliente c = Cliente.IniciarSesion(usuario, password);
-        c.setId(id);
-        assertSame(c,new Cliente("prueba","prueba",c.getId()));        
+        Cliente c = new Cliente(usuario, password, id);
+        c = Cliente.IniciarSesion(usuario, password);
+        assertEquals(new Cliente("prueba","prueba",10),c);        
     }
     
     @Test
@@ -57,9 +57,9 @@ public class Vista_1Test {
         String usuario = "prueba";
         String password = "prueba";
         int id = 10;
-        Trabajador t = Trabajador.IniciarSesion(usuario, password);
-        t.setId(10);
-        assertSame(t,new Trabajador("prueba","prueba",t.getId()));        
+        Trabajador t = new Trabajador(usuario, password, id);
+        t = Trabajador.IniciarSesion(usuario, password);
+        assertEquals(t,new Trabajador("prueba","prueba",10));        
     }
     
     @Test
