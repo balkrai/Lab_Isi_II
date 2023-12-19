@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Cliente;
+import modelo.Trabajador;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,6 +41,27 @@ public class Vista_1Test {
     /**
      * Test of main method, of class Vista_1.
      */
+    
+    @Test
+    public void testLoginCliente() {
+        String usuario = "prueba";
+        String password = "prueba";
+        int id = 10;
+        Cliente c = Cliente.IniciarSesion(usuario, password);
+        c.setId(id);
+        assertSame(c,new Cliente("prueba","prueba",c.getId()));        
+    }
+    
+    @Test
+    public void testLoginTrabajador() {
+        String usuario = "prueba";
+        String password = "prueba";
+        int id = 10;
+        Trabajador t = Trabajador.IniciarSesion(usuario, password);
+        t.setId(10);
+        assertSame(t,new Trabajador("prueba","prueba",t.getId()));        
+    }
+    
     @Test
     public void testMain() {
         System.out.println("main");

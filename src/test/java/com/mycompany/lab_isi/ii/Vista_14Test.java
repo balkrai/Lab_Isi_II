@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import fachada.Emparejamiento;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
