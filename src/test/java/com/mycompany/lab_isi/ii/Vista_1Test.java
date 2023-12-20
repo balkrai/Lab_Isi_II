@@ -40,7 +40,7 @@ public class Vista_1Test {
     }
 
     /**
-     * Test of main method, of class Vista_1.
+ * Test of main method, of class Vista_1.
      */
     
     @Test
@@ -48,21 +48,21 @@ public class Vista_1Test {
         Camping instancia = Camping.getInstancia();
         String usuario = "prueba";
         String password = "prueba";
-        int id = 10;
-        instancia.anyadirCliente(new Cliente(usuario, password, id));
+        Cliente prueba = new Cliente("prueba","prueba",10);
+        instancia.anyadirCliente(prueba);
         Cliente c = Cliente.IniciarSesion(usuario, password);
-        assertEquals(new Cliente("prueba","prueba",10),c);        
+        assertEquals(prueba,c);        
     }
     
     @Test
     public void testLoginTrabajador() {
         Camping instancia = Camping.getInstancia();
-        String usuario = "prueba";
-        String password = "prueba";
-        int id = 10;
-        instancia.anyadirTrabajador(new Trabajador(usuario, password, id));
+        String usuario = "prueba2";
+        String password = "prueba2";
+        Trabajador prueba2 = new Trabajador("prueba2","prueba2",11);
+        instancia.anyadirTrabajador(prueba2);
         Trabajador t = Trabajador.IniciarSesion(usuario, password);
-        assertEquals(new Trabajador("prueba","prueba",10),t);        
+        assertEquals(prueba2,t);        
     }
     
     @Test
