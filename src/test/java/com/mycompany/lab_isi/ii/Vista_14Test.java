@@ -37,6 +37,10 @@ public class Vista_14Test {
     public void tearDown() {
     }
 
+    @Test
+    public void testEmparejar(){
+        
+    }
     /**
      * Test of main method, of class Vista_14.
      */

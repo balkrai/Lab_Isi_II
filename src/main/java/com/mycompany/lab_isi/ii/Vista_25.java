@@ -134,12 +134,9 @@ public class Vista_25 extends javax.swing.JFrame {
 
     private void Participar_Vista25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Participar_Vista25ActionPerformed
         // TODO add your handling code here:
+        //this.CompararHoras(Hora_Vista25.getText())
         horaActual = Hora_Vista25.getText();
-        String[] auxActual = horaActual.split(":");
-        String[] auxActividadInit = actividad.getHoraInicio().split(":");
-        String[] auxActividadFin = actividad.getHoraFin().split(":");
-        if((Integer.parseInt(auxActual[0])>Integer.parseInt(auxActividadInit[0]))
-           && (Integer.parseInt(auxActual[0])< Integer.parseInt(auxActividadFin[0])))
+        if(actividad.CompararHoras(horaActual,actividad))
         {
            resA_Actual=new ReservaActividad(actividad.getFecha(),actividad,horaActual,null,clog);
            actividad.setReserva(resA_Actual);
@@ -148,17 +145,6 @@ public class Vista_25 extends javax.swing.JFrame {
            v2.show();
            this.dispose();
         }
-        else if((Integer.parseInt(auxActual[0])==Integer.parseInt(auxActividadInit[0]))
-           && (Integer.parseInt(auxActual[0])== Integer.parseInt(auxActividadFin[0])))
-        {
-            if((Integer.parseInt(auxActual[1])>=Integer.parseInt(auxActividadInit[1]))
-           && (Integer.parseInt(auxActual[1])<= Integer.parseInt(auxActividadFin[1])))
-            {
-                resA_Actual=new ReservaActividad(actividad.getFecha(),actividad,horaActual,null,clog);
-                actividad.setReserva(resA_Actual);
-                c.addReservaActividad(resA_Actual);
-            }
-        }
         else
         {
             JOptionPane.showMessageDialog(null, "HORA INVALIDA", "Inane error",JOptionPane.ERROR_MESSAGE);
@@ -166,6 +152,9 @@ public class Vista_25 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Participar_Vista25ActionPerformed
 
+    
+    
+    
     private void Cancelar_Vista25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_Vista25ActionPerformed
         // TODO add your handling code here:
         Vista_24 v24 = new Vista_24(c,clog);

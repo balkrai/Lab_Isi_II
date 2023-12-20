@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Actividad;
@@ -46,202 +48,17 @@ public class CampingTest {
     }
 
     /**
-     * Test of getParcelas method, of class Camping.
-     */
-    @Test
-    public void testGetParcelas() {
-        System.out.println("getParcelas");
-        ArrayList<Parcela> expResult = null;
-        ArrayList<Parcela> result = Camping.getParcelas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of anyadirReserva method, of class Camping.
-     */
-    @Test
-    public void testAnyadirReserva() {
-        System.out.println("anyadirReserva");
-        Reserva r = null;
-        Camping.anyadirReserva(r);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of generarIdReserva method, of class Camping.
-     */
-    @Test
-    public void testGenerarIdReserva() {
-        System.out.println("generarIdReserva");
-        int expResult = 0;
-        int result = Camping.generarIdReserva();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getClientes method, of class Camping.
-     */
-    @Test
-    public void testGetClientes() {
-        System.out.println("getClientes");
-        Camping instance = null;
-        ArrayList<Cliente> expResult = null;
-        ArrayList<Cliente> result = instance.getClientes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addReservaActividad method, of class Camping.
-     */
-    @Test
-    public void testAddReservaActividad() {
-        System.out.println("addReservaActividad");
-        ReservaActividad res = null;
-        Camping instance = null;
-        instance.addReservaActividad(res);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getParcelasDisponibles method, of class Camping.
      */
     @Test
-    public void testGetParcelasDisponibles() {
-        System.out.println("getParcelasDisponibles");
-        Date ini = null;
-        Date fin = null;
-        Camping instance = null;
+    public void testGetParcelasDisponibles() throws ParseException{
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date ini = format.parse("12/12/2025");
+        Date fin = format.parse("13/12/2025");
+        Camping instance = Camping.getInstancia();
+        
         ArrayList<Parcela> expResult = null;
         ArrayList<Parcela> result = instance.getParcelasDisponibles(ini, fin);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
-    /**
-     * Test of getInstancia method, of class Camping.
-     */
-    @Test
-    public void testGetInstancia() {
-        System.out.println("getInstancia");
-        Camping expResult = null;
-        Camping result = Camping.getInstancia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setActActual method, of class Camping.
-     */
-    @Test
-    public void testSetActActual() {
-        System.out.println("setActActual");
-        Actividad actActual = null;
-        Camping instance = null;
-        instance.setActActual(actActual);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getActActual method, of class Camping.
-     */
-    @Test
-    public void testGetActActual() {
-        System.out.println("getActActual");
-        Camping instance = null;
-        Actividad expResult = null;
-        Actividad result = instance.getActActual();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getActividades method, of class Camping.
-     */
-    @Test
-    public void testGetActividades() {
-        System.out.println("getActividades");
-        Camping instance = null;
-        ArrayList<Actividad> expResult = null;
-        ArrayList<Actividad> result = instance.getActividades();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setReserva method, of class Camping.
-     */
-    @Test
-    public void testSetReserva() {
-        System.out.println("setReserva");
-        Parcela p = null;
-        int yearIni = 0;
-        int monthIni = 0;
-        int dateIni = 0;
-        int yearFin = 0;
-        int monthFin = 0;
-        int dateFin = 0;
-        Cliente c = null;
-        Camping instance = null;
-        instance.setReserva(p, yearIni, monthIni, dateIni, yearFin, monthFin, dateFin, c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of loginC method, of class Camping.
-     */
-    @Test
-    public void testLoginC() {
-        System.out.println("loginC");
-        String usu = "";
-        String pass = "";
-        Camping instance = null;
-        Cliente expResult = null;
-        Cliente result = instance.loginC(usu, pass);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of loginT method, of class Camping.
-     */
-    @Test
-    public void testLoginT() {
-        System.out.println("loginT");
-        String usu = "";
-        String pass = "";
-        Camping instance = null;
-        Trabajador expResult = null;
-        Trabajador result = instance.loginT(usu, pass);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of cargarDatos method, of class Camping.
-     */
-    @Test
-    public void testCargarDatos() throws Exception {
-        System.out.println("cargarDatos");
-        Camping instance = null;
-        instance.cargarDatos();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

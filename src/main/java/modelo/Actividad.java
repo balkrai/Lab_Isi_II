@@ -87,6 +87,32 @@ public class Actividad {
     {
         return participantes;
     }
+    public boolean CompararHoras(String HoraActual, Actividad actividad){
+        boolean aux = false;
+        String[] auxActual = HoraActual.split(":");
+        String[] auxActividadInit = actividad.getHoraInicio().split(":");
+        String[] auxActividadFin = actividad.getHoraFin().split(":");
+        
+        if((Integer.parseInt(auxActual[0])>Integer.parseInt(auxActividadInit[0]))
+           && (Integer.parseInt(auxActual[0])< Integer.parseInt(auxActividadFin[0])))
+        {
+           aux = true;
+        }
+        else if((Integer.parseInt(auxActual[0])==Integer.parseInt(auxActividadInit[0]))
+           && (Integer.parseInt(auxActual[0])== Integer.parseInt(auxActividadFin[0])))
+        {
+            if((Integer.parseInt(auxActual[1])>=Integer.parseInt(auxActividadInit[1]))
+           && (Integer.parseInt(auxActual[1])<= Integer.parseInt(auxActividadFin[1])))
+            {
+                aux = true;
+            }
+        }
+        else
+        {
+            aux = false;
+        }
+        return aux;
+    }
     @Override
     public String toString() 
     {

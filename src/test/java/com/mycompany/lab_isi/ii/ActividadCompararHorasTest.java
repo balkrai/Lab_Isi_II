@@ -4,6 +4,12 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import modelo.Actividad;
+import modelo.Camping;
+import modelo.ReservaActividad;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,9 +21,9 @@ import static org.junit.Assert.*;
  *
  * @author ivan5
  */
-public class Vista_13Test {
+public class ActividadCompararHorasTest {
     
-    public Vista_13Test() {
+    public ActividadCompararHorasTest() {
     }
     
     @BeforeClass
@@ -36,14 +42,18 @@ public class Vista_13Test {
     public void tearDown() {
     }
 
-    /**
-     * Test of main method, of class Vista_13.
-     */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Vista_13.main(args);
+    public void Participar() throws ParseException{
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Actividad aux = new Actividad(10,"Piscina",format.parse("12/12/2025"),
+                "12:00","15:00",false);
+        String horaActual = "13:00";
+        assertTrue(aux.CompararHoras(horaActual, aux));
+        
+        
+    }
+    @Test
+    public void testSomeMethod() {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
