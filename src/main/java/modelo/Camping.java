@@ -29,7 +29,10 @@ public class Camping {
         reservas_actividades = new ArrayList<ReservaActividad>();
         tiendas = new ArrayList<Tienda>();
     }
-
+    public static int getCantidadReservas()
+    {
+        return reservas.size();
+    }
     public static ArrayList<Parcela> getParcelas() {
         return parcelas;
     }

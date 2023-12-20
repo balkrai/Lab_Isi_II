@@ -260,12 +260,6 @@ public class Vista_5 extends javax.swing.JFrame {
             combobox_parcelas.addItem(r);
         }
         
-        //Vista_8 vista_8 = new Vista_8(reserva,Integer.parseInt(numeroTiendas.getText()),p.getm2());
-        /*setVisible(false);
-        vista_8.setSize(412, 700);
-        vista_8.setPreferredSize(new Dimension(412, 800));
-        vista_8.setVisible(true);*/
-        //vista_8.show();
 
     }//GEN-LAST:event_jbReservarActionPerformed
 
