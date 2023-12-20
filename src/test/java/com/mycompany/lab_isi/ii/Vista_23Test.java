@@ -4,6 +4,11 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import modelo.Cliente;
+import modelo.Reserva;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,9 +42,55 @@ public class Vista_23Test {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void PruebaBorrarReserva() {
+     // Crear un cliente
+        Cliente cliente = new Cliente();
+        
+        // Crear algunas reservas para el cliente
+        Reserva reserva1 = new Reserva();
+        Reserva reserva2 = new Reserva();
+        Reserva reserva3 = new Reserva();
+        
+        // Agregar las reservas al cliente
+        cliente.AgregaReserva(reserva1);
+        cliente.AgregaReserva(reserva2);
+        cliente.AgregaReserva(reserva3);
+        
+        assertEquals(3, cliente.getReservas().size());
+        
+        cliente.BorrarReserva(reserva2);
+        assertEquals(2, cliente.getReservas().size());
+        assertFalse(cliente.getReservas().contains(reserva2));
+        
+    }
+    
+    public void testModificaFechaInicioReserva() throws ParseException {
+        Cliente cliente = new Cliente();
+
+        Reserva reserva = new Reserva();
+        reserva.setId(1);
+        
+        
+        String FechaInicioString = "20/12/2022";
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date FechaInicio = formato.parse(FechaInicioString);
+        reserva.setFechaInicio(FechaInicio);
+        
+         cliente.AgregaReserva(reserva);
+
+       
+        Date fechaInicioOriginal = reserva.getFechaInicio();
+        
+        String nuevaFechaInicioString = "20/12/2023";
+        Date nuevaFechaInicio = formato.parse(nuevaFechaInicioString);
+        reserva.setFechaInicio(nuevaFechaInicio);
+        cliente.ModificaReserva(reserva);
+        
+        Reserva modificada = cliente.BuscarReservaPorId(1);
+        
+        // Verificar si se modificó la fecha de inicio de la reserva
+        assertEquals(nuevaFechaInicio, modificada.getFechaInicio());
+        assertEquals(FechaInicio, reserva.getFechaInicio());
     }
     
 }
