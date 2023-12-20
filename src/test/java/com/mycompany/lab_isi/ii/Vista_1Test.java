@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Camping;
 import modelo.Cliente;
 import modelo.Trabajador;
 import org.junit.After;
@@ -44,31 +45,28 @@ public class Vista_1Test {
     
     @Test
     public void testLoginCliente() {
+        Camping instancia = Camping.getInstancia();
         String usuario = "prueba";
         String password = "prueba";
         int id = 10;
-        Cliente c = new Cliente(usuario, password, id);
-        c = Cliente.IniciarSesion(usuario, password);
+        instancia.anyadirCliente(new Cliente(usuario, password, id));
+        Cliente c = Cliente.IniciarSesion(usuario, password);
         assertEquals(new Cliente("prueba","prueba",10),c);        
     }
     
     @Test
     public void testLoginTrabajador() {
+        Camping instancia = Camping.getInstancia();
         String usuario = "prueba";
         String password = "prueba";
         int id = 10;
-        Trabajador t = new Trabajador(usuario, password, id);
-        t = Trabajador.IniciarSesion(usuario, password);
-        assertEquals(t,new Trabajador("prueba","prueba",10));        
+        instancia.anyadirTrabajador(new Trabajador(usuario, password, id));
+        Trabajador t = Trabajador.IniciarSesion(usuario, password);
+        assertEquals(new Trabajador("prueba","prueba",10),t);        
     }
     
     @Test
     public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Vista_1.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

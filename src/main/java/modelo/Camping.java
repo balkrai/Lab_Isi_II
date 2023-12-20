@@ -9,8 +9,8 @@ public class Camping {
 
     private static Camping camping;
     private static ArrayList<Parcela> parcelas;
-    private ArrayList<Cliente> clientes;
-    private ArrayList<Trabajador> trabajadores;
+    private static ArrayList<Cliente> clientes;
+    private static ArrayList<Trabajador> trabajadores;
     private ArrayList<Historico> historicos;
     private static ArrayList<Reserva> reservas;
     private ArrayList<Actividad> actividades;
@@ -36,7 +36,13 @@ public class Camping {
     public static ArrayList<Parcela> getParcelas() {
         return parcelas;
     }
+    public static void anyadirCliente(Cliente c){
+        clientes.add(c);
+    }
     
+    public static void anyadirTrabajador(Trabajador t){
+        trabajadores.add(t);
+    }
     public static void anyadirReserva(Reserva r) {
         reservas.add(r);
     }
