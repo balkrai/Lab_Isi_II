@@ -4,6 +4,7 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import modelo.Camping;
 import modelo.Cliente;
 import modelo.Trabajador;
 import org.junit.After;
@@ -39,36 +40,33 @@ public class Vista_1Test {
     }
 
     /**
-     * Test of main method, of class Vista_1.
+ * Test of main method, of class Vista_1.
      */
     
     @Test
     public void testLoginCliente() {
+        Camping instancia = Camping.getInstancia();
         String usuario = "prueba";
         String password = "prueba";
-        int id = 10;
-        Cliente c = new Cliente(usuario, password, id);
-        c = Cliente.IniciarSesion(usuario, password);
-        assertEquals(new Cliente("prueba","prueba",10),c);        
+        Cliente prueba = new Cliente("prueba","prueba",10);
+        instancia.anyadirCliente(prueba);
+        Cliente c = Cliente.IniciarSesion(usuario, password);
+        assertEquals(prueba,c);        
     }
     
     @Test
     public void testLoginTrabajador() {
-        String usuario = "prueba";
-        String password = "prueba";
-        int id = 10;
-        Trabajador t = new Trabajador(usuario, password, id);
-        t = Trabajador.IniciarSesion(usuario, password);
-        assertEquals(t,new Trabajador("prueba","prueba",10));        
+        Camping instancia = Camping.getInstancia();
+        String usuario = "prueba2";
+        String password = "prueba2";
+        Trabajador prueba2 = new Trabajador("prueba2","prueba2",11);
+        instancia.anyadirTrabajador(prueba2);
+        Trabajador t = Trabajador.IniciarSesion(usuario, password);
+        assertEquals(prueba2,t);        
     }
     
     @Test
     public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Vista_1.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
