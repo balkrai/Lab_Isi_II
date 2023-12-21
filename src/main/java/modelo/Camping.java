@@ -33,6 +33,9 @@ public class Camping {
     {
         return reservas.size();
     }
+    public static void anyadirParcela(Parcela p) {
+        parcelas.add(p);
+    }
     public static ArrayList<Parcela> getParcelas() {
         return parcelas;
     }

@@ -66,6 +66,21 @@ public class Emparejamiento
         return modelo;
     }
     
+    public DefaultListModel<ReservaActividad> emparejarid(int id)
+    {
+        if(contador % 2 != 0)
+        {   
+            jugador1.add(modelo.get(id));
+        }
+        else
+        {
+            jugador2.add(modelo.get(id));
+        }
+        ++contador;
+        modelo.remove(id);
+        return modelo;
+    }
+    
     public int getEmparejados()
     {
         return contador;

@@ -49,13 +49,4 @@ public class Vista_17Test {
         assertEquals(90.0, prueba.getPrecio(), 1);
     }
     
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Vista_17.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

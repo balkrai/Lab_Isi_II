@@ -8,6 +8,7 @@ package com.mycompany.lab_isi.ii;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Camping;
@@ -299,8 +300,8 @@ public class Vista_22 extends javax.swing.JFrame {
             
         }
         TablaReservas.setModel(newModel);
-  }
-    
+    }
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista19;
     private javax.swing.JButton Atras_Vista20;

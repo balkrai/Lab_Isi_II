@@ -20,8 +20,16 @@ public class Reserva {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 
         this.historico = new Historico();
-        this.fechaInicio = new Date(sdf.format(fechaInicio));
-        this.fechaFin = new Date(sdf.format(fechaFin));
+        this.fechaInicio = new Date();
+        this.fechaFin = new Date();
+        this.fechaInicio.setYear(2023);
+        this.fechaInicio.setMonth(1);
+        this.fechaInicio.setDate(0);
+        this.fechaFin.setYear(2024);
+        this.fechaFin.setMonth(1);
+        this.fechaFin.setDate(0);
+        //this.fechaInicio = new Date(sdf.format(fechaInicio));
+        //this.fechaFin = new Date(sdf.format(fechaFin));
         this.cliente = cliente;
         this.parcela = parcela;
         this.llegada = false;

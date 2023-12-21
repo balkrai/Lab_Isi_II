@@ -57,8 +57,8 @@ public class CampingTest {
         Date fin = format.parse("13/12/2025");
         Camping instance = Camping.getInstancia();
         
-        ArrayList<Parcela> expResult = null;
+        
         ArrayList<Parcela> result = instance.getParcelasDisponibles(ini, fin);
-        assertEquals(expResult, result);
+        assertTrue(result.size()==0);
     }
 }

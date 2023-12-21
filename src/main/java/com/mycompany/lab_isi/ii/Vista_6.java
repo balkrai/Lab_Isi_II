@@ -4,6 +4,8 @@
  */
 package com.mycompany.lab_isi.ii;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +24,7 @@ public class Vista_6 extends javax.swing.JFrame {
     private Camping camp;
     private Cliente clienteLog;
     private ArrayList<Parcela> parcelas;
+    private int numParcelas;
 
     /**
      * Creates new form Ventana18
@@ -151,7 +154,7 @@ public class Vista_6 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "INTRODUCE LA CANTIDAD DE PARCELAS", "Inane error",JOptionPane.ERROR_MESSAGE);
             else
             {
-                int numParcelas = Integer.parseInt(this.jTextField1.getText());
+                numParcelas = Integer.parseInt(this.jTextField1.getText());
                 for(int i = 0; i < camp.getParcelasDisponibles(this.jDateChooser1.getDate(), this.jDateChooser2.getDate()).size(); ++i)
                 {
                     if(numParcelas > 0 && camp.getParcelasDisponibles(this.jDateChooser1.getDate(), this.jDateChooser2.getDate()).get(i).getReservas().isEmpty())
@@ -185,7 +188,46 @@ public class Vista_6 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-  
+    public void testVista6(int n)
+    {
+        Date fecha1 = new Date(), fecha2 = new Date();
+        fecha1.setYear(123);
+        fecha1.setMonth(1);
+        fecha1.setDate(0);
+        fecha2.setYear(124);
+        fecha2.setMonth(1);
+        fecha2.setDate(0);
+        numParcelas = n;
+        for(int i = 0; i < camp.getParcelasDisponibles(
+        fecha1, fecha2).size(); ++i)
+        {
+            if(numParcelas > 0 && camp.getParcelasDisponibles(
+            fecha1,fecha2).get(i).getReservas().isEmpty())
+            {
+                --numParcelas;
+                parcelas.add(camp.getParcelasDisponibles(
+                fecha1,fecha2).get(i));
+            }
+        }
+        for(int j = 0; j < parcelas.size(); ++j)
+        {
+            parcelas.get(j).setReserva(
+                    fecha1.getYear(),
+                    fecha1.getMonth(),
+                    fecha1.getDate(),
+                    fecha2.getYear(),
+                    fecha2.getMonth(),
+                    fecha2.getDate(),
+                    clienteLog);
+            camp.setReserva(parcelas.get(j),fecha1.getYear(),fecha1.getMonth(),fecha1.getDate(),fecha2.getYear(),fecha2.getMonth(),fecha2.getDate(),clienteLog);
+            clienteLog.AgregaReserva(new Reserva(clienteLog.getReservas().size(), new Date(fecha1.getYear(),fecha1.getMonth(),fecha1.getDate(),0,0,0), new Date(fecha2.getYear(),fecha2.getMonth(),fecha2.getDate(),0,0,0),clienteLog,parcelas.get(j)));
+        }    
+    }
+    
+    public int getNumParcelasObtenido()
+    {
+        return parcelas.size();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras_Vista6;

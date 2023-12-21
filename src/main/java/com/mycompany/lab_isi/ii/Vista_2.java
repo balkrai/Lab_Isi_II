@@ -13,7 +13,7 @@ import modelo.Reserva;
 
 /**
  *
- * @author teres
+ * @author vicente
  */
 public class Vista_2 extends javax.swing.JFrame {
 
