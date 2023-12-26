@@ -147,12 +147,12 @@ public class ActividadDAO {
                 
     }
     
-    public void borrarActividad(int id)
-    {
-        try
-        {
+    public void borrarActividad(int id) {
+        Connection oracleConn = null;
+
+        try {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             oracleConn.setAutoCommit(false);
 
             PreparedStatement delete = oracleConn.prepareStatement(DELETE);
@@ -160,12 +160,17 @@ public class ActividadDAO {
             delete.executeUpdate();
 
             oracleConn.commit();
-            oracleConn.setAutoCommit(true);
-            oracleConn.close();
-        }
-        catch(Exception e)
-        {
-            System.out.println("ERROR AL BORRAR ACTIVIDAD "+id);
+        } catch (Exception e) {
+            System.out.println("ERROR AL BORRAR ACTIVIDAD " + id);
+        } finally {
+            try {
+                if (oracleConn != null) {
+                    oracleConn.setAutoCommit(true); // Establecer de nuevo en true antes de cerrar
+                    oracleConn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
