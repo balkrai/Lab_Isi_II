@@ -5,7 +5,6 @@
 package com.mycompany.lab_isi.ii;
 
 
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import modelo.Camping;
 import modelo.Trabajador;
@@ -144,11 +143,9 @@ public class Vista_10 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfContraseña3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseña3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tfContraseña3ActionPerformed
 
     private void tfContraseña7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseña7ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
     private void Aceptar_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista10ActionPerformed

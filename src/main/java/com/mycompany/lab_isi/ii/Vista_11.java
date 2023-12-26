@@ -6,7 +6,6 @@ package com.mycompany.lab_isi.ii;
 
 
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import modelo.Camping;
 import modelo.Trabajador;
 

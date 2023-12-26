@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Color;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,29 +42,32 @@ public class ClienteDAO {
     
     public int maxId() {
         int res = 0;
-        try {
+        try(Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);) {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
             PreparedStatement read = oracleConn.prepareStatement("select max(idUsuario) as maximo from usuarios");
             ResultSet rs = read.executeQuery();
              if(rs.next())
                 res = rs.getInt("maximo");
+             
+            read.close();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
+
+
         return res;
     }
     
     
     public void crearCliente(Cliente c)
     {
-        try 
+        try(Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            PreparedStatement insert = oracleConn.prepareStatement(CREATE);    ) 
         {          
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn;
-            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            
             oracleConn.setAutoCommit(false);
-            PreparedStatement insert = oracleConn.prepareStatement(CREATE);
+            
             PreparedStatement max_id = oracleConn.prepareStatement("select max(idCliente) as maximo from usuarios");
             ResultSet rs = max_id.executeQuery();
             int id_creacion=0;

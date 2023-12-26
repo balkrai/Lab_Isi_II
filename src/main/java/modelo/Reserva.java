@@ -17,7 +17,7 @@ public class Reserva {
     public Reserva(int id, Date fechaInicio, Date fechaFin, Cliente cliente, 
                    Parcela parcela)
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-DD");
 
         this.historico = new Historico();
         this.fechaInicio = new Date();
