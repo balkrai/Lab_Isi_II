@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,7 +23,7 @@ public class HistoricoDAO
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "1234";
+    String inputString = "s3cr37";
     
     private static final String CREATE = 
             "INSERT INTO Historico (idHistorico,precio,Fecha_inicio,Fecha_fin,idUsuario)" +
@@ -43,15 +45,34 @@ public class HistoricoDAO
     
     public HistoricoDAO(){}
     
-    public int maxId() {
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (byte b : hash) {
+            hexString.append(String.format("%02x", b & 0xff));
+        }
+        return hexString.toString();
+    }
+    
+    public int maxId() throws NoSuchAlgorithmException {
         int res = 0;
         try {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement("select max(idHistorico) as maximo from Historico");
-            ResultSet rs = read.executeQuery();
-             if(rs.next())
-                res = rs.getInt("maximo");
+            try{
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(inputString.getBytes());
+                String hashedPassword = bytesToHex(hash);
+                Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, hashedPassword);
+                
+                PreparedStatement read = oracleConn.prepareStatement("select max(idHistorico) as maximo from Historico");
+                ResultSet rs = read.executeQuery();
+                if(rs.next())
+                    res = rs.getInt("maximo");
+
+            }
+            catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }
+             
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
             e.printStackTrace();
         }
@@ -64,21 +85,27 @@ public class HistoricoDAO
         {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn;
-            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-            oracleConn.setAutoCommit(false);
-            PreparedStatement insert = oracleConn.prepareStatement(CREATE);
-            insert.setInt(1, historico.getId());
-            insert.setFloat(2, historico.getPrecio());
-            insert.setString(3, sdf.format(historico.getFechaLlegada()));
-            insert.setString(4, sdf.format(historico.getFechaSalida()));
-            insert.setInt(5, historico.getIdCliente());
-            insert.executeUpdate();
-        
-            oracleConn.commit();
-            oracleConn.setAutoCommit(true);
-            oracleConn.close(); 
-            
+            try{
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(inputString.getBytes());
+                String hashedPassword = bytesToHex(hash);
+                Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, hashedPassword);
+                
+                PreparedStatement insert = oracleConn.prepareStatement(CREATE);
+                insert.setInt(1, historico.getId());
+                insert.setFloat(2, historico.getPrecio());
+                insert.setString(3, sdf.format(historico.getFechaLlegada()));
+                insert.setString(4, sdf.format(historico.getFechaSalida()));
+                insert.setInt(5, historico.getIdCliente());
+                insert.executeUpdate();
+
+                oracleConn.commit();
+                oracleConn.setAutoCommit(true);
+                oracleConn.close();
+            }
+            catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }
         } 
         catch (Exception ex) 
         {
@@ -94,21 +121,26 @@ public class HistoricoDAO
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-
-            // Sentencia de insert
-            PreparedStatement read = oracleConn.prepareStatement(READ);
-            read.setInt(1, idHistorico);
-            ResultSet rs = read.executeQuery();
-
-            if (rs.next()) {
-                historico.setId(rs.getInt("idReserva"));
-                historico.setPrecio(rs.getFloat("precio"));
-                Date fecha = sdf.parse(rs.getString("Fecha_inicio"));
-                historico.setFechaLlegada(fecha);
-                fecha = sdf.parse(rs.getString("Fecha_fin"));
-                historico.setFechaSalida(fecha);
-                historico.setIdCliente(rs.getInt("idUsuario"));
+            try{
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(inputString.getBytes());
+                String hashedPassword = bytesToHex(hash);
+                Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, hashedPassword);
+                PreparedStatement read = oracleConn.prepareStatement(READ);
+                read.setInt(1, idHistorico);
+                ResultSet rs = read.executeQuery();
+                if (rs.next()) {
+                    historico.setId(rs.getInt("idReserva"));
+                    historico.setPrecio(rs.getFloat("precio"));
+                    Date fecha = sdf.parse(rs.getString("Fecha_inicio"));
+                    historico.setFechaLlegada(fecha);
+                    fecha = sdf.parse(rs.getString("Fecha_fin"));
+                    historico.setFechaSalida(fecha);
+                    historico.setIdCliente(rs.getInt("idUsuario"));
+                }
+            }
+            catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
             }
         }
         catch(Exception e)
@@ -126,22 +158,31 @@ public class HistoricoDAO
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            try{
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(inputString.getBytes());
+                String hashedPassword = bytesToHex(hash);
+                Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, hashedPassword);
+                
+                oracleConn.setAutoCommit(false);
+                
+                PreparedStatement update = oracleConn.prepareStatement(UPDATE);
 
-            oracleConn.setAutoCommit(false);
-            // Sentencia de insert
-            PreparedStatement update = oracleConn.prepareStatement(UPDATE);
+                update.setInt(1, historico.getId());
+                update.setFloat(2, historico.getPrecio());
+                update.setString(3, sdf.format(historico.getFechaLlegada()));
+                update.setString(4, sdf.format(historico.getFechaSalida()));
+                update.setInt(5, historico.getIdCliente());
+                update.executeUpdate();
 
-            update.setInt(1, historico.getId());
-            update.setFloat(2, historico.getPrecio());
-            update.setString(3, sdf.format(historico.getFechaLlegada()));
-            update.setString(4, sdf.format(historico.getFechaSalida()));
-            update.setInt(5, historico.getIdCliente());
-            update.executeUpdate();
-
-            oracleConn.commit();
-            oracleConn.setAutoCommit(true);
-            oracleConn.close();
+                oracleConn.commit();
+                oracleConn.setAutoCommit(true);
+                oracleConn.close();
+            }
+            catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }
+            
         }
         catch(Exception e)
         {
@@ -155,18 +196,25 @@ public class HistoricoDAO
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            try{
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(inputString.getBytes());
+                String hashedPassword = bytesToHex(hash);
+                Connection oracleConn = DriverManager.getConnection(DBURL, USERNAME, hashedPassword);
+                oracleConn.setAutoCommit(false);
 
-            oracleConn.setAutoCommit(false);
+                PreparedStatement delete = oracleConn.prepareStatement(DELETE);
+                delete.setInt(1, idHistorico);
+                delete.executeUpdate();
 
-            // Sentencia de borrado
-            PreparedStatement delete = oracleConn.prepareStatement(DELETE);
-            delete.setInt(1, idHistorico);
-            delete.executeUpdate();
-
-            oracleConn.commit();
-            oracleConn.setAutoCommit(true);
-            oracleConn.close();
+                oracleConn.commit();
+                oracleConn.setAutoCommit(true);
+                oracleConn.close();
+            }
+            catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }
+            
         }
         catch(Exception e)
         {
