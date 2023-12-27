@@ -13,6 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
 
 /**
  *
@@ -23,7 +26,7 @@ public class ReservaDAO {
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String DBURL = "jdbc:mysql://localhost/isibdii?serverTimezone=UTC";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "1234";
+    public static final String PASSWORD = "s3cr37";
 
     private static final String CREATE
             = "INSERT INTO isibdii.Reserva (idReserva,Fecha_inicio,Fecha_fin,idCliente,idParcela)"
@@ -42,8 +45,23 @@ public class ReservaDAO {
     private static final String DELETE
             = "DELETE FROM Reserva "
             + " WHERE idReserva = ?";
-
+    
     public ReservaDAO() {
+        try
+        {
+            MessageDigest m = MessageDigest.getInstance("SHA-256");
+            m.update(PASSWORD.getBytes());
+            byte[] hash = m.digest(PASSWORD.getBytes());
+            StringBuilder hexString = new StringBuilder(2 * hash.length);
+            for(byte b : hash){
+                hexString.append(String.format("%02x", b & 0xff));
+            }
+            String PASSWORD = hexString.toString();
+        }
+        catch(NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public int maxId() {

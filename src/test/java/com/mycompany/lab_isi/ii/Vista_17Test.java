@@ -42,7 +42,8 @@ public class Vista_17Test {
      */
     
     @Test
-    public void testDescuento() {
+    public void testDescuento() 
+    {
         Parcela prueba = new Parcela(1,1,false, (float) 100.0);
         String descuento = "10";
         prueba.setPrecio(prueba.getPrecio()-((Float.parseFloat(descuento)/100)*prueba.getPrecio()));

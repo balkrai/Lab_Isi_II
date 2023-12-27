@@ -46,7 +46,7 @@ public class ActividadCompararHorasTest {
     public void Participar() throws ParseException{
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Actividad aux = new Actividad(10,"Piscina",format.parse("12/12/2025"),
-                "12:00","15:00",false);
+        "12:00","15:00",false);
         String horaActual = "13:00";
         assertTrue(aux.CompararHoras(horaActual, aux));
         

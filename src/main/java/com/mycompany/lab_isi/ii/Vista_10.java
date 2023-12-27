@@ -149,7 +149,7 @@ public class Vista_10 extends javax.swing.JFrame {
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
     private void Aceptar_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista10ActionPerformed
-        Vista_11 v11 = new Vista_11(c);
+        Vista11 v11 = new Vista11(c);
         v11.show();
         this.dispose();
     }//GEN-LAST:event_Aceptar_Vista10ActionPerformed

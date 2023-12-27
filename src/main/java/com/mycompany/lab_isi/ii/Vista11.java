@@ -13,12 +13,12 @@ import modelo.Trabajador;
  *
  * @author ramon
  */
-public class Vista_11 extends javax.swing.JFrame {
-    private Camping c;
+public class Vista11 extends javax.swing.JFrame {
+    private transient Camping c;
     /**
      * Creates new form Ventana8
      */
-    public Vista_11(Camping c) {
+    public Vista11(Camping c) {
         initComponents();
         this.c = c;
     }

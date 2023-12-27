@@ -50,24 +50,33 @@ public class Vista_14Test {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         DefaultListModel<ReservaActividad> m = new DefaultListModel<>();
         ArrayList<ReservaActividad> p = new ArrayList<>();
+        
         Actividad aux_actividad = new Actividad(10,"Piscina",
         formato.parse("12/12/2025"),"12:00",
         "15:00",false);
+        
         Cliente aux_cliente1 = new Cliente("user1","pass",0),
         aux_cliente2 = new Cliente("user2","pass",1);
+        
         ReservaActividad r1 = new ReservaActividad(
         formato.parse("01/01/2024"),aux_actividad,
         "11:00","14:00",aux_cliente1);
+        
         ReservaActividad r2 = new ReservaActividad(
         formato.parse("01/01/2024"),aux_actividad,
         "11:00","14:00",aux_cliente2);
+        
         m.add(0, r1);
         m.add(1, r2);
+        
         p.add(r1);
         p.add(r2);
+        
         Emparejamiento e = new Emparejamiento(m, p);
+        
         m = e.emparejarid(0);
         assertEquals(1, m.size());
+        
         m = e.emparejarid(0);
         assertEquals(0, m.size());
     }
