@@ -37,12 +37,12 @@ public class Vista_10 extends javax.swing.JFrame {
         tfContraseña7 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        FechaCrearActividad_Vista10 = new com.toedter.calendar.JDateChooser();
-        HoraFinCrearActividad_Vista10 = new javax.swing.JTextField();
-        Aceptar_Vista10 = new javax.swing.JButton();
-        Cancelar_Vista10 = new javax.swing.JButton();
+        FechaCrearActividadVista10 = new com.toedter.calendar.JDateChooser();
+        HoraFinCrearActividadVista10 = new javax.swing.JTextField();
+        AceptarVista10 = new javax.swing.JButton();
+        CancelarVista10 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        HoraInicioCrearActividad_Vista10 = new javax.swing.JTextField();
+        HoraInicioCrearActividadVista10 = new javax.swing.JTextField();
 
         tfContraseña3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,35 +62,35 @@ public class Vista_10 extends javax.swing.JFrame {
 
         jLabel2.setText("Fecha:");
 
-        HoraFinCrearActividad_Vista10.addActionListener(new java.awt.event.ActionListener() {
+        HoraFinCrearActividadVista10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HoraFinCrearActividad_Vista10ActionPerformed(evt);
+                HoraFinCrearActividadVista10ActionPerformed(evt);
             }
         });
 
-        Aceptar_Vista10.setBackground(new java.awt.Color(0, 51, 255));
-        Aceptar_Vista10.setForeground(new java.awt.Color(255, 255, 255));
-        Aceptar_Vista10.setText("Aceptar");
-        Aceptar_Vista10.addActionListener(new java.awt.event.ActionListener() {
+        AceptarVista10.setBackground(new java.awt.Color(0, 51, 255));
+        AceptarVista10.setForeground(new java.awt.Color(255, 255, 255));
+        AceptarVista10.setText("Aceptar");
+        AceptarVista10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Aceptar_Vista10ActionPerformed(evt);
+                AceptarVista10ActionPerformed(evt);
             }
         });
 
-        Cancelar_Vista10.setBackground(new java.awt.Color(0, 51, 255));
-        Cancelar_Vista10.setForeground(new java.awt.Color(255, 255, 255));
-        Cancelar_Vista10.setText("Cancelar");
-        Cancelar_Vista10.addActionListener(new java.awt.event.ActionListener() {
+        CancelarVista10.setBackground(new java.awt.Color(0, 51, 255));
+        CancelarVista10.setForeground(new java.awt.Color(255, 255, 255));
+        CancelarVista10.setText("Cancelar");
+        CancelarVista10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cancelar_Vista10ActionPerformed(evt);
+                CancelarVista10ActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Hora fin:");
 
-        HoraInicioCrearActividad_Vista10.addActionListener(new java.awt.event.ActionListener() {
+        HoraInicioCrearActividadVista10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HoraInicioCrearActividad_Vista10ActionPerformed(evt);
+                HoraInicioCrearActividadVista10ActionPerformed(evt);
             }
         });
 
@@ -100,9 +100,9 @@ public class Vista_10 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(Cancelar_Vista10)
+                .addComponent(CancelarVista10)
                 .addGap(50, 50, 50)
-                .addComponent(Aceptar_Vista10)
+                .addComponent(AceptarVista10)
                 .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
@@ -112,9 +112,9 @@ public class Vista_10 extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(HoraInicioCrearActividad_Vista10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FechaCrearActividad_Vista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(HoraFinCrearActividad_Vista10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HoraInicioCrearActividadVista10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FechaCrearActividadVista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HoraFinCrearActividadVista10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,19 +123,19 @@ public class Vista_10 extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(HoraInicioCrearActividad_Vista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HoraInicioCrearActividadVista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(HoraFinCrearActividad_Vista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(HoraFinCrearActividadVista10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(FechaCrearActividad_Vista10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FechaCrearActividadVista10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Aceptar_Vista10)
-                    .addComponent(Cancelar_Vista10))
+                    .addComponent(AceptarVista10)
+                    .addComponent(CancelarVista10))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -148,26 +148,26 @@ public class Vista_10 extends javax.swing.JFrame {
     private void tfContraseña7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseña7ActionPerformed
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
-    private void Aceptar_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar_Vista10ActionPerformed
+    private void AceptarVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarVista10ActionPerformed
         Vista_11 v11 = new Vista_11(c);
         v11.show();
         this.dispose();
-    }//GEN-LAST:event_Aceptar_Vista10ActionPerformed
+    }//GEN-LAST:event_AceptarVista10ActionPerformed
 
-    private void Cancelar_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_Vista10ActionPerformed
+    private void CancelarVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVista10ActionPerformed
         // TODO add your handling code here:
         Vista_9 v9 = new Vista_9(c);
         v9.show();
         this.dispose();
-    }//GEN-LAST:event_Cancelar_Vista10ActionPerformed
+    }//GEN-LAST:event_CancelarVista10ActionPerformed
 
-    private void HoraFinCrearActividad_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraFinCrearActividad_Vista10ActionPerformed
+    private void HoraFinCrearActividadVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraFinCrearActividadVista10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HoraFinCrearActividad_Vista10ActionPerformed
+    }//GEN-LAST:event_HoraFinCrearActividadVista10ActionPerformed
 
-    private void HoraInicioCrearActividad_Vista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraInicioCrearActividad_Vista10ActionPerformed
+    private void HoraInicioCrearActividadVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraInicioCrearActividadVista10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HoraInicioCrearActividad_Vista10ActionPerformed
+    }//GEN-LAST:event_HoraInicioCrearActividadVista10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,11 +183,11 @@ public class Vista_10 extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Aceptar_Vista10;
-    private javax.swing.JButton Cancelar_Vista10;
-    private com.toedter.calendar.JDateChooser FechaCrearActividad_Vista10;
-    private javax.swing.JTextField HoraFinCrearActividad_Vista10;
-    private javax.swing.JTextField HoraInicioCrearActividad_Vista10;
+    private javax.swing.JButton AceptarVista10;
+    private javax.swing.JButton CancelarVista10;
+    private com.toedter.calendar.JDateChooser FechaCrearActividadVista10;
+    private javax.swing.JTextField HoraFinCrearActividadVista10;
+    private javax.swing.JTextField HoraInicioCrearActividadVista10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

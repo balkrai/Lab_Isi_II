@@ -39,9 +39,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="80" max="32767" attributes="0"/>
-              <Component id="Cancelar_Vista10" min="-2" max="-2" attributes="0"/>
+              <Component id="CancelarVista10" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="Aceptar_Vista10" min="-2" max="-2" attributes="0"/>
+              <Component id="AceptarVista10" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -53,9 +53,9 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="HoraInicioCrearActividad_Vista10" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="FechaCrearActividad_Vista10" min="-2" max="-2" attributes="0"/>
-                  <Component id="HoraFinCrearActividad_Vista10" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="HoraInicioCrearActividadVista10" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="FechaCrearActividadVista10" min="-2" max="-2" attributes="0"/>
+                  <Component id="HoraFinCrearActividadVista10" min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -67,22 +67,22 @@
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="HoraInicioCrearActividad_Vista10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="HoraInicioCrearActividadVista10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="HoraFinCrearActividad_Vista10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="HoraFinCrearActividadVista10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="FechaCrearActividad_Vista10" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="FechaCrearActividadVista10" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Aceptar_Vista10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Cancelar_Vista10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AceptarVista10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CancelarVista10" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
@@ -100,14 +100,14 @@
         <Property name="text" type="java.lang.String" value="Fecha:"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="FechaCrearActividad_Vista10">
+    <Component class="com.toedter.calendar.JDateChooser" name="FechaCrearActividadVista10">
     </Component>
-    <Component class="javax.swing.JTextField" name="HoraFinCrearActividad_Vista10">
+    <Component class="javax.swing.JTextField" name="HoraFinCrearActividadVista10">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HoraFinCrearActividad_Vista10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HoraFinCrearActividadVista10ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Aceptar_Vista10">
+    <Component class="javax.swing.JButton" name="AceptarVista10">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -118,10 +118,10 @@
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Aceptar_Vista10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarVista10ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Cancelar_Vista10">
+    <Component class="javax.swing.JButton" name="CancelarVista10">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="33" red="0" type="rgb"/>
@@ -132,7 +132,7 @@
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cancelar_Vista10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarVista10ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -140,9 +140,9 @@
         <Property name="text" type="java.lang.String" value="Hora fin:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="HoraInicioCrearActividad_Vista10">
+    <Component class="javax.swing.JTextField" name="HoraInicioCrearActividadVista10">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HoraInicioCrearActividad_Vista10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HoraInicioCrearActividadVista10ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

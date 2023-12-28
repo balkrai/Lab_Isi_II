@@ -73,27 +73,27 @@ public class Historico {
     {
         this.id = id;
     }
-    public void setDiaRealEntrada()
+    public void setDiaRealEntrada(int diaRealEntrada)
     {
         this.diaRealEntrada = diaRealEntrada;
     }
-    public void setMesRealEntrada()
+    public void setMesRealEntrada(int mesRealEntrada)
     {
         this.mesRealEntrada = mesRealEntrada;
     }
-    public void setAnyoRealEntrada()
+    public void setAnyoRealEntrada(int anyoRealEntrada)
     {
         this.anyoRealEntrada = anyoRealEntrada;
     }
-    public void setDiaRealSalida()
+    public void setDiaRealSalida(int diaRealSalida)
     {
         this.diaRealSalida = diaRealSalida;
     }
-    public void setMesRealSalida()
+    public void setMesRealSalida(int mesRealSalida)
     {
         this.mesRealSalida = mesRealSalida;
     }
-    public void setAnyoRealSalida()
+    public void setAnyoRealSalida(int anyoRealSalida)
     {
         this.anyoRealSalida = anyoRealSalida;
     }
