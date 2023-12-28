@@ -163,7 +163,7 @@ public class Vista_9 extends javax.swing.JFrame {
         //ventana_9b.setSize(412, 700);
         //ventana_9b.setPreferredSize(new Dimension(412, 800));
         //ventana_9b.setVisible(true);
-        Vista_10 v10 = new Vista_10(c);
+        Vista10 v10 = new Vista10(c);
         v10.show();
         this.dispose();
     }//GEN-LAST:event_CrearActividad_Vista9ActionPerformed

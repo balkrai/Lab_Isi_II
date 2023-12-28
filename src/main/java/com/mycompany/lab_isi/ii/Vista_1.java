@@ -7,6 +7,7 @@ package com.mycompany.lab_isi.ii;
 import modelo.Camping;
 import modelo.Cliente;
 import java.awt.Dimension;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -147,6 +148,8 @@ public class Vista_1 extends javax.swing.JFrame {
             a.cargarDatos();
         } catch (ParseException ex) {
             Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
         }
         Cliente c =  Cliente.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());
         
@@ -175,6 +178,8 @@ public class Vista_1 extends javax.swing.JFrame {
         try {
             a.cargarDatos();
         } catch (ParseException ex) {
+            Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Vista_1.class.getName()).log(Level.SEVERE, null, ex);
         }
         Trabajador t =  Trabajador.IniciarSesion(tfUsuario.getText(), tfContraseña.getText());

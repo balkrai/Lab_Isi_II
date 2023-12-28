@@ -13,12 +13,12 @@ import modelo.Trabajador;
  *
  * @author ramon
  */
-public class Vista_11 extends javax.swing.JFrame {
-    private Camping c;
+public class Vista11 extends javax.swing.JFrame {
+    private transient Camping c;
     /**
      * Creates new form Ventana8
      */
-    public Vista_11(Camping c) {
+    public Vista11(Camping c) {
         initComponents();
         this.c = c;
     }
@@ -164,7 +164,7 @@ public class Vista_11 extends javax.swing.JFrame {
 
     private void Cancelar_Vista11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar_Vista11ActionPerformed
         // TODO add your handling code here:
-        Vista_10 v10 = new Vista_10(c);
+        Vista10 v10 = new Vista10(c);
         v10.show();
         this.dispose();
     }//GEN-LAST:event_Cancelar_Vista11ActionPerformed

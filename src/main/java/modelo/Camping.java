@@ -1,5 +1,6 @@
 package modelo;
 
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -143,7 +144,7 @@ public class Camping {
         return t;
     }
 
-    public void cargarDatos() throws ParseException {
+    public void cargarDatos() throws ParseException, NoSuchAlgorithmException {
         ParcelaDao dao_parcela = new ParcelaDao();
         ReservaDAO dao_reserva = new ReservaDAO();
         ActividadDAO dao_actividad = new ActividadDAO();

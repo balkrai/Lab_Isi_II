@@ -95,12 +95,14 @@ public class ClienteDAO {
     public Cliente leerCliente(int idUsuario)
     {
         Cliente c = new Cliente("", "",idUsuario);
+        Connection oracleConn = null;
+        PreparedStatement read = null;
         
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
-            PreparedStatement read = oracleConn.prepareStatement(READ);
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            read = oracleConn.prepareStatement(READ);
             read.setInt(1, idUsuario);
             ResultSet rs = read.executeQuery();
 
@@ -113,19 +115,34 @@ public class ClienteDAO {
         {
             System.out.println("ERROR AL LEER USUARIO "+idUsuario);
         }
+        finally
+        {
+            try
+            {
+                oracleConn.close();
+                read.close();
+            }
+            catch(SQLException e)
+            {
+                e.printStackTrace();
+            }     
+        }
         
         return c;
     }
     
     public void actualizarCliente(Cliente c)
     {
+        Connection oracleConn = null;
+        PreparedStatement update = null;
+        
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
 
             oracleConn.setAutoCommit(false);
-            PreparedStatement update = oracleConn.prepareStatement(UPDATE);
+            update = oracleConn.prepareStatement(UPDATE);
             //borja no estas basado en datos
             update.setInt(1, c.getId());
             update.setString(2, c.getUsuario());
@@ -141,18 +158,32 @@ public class ClienteDAO {
         {
             System.out.println("ERROR AL ACTUALIZAR CLIENTE "+c.getUsuario());
         }
-                
+        finally
+        {
+            try
+            {
+                oracleConn.close();
+                update.close();
+            }
+            catch(SQLException e)
+            {
+                e.printStackTrace();
+            }  
+        }
     }
     
     public void borrarCliente(int idUsuario)
     {
+        Connection oracleConn = null;
+        PreparedStatement delete = null;
+        
         try
         {
             Class.forName(DRIVER).newInstance();
-            Connection oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
+            oracleConn = DriverManager.getConnection(DBURL,USERNAME,PASSWORD);
             oracleConn.setAutoCommit(false);
 
-            PreparedStatement delete = oracleConn.prepareStatement(DELETE);
+            delete = oracleConn.prepareStatement(DELETE);
             delete.setInt(1, idUsuario);
             delete.executeUpdate();
 
@@ -163,6 +194,18 @@ public class ClienteDAO {
         catch(Exception e)
         {
             System.out.println("ERROR AL BORRAR CLIENTE "+idUsuario);
+        }
+        finally
+        {
+            try
+            {
+                oracleConn.close();
+                delete.close();
+            }
+            catch(SQLException e)
+            {
+                e.printStackTrace();
+            }  
         }
     }
 }

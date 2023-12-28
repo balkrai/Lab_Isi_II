@@ -13,12 +13,12 @@ import modelo.Trabajador;
  *
  * @author ramon
  */
-public class Vista_10 extends javax.swing.JFrame {
+public class Vista10 extends javax.swing.JFrame {
     private Camping c;
     /**
      * Creates new form Ventana8
      */
-    public Vista_10(Camping c) {
+    public Vista10(Camping c) {
         initComponents();
         this.c = c;
     }
@@ -148,11 +148,11 @@ public class Vista_10 extends javax.swing.JFrame {
     private void tfContraseña7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfContraseña7ActionPerformed
     }//GEN-LAST:event_tfContraseña7ActionPerformed
 
-    private void AceptarVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarVista10ActionPerformed
-        Vista_11 v11 = new Vista_11(c);
+    private void AceptarVista10ActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        Vista11 v11 = new Vista11(c);
         v11.show();
         this.dispose();
-    }//GEN-LAST:event_AceptarVista10ActionPerformed
+    }                                              
 
     private void CancelarVista10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVista10ActionPerformed
         // TODO add your handling code here:
